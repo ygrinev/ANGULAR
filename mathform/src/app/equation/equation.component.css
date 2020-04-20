@@ -1,0 +1,35 @@
+form {
+    margin-top: 20%;
+    display: flex;
+    justify-content: center;
+    font-size: 72px;
+}
+input {
+    border: none;
+    border-bottom: 2px solid black;
+    width: 20%;
+    text-align: center;
+    font-size: 72px;
+}
+input:focus {
+        outline: none;
+}
+.stats {
+    position: absolute;
+    bottom: 300px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 24px;
+}
+.close {
+    background-color: rgba(160,235,60,0.3);
+}
+.bingos {
+    background-color: rgba(9, 241, 9, 0.3);
+}
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}

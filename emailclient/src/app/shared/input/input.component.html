@@ -1,0 +1,26 @@
+<div class="field">
+    <label>{{label}}</label>
+    <input *ngIf="controlType==='input'" [type]="inputType" [formControl]="control" />
+    <textarea *ngIf="controlType==='textarea'" [formControl]="control"></textarea>
+    <div *ngIf="getErrors()?.required" class="ui pointing red basic label">
+        <p>Value cannot be empty.</p>
+    </div>
+    <div *ngIf="getErrors()?.email" class="ui pointing red basic label">
+        <p>Invalid email format.</p>
+    </div>
+    <div *ngIf="getErrors()?.minlength" class="ui pointing red basic label">
+        <p>Min length is {{getErrors()?.minlength.requiredLength}}.</p>
+    </div>
+    <div *ngIf="getErrors()?.maxlength" class="ui pointing red basic label">
+        <p>Max length is {{getErrors()?.maxlength.requiredLength}}.</p>
+    </div>
+    <div *ngIf="getErrors()?.pattern" class="ui pointing red basic label">
+        <p>Invalid format, must be {{getErrors()?.pattern.requiredPattern}}.</p>
+    </div>
+    <div *ngIf="getErrors()?.notUnique" class="ui pointing red basic label">
+        <p>This user name is taken.</p>
+    </div>
+    <div *ngIf="getErrors()?.requestFailed" class="ui pointing red basic label">
+        <p>Failed to connect to ng API.</p>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="table">
+    <div style="margin-left:40px;margin-top:20px;font-weight:bold">
+        Search by text: 
+        <input (input)="query=$event.target.value"/>
+    </div>
+    <br/>
+    <br/>
+    <div style="margin-left:40px">
+        <button  (click)="onClick()" [disabled]="!photoUrl">Fetch Photo</button>
+        <div *ngIf="photoUrl">
+            <img [src]="photoUrl" />
+        </div>
+        <br/>
+        <b style="text-align:center">{{capture}}</b>
+    </div>
+</div>

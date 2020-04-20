@@ -1,0 +1,19 @@
+<h3>Create an account</h3>
+<form class="ui form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+    <app-input inputType="text" label="Username" [control]="authForm.get('username')"></app-input>
+    <app-input inputType="password" label="Password" [control]="authForm.get('password')"></app-input>
+    <app-input inputType="password" label="Confirm Password" [control]="authForm.get('passwordConfirmation')"></app-input>
+    <div *ngIf="getErrors()?.noMatch">
+        <p class="ui red basic label vert-space">Both passwords must be identical.</p>
+    </div>
+    <div>
+        <button class="ui submit button primary" [disabled]="authForm.invalid">Submit</button>
+    </div>
+</form>
+<div *ngIf="getErrors()?.noConnection">
+    <p class="ui red basic label vert-space">Cannot connect to angular-email service.</p>
+</div>
+<div *ngIf="getErrors()?.unknownError">
+    <p class="ui red basic label vert-space">Uknown server error...</p>
+</div>
+
