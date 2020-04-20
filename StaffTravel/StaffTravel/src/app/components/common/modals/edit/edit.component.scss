@@ -1,0 +1,97 @@
+.dialog-header {
+    display: flex;
+    flex: 1 0 auto;
+    padding: 15px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e5f2f9;
+
+    h2 {
+        margin: 0;
+    }
+
+    .close {
+        float: none;
+        font-size: 1.5em;
+        line-height: 1.3em;
+        border: 2px solid #007cc3;
+        background-color: #e5f2f9;
+        color: #007cc3;
+        opacity: 1;
+        outline: none;
+        border-radius: 0;
+        margin-top: 0;
+    }
+}
+
+.dialog-content {
+    padding: 15px;
+}
+
+.mat-dialog-content {
+    padding: 0;
+    margin: 0;
+}
+
+
+.request-form__row {
+    position: relative;
+
+    &::after,
+    &::before {
+        display: table;
+        content: " ";
+    }
+
+    &::after {
+        clear: both;
+    }
+
+    &--collapse-sm {
+        @media (min-width: 768px) {
+            display: flex;
+            flex: 0 1 auto;
+        }
+    }
+
+    &--collapse-md {
+        @media (min-width: 992px) {
+            display: flex;
+            flex: 0 1 auto;
+        }
+    }
+
+    &--collapse-lg {
+        @media (min-width: 1200px) {
+            display: flex;
+            flex: 0 1 auto;
+        }
+    }
+
+    & > div[class^="col-"] {
+        padding: 0;
+
+        & > .field-group {
+            display: block;
+
+            @media (min-width: 768px) {
+                display: flex;
+                flex: 0 1 auto;
+            }
+
+            & > input {
+                width: 100%;
+
+                @media (min-width: 768px) {
+                    flex: 1 0 auto;
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+.dialog-footer {
+    padding: 0 15px 15px;
+    text-align: right;
+}

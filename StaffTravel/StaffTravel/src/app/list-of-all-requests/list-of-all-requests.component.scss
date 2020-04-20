@@ -1,0 +1,43 @@
+::ng-deep ng2-smart-table {
+    display: block;
+    min-height: .01%;
+    overflow-x: auto;
+
+    .ng2-smart-title a {
+        font-size: 1.2em;
+        color: #333;
+    }
+
+    table > thead > tr > .ng2-smart-th {
+        vertical-align: top;
+    }
+
+    table > tbody > tr:hover,
+    table > tbody > tr:focus {
+        background-color: #e5f2f9;
+        cursor: pointer;
+    }
+
+    .fa-bookmark {
+        color: #d00002;
+        font-size: 1.4em;
+        margin-right: 5px;
+    }
+}
+
+::ng-deep .ng2-smart-pagination-nav {
+    padding: 0 15px;
+
+    > .ng2-smart-pagination {
+        display: inline-flex;
+
+        > .ng2-smart-page-item {
+            display: flex !important;
+            align-items: stretch;
+
+            > a {
+                line-height: 20px;
+            }
+        }
+    }
+}

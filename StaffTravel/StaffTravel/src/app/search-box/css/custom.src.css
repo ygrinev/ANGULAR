@@ -1,0 +1,1759 @@
+/*/////////////////////////////////////////
+// Inline Search Box CSS
+/////////////////////////////////////////*/
+
+/* Global Styles */
+#search-box {
+  padding: 0;
+  position: relative;
+  display: inline-block;
+  float: left;
+  margin-bottom: 15px;
+}
+
+#search-box .sb-wrapper {
+  float: left;
+  width: 100%;
+}
+
+#search-box .sb-wrapper .sb-tab-container {
+  width: 100%;
+}
+
+#search-box .sb-wrapper .sb-tab-container a.tab {
+  font-size: 1.5em;
+  padding: 2px 20px;
+  border: 2px solid #007cc3;
+  border-right: 0;
+  border-bottom: 0;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  vertical-align: middle;
+
+  -webkit-box-shadow: inset 0px -4px 0px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: inset 0px -4px 0px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0px -4px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+#search-box .sb-wrapper .sb-tab-container a.tab span.label {
+  line-height: 2.25em;
+}
+
+#search-box .sb-wrapper .sb-tab-container a.tab:last-child {
+  border-right: 2px solid #007cc3;
+}
+
+#search-box .sb-wrapper .sb-tab-container a.tab:hover,
+#search-box .sb-wrapper .sb-tab-container a.tab:focus {
+  text-decoration: none;
+  outline: none;
+  border-bottom: 0;
+  background-color: #e5f2fa;
+  color: #007cc3;
+}
+
+#search-box .sb-wrapper .sb-tab-container a.tab.active {
+  text-decoration: none;
+  outline: none;
+  border: 2px solid #007cc3;
+  border-bottom: 0;
+  background-color: #007cc3;
+  color: #fff;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+#search-box .sb-wrapper .sb-tab-container a.tab.active + a {
+  border-left: 0;
+}
+
+#search-box .sb-wrapper .sb-tab-container a.tab.active {
+  cursor: default;
+}
+
+#search-box .sb-wrapper .sb-tab-container a.tab.active::before {
+  content: "\f0d7";
+  font-family: fontAwesome;
+  position: absolute;
+  bottom: -0.8em;
+  left: 0;
+  right: 0;
+  color: #007cc3;
+  font-size: 2em;
+  z-index: 2;
+}
+
+#search-box .sb-wrapper .sb-tab-container a.tab .icon {
+  font-size: 0.75em;
+  vertical-align: middle;
+}
+
+#search-box .sb-wrapper .sb-tab-container a.tab .label {
+  font-weight: normal;
+  padding: 0;
+  color: inherit;
+}
+
+/* SVG CSS*/
+
+#search-box .sb-wrapper .sb-tab-container a.tab svg {
+  fill: #007cc3;
+  width: 0.95em;
+  height: 0.865em;
+  vertical-align: middle;
+}
+
+#search-box .sb-wrapper .sb-tab-container a.tab.active svg {
+  fill: #fff;
+}
+
+@media (max-width: 700px) {
+  #search-box .sb-wrapper .sb-tab-container {
+    width: 100%;
+    display: table;
+  }
+
+  #search-box .sb-wrapper .sb-tab-container a.tab {
+    padding: 0 0.25em;
+    display: table-cell;
+    float: none;
+  }
+
+  #search-box .sb-wrapper .sb-tab-container a.tab .icon {
+    font-size: 1em;
+    line-height: 2em;
+  }
+
+  #search-box .sb-wrapper .sb-tab-container a.tab .label {
+    display: none;
+  }
+
+  /* SVG CSS*/
+  #search-box .sb-wrapper .sb-tab-container a.tab svg {
+    width: 1.2em;
+    height: 1.2em;
+  }
+}
+
+#search-box .sb-wrapper .sb-tab-contents {
+  border: 2px solid #007cc3;
+  padding: 15px;
+  float: left;
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+}
+
+#search-box .sb-wrapper .sb-tab-contents .hideTab {
+  display: none;
+}
+
+#search-box .sb-wrapper .sb-tab-contents .showTab {
+  display: block;
+}
+
+#search-box .sb-wrapper .sb-tab-contents form {
+  display: none;
+  width: 100%;
+}
+
+#search-box .sb-wrapper .sb-tab-contents form.active {
+  display: block;
+}
+
+/* Content Formatting */
+
+/* Global */
+
+#search-box .wrapper {
+  display: block;
+  width: 100%;
+}
+
+.search-box-form .form-group {
+  vertical-align: bottom;
+}
+
+.search-box-form .form-group label,
+.form-group label {
+  display: block;
+  position: relative;
+  line-height: 1.2;
+}
+
+.search-box-form .form-group .right-inner-icon .dd-arrow.fa::before {
+  color: #565656;
+}
+
+.search-box-form .form-group.search {
+  padding-right: 0;
+  margin-top: 27px;
+  width: 300px;
+  position: static;
+}
+
+.search-box-form .form-group.search button {
+  width: 100%;
+}
+
+.search-box-form .row-wrapper {
+  width: 100%;
+  float: left;
+}
+
+.search-box-form .mrow3 .form-group.childage-wrapper .close {
+  display: block;
+  width: 100%;
+  padding-right: 0;
+}
+
+.radio-group .search-box-form .form-group input + label,
+.checkbox-group .search-box-form .form-group input + label {
+  display: block;
+  position: relative;
+  margin-bottom: 0;
+}
+
+/*/////////////////////////////////////////
+      // Packages Content CSS
+      /////////////////////////////////////////*/
+
+.search-box-form .packages-children label .fa {
+  text-align: right !important;
+  display: none;
+}
+
+.search-box-form .mrow1,
+.search-box-form .mrow2 {
+  display: table-cell;
+}
+
+.search-box-form .mrow3 {
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
+.search-box-form .mrow4 {
+  display: none;
+  height: 100px;
+  width: 100%;
+  float: left;
+}
+
+/*[lang="fr"] #content-packages .search-box-heading {
+          height: 3.5em;
+      }*/
+
+/* 10+ Groups link */
+#search-box-form-packages .grouptravel-active .ten-plus {
+  position: absolute;
+  margin-top: 3px;
+  z-index: 1;
+
+  display: inline-block !important;
+  bottom: -25px;
+  left: 0;
+}
+
+#search-box-form-packages .grouptravel-active .ten-plus a {
+  color: #f36f21;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+#search-box-form-packages .grouptravel-active .ten-plus a:hover,
+#search-box-form-packages .grouptravel-active .ten-plus a:focus {
+  text-decoration: none;
+}
+
+#search-box-form-packages .mrow2.grouptravel-active {
+  padding-bottom: 20px;
+}
+
+#search-box-form-packages .grouptravel-active .mrow3 {
+  padding-top: 20px;
+}
+
+@media (max-width: 700px) {
+  #search-box-form-packages .grouptravel-active .ten-plus {
+    right: 15px;
+    display: inline-block !important;
+
+    text-align: right;
+    bottom: 50%;
+    margin-bottom: -5.5em;
+  }
+
+  #search-box-form-packages .mrow2.grouptravel-active {
+    padding-bottom: 0px;
+  }
+
+  .search-box-form .packages-adults {
+    margin-bottom: 15px !important;
+  }
+}
+
+@media (max-width: 445px) {
+  #search-box-form-packages .grouptravel-active .ten-plus {
+    margin-bottom: -6.2em;
+  }
+}
+
+@media (max-width: 400px) {
+  #search-box-form-packages .grouptravel-active .ten-plus {
+    margin-bottom: -6.5em;
+    font-size: 0.9em;
+  }
+}
+
+#search-box-form-packages .vacation-finder {
+  position: absolute;
+  right: 15px;
+  top: 0.8em;
+  width: auto;
+}
+
+[lang="fr"] #search-box-form-packages .vacation-finder {
+  text-align: right;
+  top: 0.5em;
+}
+
+#search-box-form-packages .vacation-finder a.cta {
+  vertical-align: top;
+  line-height: 1.5em;
+}
+
+#search-box-form-packages .vacation-finder a.cta:hover,
+#search-box-form-packages .vacation-finder a.cta:focus {
+  font-weight: 700;
+}
+
+#search-box-form-packages .vacation-finder .svg .new-text {
+  position: absolute;
+  z-index: auto;
+  top: 0.1em;
+  right: 0.75em;
+  color: #fff;
+}
+
+[lang="fr"] #search-box-form-packages .vacation-finder .svg .new-text {
+  top: 0.8em;
+  right: 0.75em;
+  left: auto;
+}
+
+#search-box-form-packages .vacation-finder svg {
+  fill: #f36f21;
+  width: 1.5em;
+  height: 1.25em;
+  margin: auto;
+  top: 0.25em;
+  position: relative;
+}
+
+.vacation-finder-mobile {
+  position: relative;
+  top: 0.8em;
+  width: auto;
+  margin: auto;
+}
+
+.vacation-finder-mobile a.cta:hover,
+.vacation-finder-mobile a.cta:focus {
+  font-weight: 700;
+}
+
+.vacation-finder-mobile .svg .new-text {
+  position: absolute;
+  z-index: auto;
+  top: 0.15em;
+  left: 1em;
+  color: #fff;
+  margin-left: 15px;
+}
+
+.vacation-finder-mobile svg {
+  fill: #f36f21;
+  width: 4em;
+  height: 1.75em;
+  margin: auto 15px;
+}
+
+[lang="fr"] .vacation-finder-mobile a.cta {
+  vertical-align: top;
+  line-height: 1.5em;
+  font-size: 1em;
+  top: 2px;
+  position: relative;
+}
+
+[lang="fr"] .vacation-finder-mobile a.cta:hover,
+[lang="fr"] .vacation-finder-mobile a.cta:focus {
+  font-weight: 700;
+}
+
+[lang="fr"] .vacation-finder-mobile .svg .new-text {
+  top: 0.9em;
+  bottom: 0;
+  right: 1.7em;
+  left: auto;
+}
+
+.vacation-finder-mobile .svg {
+  position: relative;
+}
+
+.vacation-finder-mobile svg {
+  transform: rotateY(180deg);
+}
+
+[lang="fr"] .vacation-finder-mobile svg {
+  fill: #f36f21;
+  width: 6em;
+  height: 3.25em;
+  margin: auto 15px auto 0;
+  position: relative;
+  transform: rotateY(180deg);
+}
+
+.vacation-finder-button {
+  display: none;
+}
+
+/* Full search button */
+.vf-full-search {
+  text-align: right;
+  margin-bottom: 2em;
+  margin-top: -2em;
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .vf-full-search {
+    display: block;
+  }
+}
+
+.vf-full-search i {
+  font-size: 0.5em;
+  height: 1.25em;
+}
+
+.round-btn {
+  background-color: #fff;
+  color: #007cc3;
+  padding: 5px 10px 5px 45px;
+  border-radius: 20px;
+  display: inline-block;
+  text-align: right;
+  position: relative;
+}
+
+.round-btn::before {
+  content: "";
+  background-color: #007cc3;
+  width: 3em;
+  height: 3em;
+  border-radius: 2em;
+  position: absolute;
+  top: -0.5em;
+  left: -0.5em;
+  border: 2px solid #fff;
+}
+
+.round-btn::after {
+  content: "\f002";
+  font-family: "FontAwesome";
+  top: 0.1em;
+  left: 0.22em;
+  color: #fff;
+  position: absolute;
+  font-size: 1.5em;
+  line-height: 1;
+}
+
+.vf-full-search i::before {
+  position: absolute;
+}
+
+@media (min-width: 701px) {
+  .vacation-finder-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  #search-box-form-packages .vacation-finder {
+    font-size: 0.9em;
+    margin-top: 0.5em;
+  }
+}
+
+/* EN preset min widths */
+
+.search-box-form .mrow2 .packages-rooms label > span {
+  display: none;
+}
+
+@media (min-width: 700px) {
+  .search-box-form .mrow1 .departure-gateway {
+    min-width: 180px;
+  }
+
+  .search-box-form .mrow1 .arrival-gateway {
+    min-width: 180px;
+  }
+
+  .search-box-form .mrow1 .departure-date {
+    min-width: 140px;
+    width: 140px;
+  }
+
+  .search-box-form .mrow1 .packages-days {
+    min-width: 120px;
+    width: 120px;
+  }
+}
+
+@media (min-width: 701px) {
+  .search-box-form .mrow2 .packages-children {
+    position: relative;
+  }
+}
+
+@media (min-width: 701px) {
+  .search-box-form .mrow2 .packages-rooms {
+    min-width: 70px;
+  }
+
+  .search-box-form .mrow2 .packages-adults {
+    min-width: 70px;
+    position: relative;
+  }
+
+  .search-box-form .mrow2 .packages-children {
+    min-width: 70px;
+    width: 70px;
+  }
+
+  .search-box-form .mrow2 .select-hotel {
+    width: 300px;
+  }
+}
+/* Added disabled close button for all tabs here */
+.search-box-form .form-group.childage-wrapper .form-group.disabled,
+.search-box-form .mrow3.disabled.reset,
+.search-box-form .mrow3 .close,
+.search-box-form .packages-children label .edit.disabled,
+.search-box-form .flights-children label .edit.disabled,
+.search-box-form .hotels-children label .edit.disabled {
+  display: none;
+}
+
+.search-box-form .form-group.childage-wrapper {
+  text-align: center;
+  margin: 15px 0 0 0;
+  padding: 0;
+  width: 250px;
+  margin-left: -96px;
+}
+
+.search-box-form .form-group.childage-wrapper .form-group {
+  display: inline-block;
+  margin-bottom: 0;
+  padding: 0 7.5px 0 0;
+  float: none;
+  width: initial;
+  width: 50px;
+}
+
+.search-box-form .form-group.childage-wrapper .form-group select {
+  width: inherit;
+  padding-left: 5px;
+}
+
+@media (min-width: 700px) and (max-width: 1199px) {
+  #search-box .search-box-heading h2 {
+    margin: 0 0 10px 0;
+  }
+
+  .search-box-form .mrow1,
+  .search-box-form .mrow2 {
+    display: table;
+    width: 100%;
+  }
+
+  .search-box-form .mrow1 {
+    padding-bottom: 15px;
+  }
+
+  .search-box-form .mrow1 .packages-days {
+    padding-right: 0;
+  }
+
+  .search-box-form .mrow2 .packages-rooms,
+  .search-box-form .mrow2 .packages-adults,
+  .search-box-form .mrow2 .packages-children {
+    min-width: 100px;
+    width: 100px;
+  }
+
+  .search-box-form .packages-children .form-group.childage-wrapper {
+    text-align: center;
+    margin: 15px 0 0 0;
+    padding: 0;
+    width: 250px;
+    margin-left: -82.5px;
+  }
+}
+
+@media (max-width: 991px) {
+  #search-box h2 {
+    font-size: 1.25em !important;
+  }
+}
+
+@media (max-width: 700px) {
+  #search-box #content-packages .search-box-heading h2 {
+    margin: 1.5em 0 10px 0;
+  }
+
+  .search-box-form .mrow1,
+  .search-box-form .mrow2 {
+    display: table;
+    width: 100%;
+  }
+
+  .search-box-form .form-group {
+    width: 100%;
+    display: inline-block;
+    margin: 0;
+    padding-right: 0;
+    padding-bottom: 10px;
+  }
+
+  .search-box-form .form-group.departure-date,
+  .search-box-form .form-group.packages-adults,
+  .search-box-form .form-group.departure-gateway {
+    width: 50%;
+    padding-right: 7.5px;
+    float: left;
+  }
+
+  .search-box-form .form-group.packages-days,
+  .search-box-form .form-group.packages-children,
+  .search-box-form .form-group.arrival-gateway {
+    width: 50%;
+    padding-left: 7.5px;
+    float: left;
+  }
+
+  .search-box-form .form-group.packages-children label > i {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    font-size: 2em;
+  }
+
+  .search-box-form .form-group.search {
+    margin-top: 10px;
+    padding: 0;
+    width: 100%;
+  }
+
+  .search-box-form .mrow3 .close {
+    position: relative;
+    float: none;
+    opacity: 1;
+    width: 85%;
+    margin-top: 15px;
+    display: block !important;
+  }
+
+  .search-box-form .mrow3 .close button {
+    font-size: 0.9em;
+  }
+
+  .search-box-form .mrow3 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(242, 242, 242, 0.8);
+    z-index: 1;
+    padding: 0;
+  }
+
+  .search-box-form .mrow3 .wrapper-inner {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    margin-top: -80px;
+  }
+
+  .search-box-form .form-group.childage-wrapper {
+    position: relative;
+    margin-bottom: 0;
+    margin: auto 0;
+    background-color: #fff;
+    padding: 10px;
+    width: 85%;
+    border: 2px solid #666;
+    left: 0;
+  }
+
+  .search-box-form .mrow3.disabled {
+    display: none;
+  }
+
+  .search-box-form .mrow4 {
+    display: none !important;
+  }
+
+  .search-box-form .form-group.childage-wrapper .form-group {
+    min-width: inherit;
+  }
+
+  .search-box-form .packages-children label .edit {
+    display: inline-block;
+  }
+
+  /* Consolidate Rooms / Adults / Children into 1 row */
+  .search-box-form .mrow2 .packages-rooms {
+    width: 33.3%;
+    padding-right: 7.5px;
+    float: left;
+  }
+
+  .search-box-form .mrow2 .packages-rooms label > span {
+    display: block;
+  }
+
+  .search-box-form .mrow2 .packages-adults {
+    width: 33.3%;
+    padding-left: 7.5px;
+  }
+
+  .search-box-form .mrow2 .packages-children {
+    width: 33.3%;
+  }
+}
+
+@media (max-width: 767px) {
+  #search-box #content-packages .search-box-heading h2 {
+    margin-top: 1.5em;
+  }
+}
+
+/*/////////////////////////////////////////
+      // Flights Content CSS
+      /////////////////////////////////////////*/
+
+/* Custom Radio */
+#search-box-form-flights.search-box-form .right-inner-icon input {
+  padding-right: 2em;
+}
+
+#search-box-form-flights.search-box-form .flights-children label .fa {
+  text-align: right !important;
+  display: none;
+}
+
+#search-box-form-flights.search-box-form
+  .form-group.departure-gateway
+  .right-inner-icon
+  .fa,
+#search-box-form-flights.search-box-form
+  .form-group.arrival-gateway
+  .right-inner-icon
+  .fa {
+  width: 2em;
+  font-weight: bold;
+}
+
+@media (min-width: 700px) {
+  #search-box-form-flights.search-box-form .mrow1 .departure-gateway {
+    min-width: 180px;
+  }
+
+  #search-box-form-flights.search-box-form .mrow2 .departure-date,
+  #search-box-form-flights.search-box-form .mrow2 .return-date {
+    width: 140px;
+    min-width: 140px;
+  }
+
+  #search-box-form-flights.search-box-form .mrow2 .flights-days {
+    width: 120px;
+    min-width: 120px;
+  }
+
+  #search-box-form-flights.search-box-form .mrow2 .flights-adults {
+    width: 70px;
+    min-width: 70px;
+  }
+
+  #search-box-form-flights.search-box-form .mrow2 .flights-children {
+    width: 70px;
+    min-width: 70px;
+    position: relative;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1199px) {
+  #search-box-form-flights.search-box-form .mrow1 .arrival-gateway {
+    padding-right: 0;
+  }
+
+  #search-box-form-flights.search-box-form .mrow2 .flights-adults,
+  #search-box-form-flights.search-box-form .mrow2 .flights-children {
+    min-width: 100px;
+    width: 100px;
+  }
+
+  .search-box-form .flights-children .form-group.childage-wrapper {
+    text-align: center;
+    margin: 15px 0 0 0;
+    padding: 0;
+    width: 250px;
+    margin-left: -82.5px;
+  }
+}
+
+@media (max-width: 700px) {
+  #search-box-form-flights.search-box-form .trip-type:nth-of-type(odd),
+  #search-box-form-flights.search-box-form .form-group.departure-gateway,
+  #search-box-form-flights.search-box-form .form-group.departure-date,
+  #search-box-form-flights.search-box-form .form-group.flights-adults {
+    width: 50%;
+    padding-right: 7.5px;
+    float: left;
+    clear: left;
+  }
+
+  #search-box-form-flights.search-box-form .trip-type:nth-of-type(even),
+  #search-box-form-flights.search-box-form .form-group.arrival-gateway,
+  #search-box-form-flights.search-box-form .form-group.flights-days,
+  #search-box-form-flights.search-box-form .form-group.return-date,
+  #search-box-form-flights.search-box-form .form-group.flights-children {
+    width: 50%;
+    padding-left: 7.5px;
+    float: left;
+  }
+
+  #search-box-form-flights.search-box-form .flights-children label .edit {
+    display: inline-block;
+  }
+
+  #search-box-form-flights.search-box-form
+    .form-group.flights-children
+    label
+    > i {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 400px) {
+  .search-box-form .form-group label {
+    font-size: 0.8em;
+  }
+
+  .search-box-form .form-group.packages-children label > i {
+    font-size: 1.5em;
+  }
+}
+
+#search-box-form-flights.search-box-form
+  .flights-children
+  label
+  .edit.disabled {
+  display: none;
+}
+
+/*/////////////////////////////////////////
+      // Cruises Content CSS
+      /////////////////////////////////////////*/
+
+#search-box-form-cruises {
+  float: left;
+  width: 100%;
+  position: relative;
+}
+
+#search-box-form-cruises .wrapper {
+  display: block;
+  width: 100%;
+}
+
+#search-box-form-cruises.cruise-search-box-form .form-group {
+  vertical-align: bottom;
+}
+
+#search-box-form-cruises.cruise-search-box-form .form-group input[type="text"] {
+  background-color: #f9f9f9;
+}
+
+#search-box-form-cruises.cruise-search-box-form
+  .form-group
+  .right-inner-icon
+  .dd-arrow.fa::before {
+  color: #565656;
+}
+
+#search-box-form-cruises.cruise-search-box-form .form-group label > span {
+  color: #646464;
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#search-box-form-cruises.cruise-search-box-form .form-group.cruise-search {
+  padding-right: 0;
+  margin-top: 27px;
+  width: 300px;
+}
+
+#search-box-form-cruises.cruise-search-box-form
+  .form-group.cruise-search
+  button::after,
+#search-box-form-cruises.cruise-search-box-form
+  .form-group.cruise-search
+  a.btn::after {
+  font-family: "FontAwesome";
+  content: "\f054";
+  font-size: 0.6em;
+  line-height: 0.6em;
+  margin-left: 0.8em;
+  display: inline;
+  vertical-align: middle;
+}
+
+#search-box-form-cruises.cruise-search-box-form
+  .form-group.cruise-search
+  button,
+#search-box-form-cruises.cruise-search-box-form
+  .form-group.cruise-search
+  a.btn {
+  width: 100%;
+}
+
+#search-box-form-cruises.cruise-search-box-form .row-wrapper {
+  width: 100%;
+  float: left;
+}
+
+#search-box-form-cruises.cruise-search-box-form .mrow1,
+#search-box-form-cruises.cruise-search-box-form .mrow2,
+#search-box-form-cruises.cruise-search-box-form .mrow3 {
+  display: table-cell;
+}
+
+#search-box-form-cruises.cruise-search-box-form
+  .mrow1
+  .cruise-departure-gateway {
+  min-width: 170px;
+}
+
+#search-box-form-cruises.cruise-search-box-form .mrow1 .cruise-arrival-gateway {
+  min-width: 170px;
+}
+
+#search-box-form-cruises.cruise-search-box-form .mrow2 .cruise-departure-month {
+  min-width: 150px;
+}
+
+#search-box-form-cruises.cruise-search-box-form .mrow2 .cruise-departure-date {
+  min-width: 150px;
+}
+
+/* Custom Form elements */
+#search-box-form-cruises.cruise-search-box-form .mrow2 .form-group.input-group {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+#search-box-form-cruises.cruise-search-box-form
+  .mrow2
+  .form-group.input-group.cruise-departure-month {
+  float: left;
+}
+
+#search-box-form-cruises.cruise-search-box-form .mrow3 .cruise-duration {
+  min-width: 150px;
+}
+
+#search-box-form-cruises.cruise-search-box-form .mrow2 .input-group-wrapper {
+  width: 50%;
+  float: left;
+}
+
+#search-box-form-cruises.cruise-search-box-form
+  .mrow2
+  .input-group-wrapper
+  .input-group-addon
+  label {
+  padding: 0;
+}
+
+#search-box-form-cruises.cruise-search-box-form .radio-group label::before {
+  left: 0.6em;
+}
+
+#search-box-form-cruises.cruise-search-box-form
+  .form-group
+  .right-inner-icon
+  .fa {
+  z-index: 3;
+}
+
+@media (max-width: 1199px) {
+  #search-box-form-cruises .search-box-heading h2 {
+    margin: 0 0 10px 0;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form .mrow1,
+  #search-box-form-cruises.cruise-search-box-form .mrow2,
+  #search-box-form-cruises.cruise-search-box-form .mrow3 {
+    display: table;
+    width: 100%;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form .mrow1,
+  #search-box-form-cruises.cruise-search-box-form .mrow2 {
+    padding-bottom: 15px;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form .mrow1 .cruise-duration {
+    padding-right: 0;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form .form-group {
+    width: 50%;
+    min-width: inherit !important;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form .mrow2 .form-group {
+    margin-bottom: 0;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form
+    .mrow1
+    .cruise-departure-gateway {
+    width: 50%;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form
+    .mrow1
+    .cruise-arrival-gateway {
+    width: 50%;
+    padding-right: 0;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form
+    .mrow2
+    .cruise-departure-month {
+    width: 50%;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form
+    .mrow2
+    .cruise-departure-date {
+    width: 50%;
+    padding-right: 0;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form .mrow3 .cruise-duration {
+    width: 50%;
+  }
+}
+
+@media (max-width: 400px) {
+  #search-box-form-cruises.cruise-search-box-form .mrow3 .cruise-duration,
+  #search-box-form-cruises.cruise-search-box-form .mrow3 .cruise-search {
+    width: 100%;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form .mrow2 .input-group-wrapper {
+    width: 100%;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form
+    .mrow2
+    .input-group-wrapper
+    .form-group.input-group {
+    padding-right: 0;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form .mrow3 .cruise-search {
+    margin-top: 15px;
+  }
+
+  #search-box-form-cruises.cruise-search-box-form .form-group label {
+    font-size: 0.9em;
+  }
+}
+
+/*/////////////////////////////////////////
+      // Hotels Content CSS
+      /////////////////////////////////////////*/
+
+#search-box-form-hotels {
+  float: left;
+  width: 100%;
+}
+
+#search-box-form-hotels.search-box-form .hotel-destination {
+  min-width: 250px;
+}
+
+@media (min-width: 701px) and (max-width: 1199px) {
+  #search-box-form-hotels.search-box-form .hotel-checkout-date {
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 701px) {
+  #search-box-form-hotels.search-box-form .hotels-rooms {
+    min-width: 100px;
+  }
+
+  #search-box-form-hotels.search-box-form .hotels-adults {
+    min-width: 100px;
+  }
+
+  #search-box-form-hotels.search-box-form .hotels-children {
+    width: 70px;
+    min-width: 70px;
+    position: relative;
+  }
+
+  #search-box-form-hotels.search-box-form .hotels-children label .fa {
+    text-align: right !important;
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  #search-box-form-hotels.search-box-form .hotel-checkin-date {
+    padding-right: 7.5px;
+  }
+
+  #search-box-form-hotels.search-box-form .hotel-checkout-date {
+    padding-left: 7.5px;
+  }
+
+  #search-box-form-hotels.search-box-form .hotel-checkin-date,
+  #search-box-form-hotels.search-box-form .hotel-checkout-date {
+    width: 50%;
+    float: left;
+  }
+
+  #search-box-form-hotels.search-box-form .mrow2 .hotels-rooms {
+    width: 33.3%;
+    padding-right: 7.5px;
+    float: left;
+  }
+
+  #search-box-form-hotels.search-box-form .mrow2 .hotels-adults {
+    width: 33.3%;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+    float: left;
+  }
+
+  #search-box-form-hotels.search-box-form .mrow2 .hotels-children {
+    width: 33.3%;
+    padding-left: 7.5px;
+    float: left;
+  }
+
+  #search-box-form-hotels.search-box-form
+    .form-group.hotels-children
+    label
+    > i {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    font-size: 2em;
+  }
+
+  .search-box-form .hotels-children label .edit {
+    display: inline-block;
+  }
+}
+
+/*/////////////////////////////////////////
+      // Cars Content CSS
+      /////////////////////////////////////////*/
+
+#search-box-form-cars {
+  float: left;
+  width: 100%;
+  position: relative;
+}
+
+#search-box-form-cars .search-box-heading h2 {
+  margin-bottom: 18px;
+}
+
+#search-box-form-cars .wrapper {
+  display: block;
+  width: 100%;
+}
+
+#search-box-form-cars.car-search-box-form .form-group {
+  vertical-align: bottom;
+}
+
+#search-box-form-cars.car-search-box-form .form-group .right-inner-icon {
+  position: relative;
+}
+
+#search-box-form-cars.car-search-box-form .form-group .right-inner-icon .fa {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#search-box-form-cars.car-search-box-form
+  .form-group
+  .right-inner-icon
+  .fa::before {
+  position: absolute;
+  width: 2em;
+  text-align: center;
+  top: 0;
+  left: inherit;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  color: #007bc3;
+  line-height: 2em;
+  margin: auto;
+  height: 2em;
+  pointer-events: none;
+}
+
+#search-box-form-cars.car-search-box-form .form-group input[type="text"] {
+  background-color: #f9f9f9;
+}
+
+#search-box-form-cars.car-search-box-form
+  .form-group
+  .right-inner-icon
+  .dd-arrow.fa::before {
+  color: #565656;
+}
+
+#search-box-form-cars.car-search-box-form .form-group label > span {
+  color: #646464;
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#search-box-form-cars.car-search-box-form .form-group.car-search {
+  padding-right: 0;
+  margin-top: 27px;
+  width: 300px;
+}
+
+#search-box-form-cars.car-search-box-form .form-group.car-search button::after,
+#search-box-form-cars.car-search-box-form .form-group.car-search a.btn::after {
+  font-family: "FontAwesome";
+  content: "\f054";
+  font-size: 0.6em;
+  line-height: 0.6em;
+  margin-left: 0.8em;
+  display: inline;
+  vertical-align: middle;
+}
+
+#search-box-form-cars.car-search-box-form .form-group.car-search button,
+#search-box-form-cars.car-search-box-form .form-group.car-search a.btn {
+  width: 100%;
+}
+
+#search-box-form-cars.car-search-box-form .row-wrapper {
+  width: 100%;
+  float: left;
+}
+
+#search-box-form-cars.car-search-box-form .mrow1,
+#search-box-form-cars.car-search-box-form .mrow2,
+#search-box-form-cars.car-search-box-form .mrow3 {
+  display: table-cell;
+}
+
+#search-box-form-cars.car-search-box-form .mrow1 .car-pickup-gateway {
+  min-width: 180px;
+}
+
+#search-box-form-cars.car-search-box-form .mrow1 .car-dropoff-gateway {
+  min-width: 180px;
+}
+
+#search-box-form-cars.car-search-box-form .mrow2 .car-pickup-date {
+  min-width: 150px;
+}
+
+#search-box-form-cars.car-search-box-form .mrow2 .car-pickup-time {
+  min-width: 150px;
+}
+
+#search-box-form-cars.car-search-box-form .mrow2 .car-dropoff-date {
+  min-width: 150px;
+}
+
+#search-box-form-cars.car-search-box-form .mrow2 .car-dropoff-time {
+  min-width: 150px;
+}
+
+@media (max-width: 1199px) {
+  #search-box-form-cars .search-box-heading h2 {
+    margin: 0 0 10px 0;
+  }
+
+  #search-box-form-cars.car-search-box-form .mrow1,
+  #search-box-form-cars.car-search-box-form .mrow2,
+  #search-box-form-cars.car-search-box-form .mrow3 {
+    display: table;
+    width: 100%;
+  }
+
+  #search-box-form-cars.car-search-box-form .mrow1,
+  #search-box-form-cars.car-search-box-form .mrow2 {
+    padding-bottom: 15px;
+  }
+
+  #search-box-form-cars.car-search-box-form .form-group {
+    width: 50%;
+    min-width: inherit !important;
+  }
+
+  #search-box-form-cars.car-search-box-form .mrow1 .car-pickup-gateway {
+    width: 50%;
+  }
+
+  #search-box-form-cars.car-search-box-form .mrow1 .car-dropoff-gateway {
+    width: 50%;
+    padding-right: 0;
+  }
+
+  #search-box-form-cars.car-search-box-form .mrow2 .car-pickup-date,
+  #search-box-form-cars.car-search-box-form .mrow2 .car-pickup-time {
+    width: 25%;
+  }
+
+  #search-box-form-cars.car-search-box-form .mrow2 .car-dropoff-date {
+    width: 25%;
+  }
+
+  #search-box-form-cars.car-search-box-form .mrow2 .car-dropoff-time {
+    width: 25%;
+    padding-right: 0;
+  }
+
+  #search-box-form-cars.car-search-box-form .form-group.car-search button,
+  #search-box-form-cars.car-search-box-form .form-group.car-search a.btn {
+    width: 50%;
+    float: right;
+  }
+}
+
+@media (max-width: 767px) {
+  #search-box-form-cars.car-search-box-form .mrow2 .car-pickup-date {
+    width: 50%;
+    float: left;
+  }
+
+  #search-box-form-cars.car-search-box-form .mrow2 .car-pickup-time {
+    width: 50%;
+    padding-right: 0;
+    float: left;
+  }
+
+  #search-box-form-cars.car-search-box-form .mrow2 .car-dropoff-date {
+    width: 50%;
+    float: left;
+  }
+
+  #search-box-form-cars.car-search-box-form .mrow2 .car-dropoff-time {
+    width: 50%;
+    padding-right: 0;
+    float: left;
+  }
+}
+
+@media (max-width: 500px) {
+  #search-box-form-cars.car-search-box-form .mrow3 .car-duration,
+  #search-box-form-cars.car-search-box-form .mrow3 .car-search {
+    width: 100%;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+  }
+
+  #search-box-form-cars.car-search-box-form .mrow3 .car-search button {
+    width: 100%;
+  }
+
+  #search-box-form-cars.car-search-box-form .form-group label {
+    font-size: 0.9em;
+  }
+}
+
+
+
+/*
+Datetime Picker
+*/
+:host >>> .bootstrap-datetimepicker-widget table thead tr:first-child th:hover {
+    background: #ffffff;
+    color: #f37021;		
+}
+      
+:host >>> .bootstrap-datetimepicker-widget table td.day:hover,
+:host >>> .bootstrap-datetimepicker-widget table td.hour:hover,
+:host >>> .bootstrap-datetimepicker-widget table td.minute:hover,
+:host >>> .bootstrap-datetimepicker-widget table td.second:hover {
+    background: #f37021;
+    color: #ffffff;
+}
+      
+:host >>> .bootstrap-datetimepicker-widget table td.old,
+:host >>> .bootstrap-datetimepicker-widget table td.new {
+    color: #999999;
+}
+      
+:host >>> .bootstrap-datetimepicker-widget table td.today:before {
+    border-bottom-color: #007cc3;
+}
+      
+:host >>> .bootstrap-datetimepicker-widget table td.active,
+:host >>> .bootstrap-datetimepicker-widget table td.active:hover {
+    background-color: #007cc3;
+    color: #fff;
+}
+      
+:host >>> .bootstrap-datetimepicker-widget table td.disabled,
+:host >>> .bootstrap-datetimepicker-widget table td.disabled:hover {
+    background: none !important;
+    color: #999999;
+}
+      
+:host >>> .bootstrap-datetimepicker-widget table td span.active {
+    background-color: #f37021;
+    color: #fff;
+}
+
+
+
+/*
+Form Elements
+*/
+
+input {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
+
+input, select, input.form-control, select.form-control {
+    border: 1px solid #ccc !important;
+    width: 100%;
+    height: 42px;
+    display: inline-block;
+    box-shadow: none !important;
+    font-size: 14px;
+    font-family: inherit;
+    background-color: #f9f9f9;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
+
+input:focus, select:focus {
+    border: 1px solid #007cc3 !important;
+}
+
+/* Radio / Checkbox CSS */
+input[type="radio"], input[type="checkbox"] {
+    position: fixed;
+    top: -9999px; 
+    left: -9999px; 
+    width: 0;
+    overflow: hidden; 
+}
+
+input[type="text"].form-control {
+    background-color: #f9f9f9;
+}
+
+input[type="radio"]:checked + label::before {
+    background: url("../icons/radio-checked.png") no-repeat 1px center;
+    content: "";
+}
+
+input[type="radio"] + label::before {
+    background: url("../icons/radio-unchecked.png") no-repeat 0px center;
+}
+
+input[type="checkbox"]:checked + label::before {
+    background: url("../icons/checkbox-checked.png") no-repeat 0px center;
+    content: "";
+}
+
+.form-group:not(.disabled-form-input) input[type="radio"]:focus + label::before {
+    background: url("../icons/radio-active.png") no-repeat 1px center;
+    content: "";
+}
+
+input[type="checkbox"] + label::before {
+    background: url("'../icons/checkbox-unchecked.png") no-repeat 0px center;
+}
+
+.input-group-wrapper .form-group {
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.form-group .input-group-addon.radio-group label, .form-group .input-group-addon.checkbox-group label {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2.25em;
+    display: inherit;
+    /*padding: 1em 1em;*/
+    margin: auto;
+    height: 2.5em;
+}
+
+.form-group .input-group-addon.radio-group, .form-group .input-group-addon.checkbox-group {
+    padding: 0;
+    line-height: 2.5;
+    width: 2.5em;
+}
+
+.radio-group label::before, .checkbox-group label::before {
+    content: "";
+    display: inline-block;
+    width: 17px;
+    height: 16px;
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    top: 0.75em;
+}
+
+input[type="radio"]:checked + label, input[type="checkbox"]:checked + label {
+    padding: 10px 15px 0px 28px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+input[type="radio"] + label, input[type="checkbox"] + label {
+    padding: 10px 15px 0px 28px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    white-space: nowrap;
+    margin-bottom: 0;
+}
+
+.radio-group > label.heading, .checkbox-group > label.heading {
+    padding-left: 0;
+}
+
+.radio-group .form-group input + label, .checkbox-group .form-group input + label {
+    display: block;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.form-group label > span, .input-group-wrapper label > span {
+    color: #646464;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.form-group .right-inner-icon {
+    position: relative;
+}
+
+.form-group .right-inner-icon .fa {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+.form-group .right-inner-icon .fa::before {
+    position: absolute;
+    width: 2em;
+    text-align: center;
+    top: 0;
+    left: inherit;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    color: #007bc3;
+    line-height: 2.5em;
+    margin: auto;
+    pointer-events: none;
+}
+
+select, select.form-control {
+    background: #f9f9f9 url('../icons/dropdown-arrows.png') no-repeat 97% center;
+    background-position: -webkit-calc(100% - 5px) center;
+    background-position: right 5px center;
+    padding-right: 20px;
+    padding-left: 10px;
+
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+@media screen and (min-width:0\0) and (min-resolution: +72dpi) {
+  /* IE9+ CSS */
+select, select.form-control {
+    padding-right: 0 !important;
+    background: none !important;
+    vertical-align: middle;
+    padding-left: 5px;
+}
+}
+
+.btn {
+    border: 2px solid #007cc3;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background-color: #007cc3;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 6px 12px;
+    height: 42px;
+    width: auto;
+
+    -moz-transition: background-color .3s ease-out, border .3s ease-out;
+    -ms-transition: background-color .3s ease-out, border .3s ease-out;
+    -o-transition: background-color .3s ease-out, border .3s ease-out;
+    -webkit-transition: background-color .3s ease-out, border .3s ease-out;
+    transition: background-color .3s ease-out, border .3s ease-out;
+}
+
+.btn.reverse {
+    border: 2px solid #007cc3;
+    color: #007cc3;
+    background-color: #fff;
+}
+
+.btn.flexible-wrap {
+    white-space: normal;
+    height: auto;
+    line-height: normal;
+    display: block;
+    width: 100%;
+}
+
+.btn:hover, .btn:focus {
+    background-color: #fff;
+    color: #007cc3;
+    border: 2px solid #007cc3;
+
+    -moz-transition: background-color .3s ease-out, border .3s ease-out;
+    -ms-transition: background-color .3s ease-out, border .3s ease-out;
+    -o-transition: background-color .3s ease-out, border .3s ease-out;
+    -webkit-transition: background-color .3s ease-out, border .3s ease-out;
+    transition: background-color .3s ease-out, border .3s ease-out;
+}
+
+.btn.reverse:hover, .btn.reverse:focus {
+    border: 2px solid #007cc3;
+    color: #fff;
+    background-color: #007cc3;
+}
+
+.btn:active {
+    background-color: #fff !important;
+    color: #f36f21 !important;
+    border: 2px solid #f36f21 !important;
+
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    -webkit-transition: none;
+    transition: none;
+}
+
+.btn.chevron-arrow::after {
+    font-family: "FontAwesome";
+    content: "\f054";
+    font-size: 0.6em;
+    line-height: 0.6em;
+    margin-left: 0.8em;
+    display: inline;
+    vertical-align: middle;
+}
+
+@media (max-width: 767px) {
+.btn {
+    width: 100%;
+}
+}
+
+/* Error Messages */
+.error-messages,
+.ui-widget-error {
+  display: none;
+}
+
+.error-messages {
+    margin-top: 15px;
+}
+
+.error-messages .alert .error-heading {
+    font-weight: bold;
+    font-size: 22px;
+    float: left;
+}
+
+.error-messages ul {
+    list-style-type: none;
+}
+
+/* Display Table */
+.dt {
+    display: table;
+    width: 100%;
+}
+
+.dtc {
+    display: table-cell;
+    vertical-align: middle;
+    float: none;
+}

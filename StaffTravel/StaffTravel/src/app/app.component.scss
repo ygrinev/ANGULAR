@@ -1,0 +1,33 @@
+:host {
+    @media (min-width: 768px) {
+        display: flex;
+        flex: 0 1 auto;
+    }
+}
+
+.wrapper {
+    @media (min-width: 768px) {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+}
+
+#main-content {
+    @media (min-width: 768px) {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+    }
+}
+
+.home {
+    /* background: url('staff-travel-splash-bg.jpg'); */
+    background: url('../../Content/Images/staff-travel-splash-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+}

@@ -1,0 +1,71 @@
+<header class="dialog-header">
+    <h2>{{r.addHotel}}</h2>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dialogRef.close()">
+        <span aria-hidden="false">
+            <i class="fa fa-times fa-fw" aria-hidden="false"></i>
+        </span>
+    </button>
+</header>
+<main class="dialog-content">
+    <mat-dialog-content class="dialog-content">
+        <form class="request-form" #requestForm="ngForm">
+            <div class="request-form__section">
+                <div class="request-form__row request-form__row--collapse-md">
+                    <div class="col-xs-12 col-sm-9 col-md-2" [class.form-error]="checkInDate.errors && (checkInDate.dirty || checkInDate.touched)">
+                        <label>{{r.checkInDate}}</label>
+                        <input name="checkInDate" class="form-control" type="text" [(ngModel)]="data.checkInDate" [textMask]="{mask:dateMask}" [placeholder]="r.dateFormat"
+                            required #checkInDate="ngModel" />
+                        <div *ngIf="checkInDate.errors && (checkInDate.dirty || checkInDate.touched)" class="form-error__message">
+                            <span>{{r.ERR_Required}}</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-2" [class.form-error]="duration.errors && (duration.dirty || duration.touched)">
+                        <label>{{r.duration}}</label>
+                        <input name="duration" class="form-control" type="text" [(ngModel)]="data.duration" required #duration="ngModel" [textMask]="{mask:maxValueMask, guide:false}"
+                        />
+                        <div *ngIf="duration.errors && (duration.dirty || duration.touched)" class="form-error__message">
+                            <span>{{r.ERR_Required}}</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-2" [class.form-error]="destination.errors && (destination.dirty || destination.touched)">
+                        <label>{{r.destination}}</label>
+                        <input name="destination" class="form-control" type="text" matInput [matAutocomplete]="destinationAC" (ngModelChange)="filteredDestinations = filterDestinations($event)"
+                            [(ngModel)]="data.destination" [attr.disabled]="!hotelDestinationsListReady?'true':null" required
+                            #destination="ngModel">
+                        <mat-autocomplete #destinationAC="matAutocomplete" (optionSelected)="hotelDestinationChanged($event)">
+                            <mat-option *ngFor="let option of filteredDestinations" [value]="option">
+                                {{ option }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <div *ngIf="destination.errors && (destination.dirty || destination.touched)" class="form-error__message">
+                            <span>{{r.ERR_Required}}</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-4" [class.form-error]="name.errors && (name.dirty || name.touched)">
+                        <label>{{r.hotelName}}</label>
+                        <input name="name" class="form-control" type="text" matInput [matAutocomplete]="hotelAC" (ngModelChange)="filteredHotels = filterHotels($event)"
+                            [(ngModel)]="data.name" [attr.disabled]="!hotelsListReady?'true':null" required #name="ngModel" maxlength="50">
+                        <mat-autocomplete #hotelAC="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredHotels" [value]="option">
+                                {{ option }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <div *ngIf="name.errors && (name.dirty || name.touched)" class="form-error__message">
+                            <span>{{r.ERR_Required}}</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-2">
+                        <label>{{r.roomType}}</label>
+                        <input name="roomType" class="form-control" type="text" [(ngModel)]="data.roomType" maxlength="50" />
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="dateError" class="alert alert-danger">
+                <span>{{r.ERR_InvalidDateInFuture}}</span>
+            </div>
+        </form>
+    </mat-dialog-content>
+</main>
+<footer class="dialog-footer">
+    <button type="button" class="btn btn-secondary btn-wide" (click)="update()" [disabled]="requestForm.invalid">Update</button>
+</footer>

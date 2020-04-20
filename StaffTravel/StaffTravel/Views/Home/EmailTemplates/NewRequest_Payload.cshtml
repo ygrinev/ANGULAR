@@ -1,0 +1,579 @@
+﻿@using System.Resources;
+@using System.Globalization;
+
+@using StaffTravel.Models
+@{
+    var request = (Requests)ViewData.Eval("request");
+    var url = ViewData.Eval("url");
+
+    ResourceManager rm = new ResourceManager(typeof(StaffTravel.Resources.Resource));
+    CultureInfo en = new CultureInfo("en");
+    CultureInfo fr = new CultureInfo("fr");
+}
+
+<!--English-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="width: 600px;" class="deviceWidth">
+                <tr>
+                    <td align="left" valign="middle" style="text-decoration: none; font-size: 14px; line-height: 18px; color: #565656; font-family:Arial, Helvetica, sans-serif; padding-top:5px; padding-bottom:5px; padding-left:15px; padding-right:15px;">
+                        @rm.GetString("newFlightRequest", en)
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+
+<!-- Product information -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td height="20" style="font-size: 1px;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" style="font-size:0;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                                        <tr>
+                                            <td>
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:2px solid #007cc3; padding:5px;">
+                                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth" bgcolor="#fffffe">
+                                                                <tr>
+                                                                    <td valign="middle" style="text-decoration: none; font-size: 18px; color: #007cc3; font-weight: bold; font-family:Arial, Helvetica, sans-serif ">
+                                                                        @rm.GetString("numberOfPassengers", en): @request.Passengers.Count
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="20" style="font-size: 1px;">&nbsp;</td>
+                                                    </tr>
+
+                                                    @{ foreach (var flight in request.Flights)
+                                                        {
+                                                            <tr>
+                                                                <td align="left" valign="top" style="font-size:0;">
+                                                                    <table align="left" border="0" cellpadding="5" cellspacing="0" width="100%" style="color:#333333; font-size: 16px; line-height:18px; font-family:Arial, Helvetica, sans-serif;">
+                                                                        <tr>
+                                                                            <td height="5" colspan="3" style="font-size: 1px; line-height: 0;">&nbsp;</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("departureDate", en) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.departDate.Value.ToString("MMMM dd, yyyy")
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("departFrom", en) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.departFrom
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("departTo", en) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.departTo
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("flightNum", en) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.departFlight
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("returnDate", en) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.returnDate.Value.ToString("MMMM dd, yyyy")
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("returnFrom", en) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.returnFrom
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("returnTo", en) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.returnTo
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("flightNum", en) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.returnFlight
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+
+                                                    <tr>
+                                                        <td height="10" style="font-size: 1px; border-bottom: 1px solid #ddd;">&nbsp;</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="width: 600px;" class="deviceWidth">
+                <tr>
+                    <td height="20" style="font-size: 1px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="left" valign="middle" style="text-decoration: none; font-size: 14px; line-height: 18px; color: #565656; font-family:Arial, Helvetica, sans-serif; padding-top:5px; padding-bottom:5px; padding-left:15px; padding-right:15px;">
+                        @rm.GetString("pleaseLoginto", en) <a href="@url" style="color:#007cc3">@rm.GetString("staffTravel", en)</a> @rm.GetString("toUpdateFlight", en)
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+
+
+<table name="separator" border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="width: 600px;" class="deviceWidth">
+                <tr>
+                    <td height="20" style="font-size: 1px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td height="20" style="font-size: 1px; border-top: 2px solid #ddd">&nbsp;</td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+
+
+<!--French-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="width: 600px;" class="deviceWidth">
+                <tr>
+                    <td align="left" valign="middle" style="text-decoration: none; font-size: 14px; line-height: 18px; color: #565656; font-family:Arial, Helvetica, sans-serif; padding-top:5px; padding-bottom:5px; padding-left:15px; padding-right:15px;">
+                        @rm.GetString("newFlightRequest", fr)
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+
+<!-- Product information -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td height="20" style="font-size: 1px;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" style="font-size:0;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                                        <tr>
+                                            <td>
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:2px solid #007cc3; padding:5px;">
+                                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth" bgcolor="#fffffe">
+                                                                <tr>
+                                                                    <td valign="middle" style="text-decoration: none; font-size: 18px; color: #007cc3; font-weight: bold; font-family:Arial, Helvetica, sans-serif ">
+                                                                        @rm.GetString("numberOfPassengers", fr): @request.Passengers.Count
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="20" style="font-size: 1px;">&nbsp;</td>
+                                                    </tr>
+
+                                                    @{ foreach (var flight in request.Flights)
+                                                        {
+                                                            <tr>
+                                                                <td align="left" valign="top" style="font-size:0;">
+                                                                    <table align="left" border="0" cellpadding="5" cellspacing="0" width="100%" style="color:#333333; font-size: 16px; line-height:18px; font-family:Arial, Helvetica, sans-serif;">
+                                                                        <tr>
+                                                                            <td height="5" colspan="3" style="font-size: 1px; line-height: 0;">&nbsp;</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("departureDate", fr) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.departDate.Value.ToString("MMMM dd, yyyy")
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("departFrom", fr) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.departFrom
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("departTo", fr) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.departTo
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("flightNum", fr) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.departFlight
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("returnDate", fr) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.returnDate.Value.ToString("MMMM dd, yyyy")
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("returnFrom", fr) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.returnFrom
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("returnTo", fr) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.returnTo
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="center">
+                                                                                <table width="40%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @rm.GetString("flightNum", fr) :
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <table width="58%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                    <tr>
+                                                                                        <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                            @flight.returnFlight
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+
+                                                    <tr>
+                                                        <td height="10" style="font-size: 1px; border-bottom: 1px solid #ddd;">&nbsp;</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="width: 600px;" class="deviceWidth">
+                <tr>
+                    <td height="20" style="font-size: 1px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="left" valign="middle" style="text-decoration: none; font-size: 14px; line-height: 18px; color: #565656; font-family:Arial, Helvetica, sans-serif; padding-top:5px; padding-bottom:5px; padding-left:15px; padding-right:15px;">
+                        @rm.GetString("pleaseLoginto", fr) <a href="@url" style="color:#007cc3">@rm.GetString("staffTravel", fr)</a> @rm.GetString("toUpdateFlight", fr)
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>

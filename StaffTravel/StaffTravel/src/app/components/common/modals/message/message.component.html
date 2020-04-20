@@ -1,0 +1,11 @@
+<header class="dialog-header">
+    <h2><i class="fa" [ngClass]="data.type == 'success' ? 'fa-check-circle' : data.type == 'error' ? 'fa-exclamation-triangle' : 'fa-info-circle' "></i>{{ data.heading }}</h2>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dialogRef.close()">
+        <span aria-hidden="false"><i class="fa fa-times fa-fw" aria-hidden="false"></i></span>
+    </button>
+</header>
+<main class="dialog-content">
+    <mat-dialog-content class="dialog-content">
+        <p>{{ data.message }}</p>
+    </mat-dialog-content>
+</main>

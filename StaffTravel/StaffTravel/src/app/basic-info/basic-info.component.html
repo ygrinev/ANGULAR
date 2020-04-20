@@ -1,0 +1,54 @@
+<div *ngIf="basicInfo" class="container">
+    <div class="basic-info">
+        <div class="basic-info__heading">
+            <h2 *ngIf="requestId; else default">{{basicInfo.firstname}} {{basicInfo.lastname}}</h2>
+            <ng-template #default>
+                <h2>{{r.eligibility}}</h2>
+            </ng-template>
+            <p>{{r.lengthOfService}} {{currentDate | date:'M/d/y'}}</p>
+            <p>{{basicInfo.HowLong}}</p>
+        </div>
+        <div class="basic-info__passes">
+            <div class="basic-info__passes-item">
+                <h3>{{r.typeOfPassDesc0}}<i class="fa fa-info-circle" [matTooltip]="r.typeOfPassInfo0" matTooltipClass="tooltip--bottom" matTooltipPosition="below"></i></h3>
+                <canvas data-passes
+                        attr.data-total-passes="{{basicInfo.HowManyPassesYouHave}}"
+                        attr.data-pending-passes="{{basicInfo.YealyPending }}"
+                        attr.data-available-passes="{{basicInfo.HowManyPassesYouHave - basicInfo.YearlyUsed}}"
+                        attr.data-used-passes="{{basicInfo.YearlyUsed}}"
+                        width="200" height="200"
+                        class="img-responsive">
+                    {{basicInfo.HowManyPassesYouHave - basicInfo.YearlyUsed}} {{r.available}} / {{basicInfo.YearlyUsed}} {{r.used}}
+                </canvas>
+            </div>
+
+            <div class="basic-info__passes-item">
+                <h3>{{r.typeOfPassDesc1}}<i class="fa fa-info-circle" [matTooltip]="typeOfPassInfo10" matTooltipClass="tooltip--bottom" matTooltipPosition="below"></i></h3>
+                <canvas data-passes
+                        attr.data-total-passes="{{basicInfo.BonusEarned}}"
+                        attr.data-pending-passes="{{basicInfo.BonusPending}}"
+                        attr.data-available-passes="{{basicInfo.BonusEarned - basicInfo.BonusUsed}}"
+                        attr.data-used-passes="{{basicInfo.BonusUsed}}"
+                        width="200" height="200"
+                        class="img-responsive">
+                    {{basicInfo.BonusEarned - basicInfo.BonusUsed}} {{r.available}} / {{basicInfo.BonusUsed}} {{r.used}}
+                </canvas>
+            </div>
+
+            <div class="basic-info__passes-item">
+                <h3>{{r.typeOfPassDesc2}}<i class="fa fa-info-circle" [matTooltip]="r.typeOfPassInfo2" matTooltipClass="tooltip--bottom" matTooltipPosition="below"></i></h3>
+                <canvas data-passes
+                        attr.data-available-passes="Infinity"
+                        attr.data-pending-passes="{{basicInfo.LastPending}}"
+                        attr.data-used-passes="{{basicInfo.LastMinuteUsed}}"
+                        width="200" height="200"
+                        class="img-responsive">
+                    \u221E {{r.available}} / {{basicInfo.LastMinuteUsed}} {{r.used}}
+                </canvas>
+            </div>
+        </div>
+        <div class="basic-info__nav">
+            <i class="fa fa-arrows-h" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,194 @@
+// Status Toggle
+:host {
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: space-around;
+    position: relative;
+    min-width: 150px;
+    border-radius: 15px;
+    border: 5px solid #e4e4e4;
+    overflow: hidden;
+
+    &[ng-reflect-status="1"] {
+        label:first-of-type {
+            flex-basis: 100%;
+        }
+    }
+}
+
+
+.status__selector {
+    display: none;
+
+    + label {
+        z-index: 5;
+        position: relative;
+        flex-basis: 50%;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        opacity: 0.01;
+        margin: 0;
+        font-size: 14px;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    // Unavailable
+    &:nth-of-type(1):checked {
+        + label {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            opacity: 1;
+            z-index: 2;
+
+            ~ label {
+                flex-basis: 100%;
+            }
+        }
+
+        ~ .status__selected {
+            background-color: #515151;
+            background-position: 0 0;
+
+            .status__selected-toggle {
+                background-color: #fff;
+                border: 1px solid #515151;
+                left: 0;
+                animation: toggle-off 0.5s linear forwards;
+            }
+        }
+    }
+
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+
+        .status__selector:nth-of-type(1):not(:checked) {
+            + label {
+                flex-basis: 100%;
+            }
+        }
+    }
+
+    &:nth-of-type(2) {
+        + label {
+            width: 0;
+            display: none;
+        }
+
+        &:checked {
+            + label {
+                z-index: 5;
+                position: absolute;
+                display: block;
+                opacity: 1;
+                margin-top: 0;
+                left: 50%;
+                top: 50%;
+                width: 25px;
+                height: 25px;
+                transform: translate(-50%,-50%);
+                text-indent: -9999px;
+                border-radius: 50%;
+                border: 2px solid #fff;
+                background-color: #007cc3;
+                color: #646464;
+
+                &.read-only {
+                    width: auto;
+                    margin-top: 1px;
+                    text-indent: 0;
+                    background: 0;
+                    border: 0;
+                }
+            }
+
+            ~ .status__selected {
+                background: #ccc;
+            }
+        }
+    }
+    // Available
+    &:nth-of-type(3):checked + label {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        opacity: 1;
+        z-index: 2;
+
+        ~ .status__selected {
+            background-color: #2d7e49;
+            background-position: -100% 0;
+
+            .status__selected-toggle {
+                background-color: #fff;
+                border: 1px solid #2d7e49;
+                right: 0;
+                animation: toggle-on 0.5s linear forwards;
+            }
+        }
+    }
+
+    &[disabled] + label {
+        cursor: default;
+    }
+}
+
+.status__selected {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0;
+    z-index: 1;
+    width: 10px;
+    height: 100%;
+    display: block;
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, #515151 50%, #2d7e49 50%);
+    transition: background-position 0.5s linear;
+    width: 100%;
+    border: 1px solid #333;
+    border-radius: 15px;
+    background-clip: padding-box;
+    border: 1px solid #fff;
+    background-color: #ccc;
+
+    &-toggle {
+        position: absolute;
+        display: block;
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    &--disabled {
+        .status__selected-toggle {
+            display: none;
+        }
+    }
+}
+
+
+@keyframes toggle-on {
+    0% {
+        right: auto;
+        left: 0;
+    }
+
+    100% {
+        left: calc(100% - 25px);
+    }
+}
+
+@keyframes toggle-off {
+    0% {
+        left: auto;
+        right: 0;
+    }
+
+    100% {
+        right: calc(100% - 25px);
+    }
+}

@@ -1,0 +1,7 @@
+<p class="current-request">({{ currentPendingRequest + 1 }} / {{ totalPendingRequests }})</p>
+<div class="current-request-nav">
+
+<button class="btn btn-secondary btn-wide" [disabled]="isFirstRequest" (click)="goToPreviousRequest()"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i> {{r.reviewPreviousRequest}} </button>
+<button class="btn btn-secondary btn-wide" (click)="goToRequestList()">{{r.backToRequestsList}}</button>
+<button class="btn btn-secondary btn-wide" [disabled]="noRequestsLeft" (click)="goToNextRequest()">{{r.reviewNextRequest}} <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></button>
+</div>

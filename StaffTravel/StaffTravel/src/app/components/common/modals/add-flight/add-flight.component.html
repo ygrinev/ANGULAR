@@ -1,0 +1,112 @@
+<header class="dialog-header">
+    <h2>{{r.addFlight}}</h2>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dialogRef.close()">
+        <span aria-hidden="false">
+            <i class="fa fa-times fa-fw" aria-hidden="false"></i>
+        </span>
+    </button>
+</header>
+<main class="dialog-content">
+    <mat-dialog-content class="dialog-content">
+        <form class="request-form" #requestForm="ngForm">
+            <div class="request-form__section">
+                <div class="request-form__row request-form__row--collapse-md">
+                    <div class="col-xs-12 col-sm-6 col-md-3" [class.form-error]="departingFrom.errors && (departingFrom.dirty || departingFrom.touched)">
+                        <label>{{r.departFrom}}</label>
+                        <input name="departingFrom" class="form-control" type="text" matInput [matAutocomplete]="departingFromAC" (ngModelChange)="filteredAvailableGateways = filterAvailableGateways($event)"
+                            [(ngModel)]="data.departFrom" [attr.disabled]="!gatewaysListReady?'true':null" required #departingFrom="ngModel"
+                            maxlength="50" autocomplete="off">
+                        <mat-autocomplete #departingFromAC="matAutocomplete" (optionSelected)="gatewayChanged($event)">
+                            <mat-option *ngFor="let option of filteredAvailableGateways" [value]="option">
+                                {{ option }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <div *ngIf="departingFrom.errors && (departingFrom.dirty || departingFrom.touched)" class="form-error__message">
+                            <span>{{r.ERR_Required}}</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3" [class.form-error]="departTo.errors && (departTo.dirty || departTo.touched)">
+                        <label>{{r.departTo}}</label>
+                        <input name="departTo" class="form-control" type="text" matInput [matAutocomplete]="departToAC" (ngModelChange)="filteredAvailableDestinations = filterAvailableDestinations($event)"
+                            [(ngModel)]="data.departTo" [attr.disabled]="!destinationsListReady?'true':null" required #departTo="ngModel"
+                            maxlength="50" autocomplete="off">
+                        <mat-autocomplete #departToAC="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredAvailableDestinations" [value]="option">
+                                {{ option }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <div *ngIf="departTo.errors && (departTo.dirty || departTo.touched)" class="form-error__message">
+                            <span>{{r.ERR_Required}}</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 clear-left" [class.form-error]="departDate.errors && (departDate.dirty || departDate.touched)">
+                        <label>{{r.departDate}}</label>
+                        <input name="departDate" class="form-control" type="text" [(ngModel)]="data.departDate" [textMask]="{mask:dateMask}" [placeholder]="r.dateFormat"
+                            required #departDate="ngModel" />
+                        <div *ngIf="departDate.errors && (departDate.dirty || departDate.touched)" class="form-error__message">
+                            <span>{{r.ERR_Required}}</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <label>{{r.flightNum}}
+                            <span class="label-note">{{r.optional}}</span>
+                        </label>
+                        <input name="departFlight" class="form-control" type="text" [(ngModel)]="data.departFlight" maxlength="50" />
+                    </div>
+                </div>
+
+                <div class="request-form__row request-form__row--collapse-md">
+                    <div class="col-xs-12 col-sm-6 col-md-3" [class.form-error]="returnFrom.errors && (returnFrom.dirty || returnFrom.touched)">
+                        <label>{{r.returnFrom}}</label>
+                        <input name="returnFrom" class="form-control" type="text" matInput [matAutocomplete]="returnFromAC" (ngModelChange)="filteredAvailableReturnDestinations = filterAvailableDestinations($event)"
+                            [(ngModel)]="data.returnFrom" [attr.disabled]="!destinationsListReady?'true':null" required #returnFrom="ngModel"
+                            maxlength="50" autocomplete="off">
+                        <mat-autocomplete #returnFromAC="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredAvailableReturnDestinations" [value]="option">
+                                {{ option }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <div *ngIf="returnFrom.errors && (returnFrom.dirty || returnFrom.touched)" class="form-error__message">
+                            <span>{{r.ERR_Required}}</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3" [class.form-error]="returnTo.errors && (returnTo.dirty || returnTo.touched)">
+                        <label>{{r.returnTo}}</label>
+                        <input name="returnTo" class="form-control" type="text" matInput [matAutocomplete]="returnToAC" (ngModelChange)="filteredAvailableReturnGateways = filterAvailableGateways($event, true)"
+                            [(ngModel)]="data.returnTo" [attr.disabled]="!gatewaysListReady?'true':null" required #returnTo="ngModel"
+                            maxlength="50" autocomplete="off">
+                        <mat-autocomplete #returnToAC="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredAvailableReturnGateways" [value]="option">
+                                {{ option }}
+                            </mat-option>
+                        </mat-autocomplete>
+                        <div *ngIf="returnTo.errors && (returnTo.dirty || returnTo.touched)" class="form-error__message">
+                            <span>{{r.ERR_Required}}</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 clear-left" [class.form-error]="returnDate.errors && (returnDate.dirty || returnDate.touched)">
+                        <label>{{r.returnDate}}</label>
+                        <input name="returnDate" class="form-control" type="text" [(ngModel)]="data.returnDate" [textMask]="{mask:dateMask}" [placeholder]="r.dateFormat"
+                            required #returnDate="ngModel" />
+                        <div *ngIf="returnDate.errors && (returnDate.dirty || returnDate.touched)" class="form-error__message">
+                            <span>{{r.ERR_Required}}</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <label>{{r.flightNum}}
+                            <span class="label-note">{{r.optional}}</span>
+                        </label>
+                        <input name="returnFlight" class="form-control" type="text" [(ngModel)]="data.returnFlight" maxlength="50" />
+                    </div>
+                </div>
+
+            </div>
+            <div *ngIf="dateError" class="alert alert-danger">
+                <span>{{r.ERR_InvalidDateInFuture}}</span>
+            </div>
+        </form>
+    </mat-dialog-content>
+</main>
+<footer class="dialog-footer">
+    <button type="button" class="btn btn-secondary btn-wide" (click)="update()" [disabled]="requestForm.invalid">Update</button>
+</footer>

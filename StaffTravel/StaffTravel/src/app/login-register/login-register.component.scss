@@ -1,0 +1,135 @@
+.container {
+  max-width: 100vw;
+}
+
+.tab-group {
+  transition: all 0.5s ease;
+}
+
+.tab-group:before,
+.tab-group:after {
+  content: " ";
+  display: table;
+}
+
+.tab-group:after {
+  clear: both;
+}
+
+@media (min-width: 992px) {
+  .tab-group {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .tab-group {
+    max-width: 70%;
+  }
+}
+
+.tab-group > .tab {
+  font-size: 0;
+  display: inline;
+  white-space: nowrap;
+}
+
+.tab-group > .tab:last-of-type .tab-title {
+  margin-right: 0;
+}
+
+.tab-group .tab-title {
+  background-color: #f2f2f2;
+  font-size: 18px;
+  vertical-align: bottom;
+  white-space: normal;
+  margin: 0;
+  float: none;
+  width: auto;
+  display: inline-block;
+  width: 50%;
+  border-bottom: 2px solid #007cc3;
+}
+
+.tab-group .tab-title a {
+  cursor: default;
+  display: block;
+  line-height: 1.42857;
+  padding: 10px 15px;
+  color: #333;
+  height: 100%;
+  text-decoration: none;
+  text-align: center;
+  margin-top: -3px;
+  border-bottom: 3px solid #dadada;
+  font-size: 20px;
+}
+
+.tab-group .tab.active .tab-title {
+    margin-bottom: 0;
+    background-color: rgba(255,255,255,0.9);
+    border-top: 2px solid #007cc3;
+    border-bottom: none;
+    box-shadow: inset 2px 0 0 0 #007cc3, inset -2px 0 0 0 #007cc3;
+}
+
+.tab-group .tab.active .tab-title a {
+    color: #007cc3;
+    font-weight: 700;
+    margin-top: 0;
+    border-bottom: none;
+}
+
+.tab-group .tab-body {
+  border-left: 2px solid #007cc3;
+  border-bottom: 2px solid #007cc3;
+  border-right: 2px solid #007cc3;
+  background-color: rgba(255,255,255,0.9);
+  float: left;
+  color: #515151;
+  display: none;
+  height: 0;
+  width: 100%;
+  padding: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.5s ease;
+  white-space: normal;
+  font-size: initial;
+}
+
+.tab-group .tab.active .tab-body {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+  padding: 25px;
+}
+
+.tab-group .tab-body > .container {
+  width: auto;
+  padding: 0;
+}
+
+.tab-group .tab-body p {
+  font-size: 16px;
+}
+
+label {
+  font-size: 16px;
+}
+
+label > span {
+  display: block;
+  font-weight: normal;
+  font-size: 0.8em;
+}
+
+.form-flex-bottom a {
+  font-size: 16px;
+}
+
+.alert {
+  font-size: 16px;
+}

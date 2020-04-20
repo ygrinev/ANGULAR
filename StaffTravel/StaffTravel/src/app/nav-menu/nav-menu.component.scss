@@ -1,0 +1,105 @@
+// Animation
+@keyframes addOverflowScroll {
+    99% {
+        overflow: hidden;
+    }
+    100% {
+        overflow: auto;
+    }
+}
+
+:host {
+    display: block;
+    background-color: #f2f2f2;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.5s linear max-height;
+
+    &.nav--admin {
+
+        .nav {
+            flex-direction: column;
+        }
+
+
+        @media (min-width: 992px) {
+            display: block;
+            max-height: none;
+
+            .nav {
+                flex-direction: row;
+
+                li.alignRight {
+                    white-space: nowrap;
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+
+    &.nav--user {
+
+        .nav {
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            display: block;
+            max-height: none;
+
+            .nav {
+                flex-direction: row;
+
+                li.alignRight {
+                    white-space: nowrap;
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+
+    &.active {
+        display: block;
+        max-height: 256px;
+        animation: addOverflowScroll 0.5s linear forwards;
+    }
+}
+
+.nav {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+
+    li {
+
+        .fa {
+            margin-left: 5px;
+        }
+
+        a {
+            color: #333;
+            font-size: 16px;
+
+            @media (min-width: 1200px) {
+                font-size: 18px;
+            }
+
+            &.active,
+            &:focus,
+            &:hover {
+                text-decoration: none;
+                background-color: transparent;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.badge {
+    background-color:#f36f21;
+    border-radius: 0;
+    padding: 2px 5px;
+    font-size: 0.75rem;
+    line-height: 1.42857143;
+    vertical-align: baseline;
+}

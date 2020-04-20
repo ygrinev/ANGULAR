@@ -1,0 +1,426 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <h1> {{r.submitNewRequest}}</h1>
+            <form class="request-form" #requestForm="ngForm">
+                <!-- Passengers -->
+                <section id="passengers">
+                    <div class="request-heading">
+                        <i class="fa fa-ticket" aria-hidden="true"></i>
+                        <div>
+                            <h3>{{r.passengersSectionTitle}}</h3>
+                            <p>{{r.passengersSectionSubTitle}}</p>
+                        </div>
+                    </div>
+                    <!-- for each passenger in this request -->
+                    <div class="request-form__section" *ngFor="let passenger of request.passengers; let passengerIndex = index; let $last = last"
+                        [ngClass]="{'last':$last}">
+                        <div class="request-form__row request-form__row--collapse-sm">
+                            <div class="passenger-number">
+                                <label>{{passengerIndex + 1}}</label>
+                            </div>
+                            <div class="col-xs-12 col-sm-9">
+                                <label>{{r.passengerName}}
+                                    <span class="label-note" *ngIf="passengerIndex === 0">{{r.employee}}</span>
+                                </label>
+                                <div class="field-group">
+                                    <input name="firstName{{passengerIndex}}" class="form-control" type="text" [(ngModel)]="passenger.firstName" [placeholder]="r.firstName" maxlength="50" />
+                                    <input name="middleName{{passengerIndex}}" class="form-control" type="text" [(ngModel)]="passenger.middleName" [placeholder]="r.middleName" maxlength="50"/>
+                                    <input name="lastName{{passengerIndex}}" class="form-control" type="text" [(ngModel)]="passenger.lastName" [placeholder]="r.lastName" maxlength="50"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-3">
+                                <label>{{r.dob}}</label>
+                                <input name="DOB{{passengerIndex}}" class="form-control" type="text" [(ngModel)]="passenger.DOB" [textMask]="{mask:dateMask}"
+                                    [placeholder]="r.dateFormat" (blur)="validateDate(passenger.DOB, false, true, true)" required
+                                    #dob="ngModel" />
+                                <div *ngIf="dob.errors && (dob.dirty || dob.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="request-form__row request-form__row--collapse-sm">
+                            <div class="col-xs-12 col-sm-4 col-md-3" [class.form-error]="typeOfPass.errors && (typeOfPass.dirty || typeOfPass.touched)">
+                                <label>{{r.typeOfPass}}</label>
+                                <select class="form-control" name="typeOfPass{{passengerIndex}}" [(ngModel)]="passenger.typeOfPass" (ngModelChange)="typeOfPassChanged(passengerIndex)"
+                                    required #typeOfPass="ngModel">
+                                    <option *ngFor="let pass of typeOfPassArray" [ngValue]="pass.value">{{pass.name}}</option>
+                                </select>
+                                <div *ngIf="typeOfPass.errors && (typeOfPass.dirty || typeOfPass.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-3">
+                                <label>{{r.phoneNumber}}
+                                    <span class="label-note" *ngIf="passengerIndex !== 0">{{r.optional}}</span>
+                                </label>
+                                <input name="phoneNumber{{passengerIndex}}" class="form-control" type="text" [(ngModel)]="passenger.phoneNumber" maxlength="18"/>
+                            </div>
+                            <div class="col-xs-12 col-sm-4 col-md-6">
+                                <label>{{r.email}}
+                                    <span class="label-note" *ngIf="passengerIndex !== 0">{{r.optional}}</span>
+                                </label>
+                                <input name="email{{passengerIndex}}" class="form-control" type="email" [(ngModel)]="passenger.email" maxlength="50"/>
+                            </div>
+                            <div class="delete" *ngIf="request.passengers.length > 1">
+                                <button class="btn btn-default" (click)="deletePassenger(passengerIndex)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- end foreach passenger-->
+
+                    <div class="request-form__row-split">
+                        <div id="passengerNote" class="request-form__ancillary-note">
+                            <button class="btn btn-secondary btn-wide add-note" (click)="addNote('passengerNote')">{{r.addNote}}
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                            </button>
+                            <div class="ancillary-note hidden">
+                                <label>{{r.note}}</label>
+                                <textarea name="passengerNoteTextArea" cols="40" rows="5" [(ngModel)]="passengerNote.text"></textarea>
+                                <button class="btn btn-primary btn-wide" (click)="deleteNote('passengerNote', passengerNote)">{{r.deleteNote}}
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary btn-wide" (click)="addPassenger()">{{r.addPassenger}}
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </section>
+                <hr />
+
+                <!-- Flights -->
+                <section id="flights">
+                    <div class="request-heading">
+                        <i class="fa fa-plane" aria-hidden="true"></i>
+                        <div>
+                            <h3>{{r.flightsSectionTitle}}</h3>
+                            <p>{{r.flightsSectionSubTitle}}</p>
+                        </div>
+                    </div>
+                    <!-- foreach flight in this request -->
+                    <div class="request-form__section" *ngFor="let flight of request.flights; let flightIndex = index; let $last = last" [ngClass]="{'last':$last}">
+                        <div class="request-form__row request-form__row--collapse-md">
+                            <div class="passenger-number">
+                                <label>{{flightIndex + 1}}</label>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3" [class.form-error]="departingFrom.errors && (departingFrom.dirty || departingFrom.touched)">
+                                <label>{{r.departFrom}}</label>
+                                <input name="departingFrom{{flightIndex}}" class="form-control" type="text" [(ngModel)]="flight.departFrom" auto-complete
+                                    [source]="availableGateways" (valueChanged)="gatewayChanged($event, flightIndex)" [disabled]="!gatewaysListReady"
+                                    required #departingFrom="ngModel" maxlength="50"/>
+                                <div *ngIf="departingFrom.errors && (departingFrom.dirty || departingFrom.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3" [class.form-error]="departTo.errors && (departTo.dirty || departTo.touched)">
+                                <label>{{r.departTo}}</label>
+                                <input name="departTo{{flightIndex}}" class="form-control" type="text" [(ngModel)]="flight.departTo" auto-complete [source]="flight.availableDestinations"
+                                    [disabled]="!destinationsListReady" required #departTo="ngModel" maxlength="50"/>
+                                <div *ngIf="departTo.errors && (departTo.dirty || departTo.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 clear-left" [class.form-error]="departDate.errors && (departDate.dirty || departDate.touched)">
+                                <label>{{r.departDate}}</label>
+                                <input name="departDate{{flightIndex}}" class="form-control" type="text" [(ngModel)]="flight.departDate" [textMask]="{mask:dateMask}"
+                                    [placeholder]="r.dateFormat" (blur)="validateDate(flight.departDate, true, false, true)"
+                                    required #departDate="ngModel" />
+                                <div *ngIf="departDate.errors && (departDate.dirty || departDate.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <label>{{r.flightNum}}
+                                    <span class="label-note">{{r.optional}}</span>
+                                </label>
+                                <input name="departFlight{{flightIndex}}" class="form-control" type="text" [(ngModel)]="flight.departFlight" maxlength="50"/>
+                            </div>
+                        </div>
+
+                        <div class="request-form__row request-form__row--collapse-md">
+                            <div class="col-xs-12 col-sm-6 col-md-3" [class.form-error]="returnFrom.errors && (returnFrom.dirty || returnFrom.touched)">
+                                <label>{{r.returnFrom}}</label>
+                                <input name="returnFrom{{flightIndex}}" class="form-control" type="text" [(ngModel)]="flight.returnFrom" auto-complete [source]="flight.availableDestinations"
+                                    [disabled]="!destinationsListReady" required #returnFrom="ngModel" maxlength="50"/>
+                                <div *ngIf="returnFrom.errors && (returnFrom.dirty || returnFrom.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3" [class.form-error]="returnTo.errors && (returnTo.dirty || returnTo.touched)">
+                                <label>{{r.returnTo}}</label>
+                                <input name="returnTo{{flightIndex}}" class="form-control" type="text" [(ngModel)]="flight.returnTo" auto-complete [source]="availableGateways"
+                                    [disabled]="!gatewaysListReady" required #returnTo="ngModel" maxlength="50"/>
+                                <div *ngIf="returnTo.errors && (returnTo.dirty || returnTo.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 clear-left" [class.form-error]="returnDate.errors && (returnDate.dirty || returnDate.touched)">
+                                <label>{{r.returnDate}}</label>
+                                <input name="returnDate{{flightIndex}}" class="form-control" type="text" [(ngModel)]="flight.returnDate" [textMask]="{mask:dateMask}"
+                                    [placeholder]="r.dateFormat" (blur)="validateDate(flight.returnDate, true, false, true)"
+                                    required #returnDate="ngModel" />
+                                <div *ngIf="returnDate.errors && (returnDate.dirty || returnDate.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <label>{{r.flightNum}}
+                                    <span class="label-note">{{r.optional}}</span>
+                                </label>
+                                <input name="returnFlight{{flightIndex}}" class="form-control" type="text" [(ngModel)]="flight.returnFlight" maxlength="50"/>
+                            </div>
+                            <div class="delete">
+                                <button class="btn btn-default" (click)="deleteFlight(flightIndex)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end foreach flight-->
+
+                    <div class="request-form__row-split">
+                        <div id="flightNote" class="request-form__ancillary-note">
+                            <button class="btn btn-secondary btn-wide add-note" (click)="addNote('flightNote')">{{r.addNote}}
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                            </button>
+                            <div class="ancillary-note hidden">
+                                <label>{{r.note}}</label>
+                                <textarea name="flightNoteTextArea" cols="40" rows="5" [(ngModel)]="flightNote.text"></textarea>
+                                <button class="btn btn-primary btn-wide" (click)="deleteNote('flightNote', flightNote)">{{r.deleteNote}}
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary btn-wide" (click)="addFlight()" [disabled]="request.flights.length >= 3 || flightsDisabled">{{r.addFlight}}
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </section>
+                <hr />
+
+                <!-- Hotels -->
+                <section id="hotels">
+                    <div class="request-heading">
+                        <i class="fa fa-bed" aria-hidden="true"></i>
+                        <div>
+                            <h3>{{r.hotelsSectionTitle}}</h3>
+                            <p>{{r.hotelsSectionSubTitle}}</p>
+                        </div>
+                    </div>
+                    <!-- foreach hotel in this request -->
+                    <div class="request-form__section" *ngFor="let hotel of request.hotels; let hotelIndex = index; let $last = last" [ngClass]="{'last':$last}">
+
+                        <div class="request-form__row request-form__row--collapse-md">
+                            <div class="passenger-number">
+                                <label>{{hotelIndex + 1}}</label>
+                            </div>
+                            <div class="col-xs-12 col-sm-9 col-md-2" [class.form-error]="checkInDate.errors && (checkInDate.dirty || checkInDate.touched)">
+                                <label>{{r.checkInDate}}</label>
+                                <input name="checkInDate{{hotelIndex}}" class="form-control" type="text" [(ngModel)]="hotel.checkInDate" [textMask]="{mask:dateMask}"
+                                    [placeholder]="r.dateFormat" (blur)="validateDate(hotel.checkInDate, true, false, true)"
+                                    required #checkInDate="ngModel" />
+                                <div *ngIf="checkInDate.errors && (checkInDate.dirty || checkInDate.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-3 col-md-2" [class.form-error]="duration.errors && (duration.dirty || duration.touched)">
+                                <label>{{r.duration}}</label>
+                                <input name="duration{{hotelIndex}}" class="form-control" type="text" [(ngModel)]="hotel.duration" required #duration="ngModel"
+                                    [textMask]="{mask:maxValueMask, guide:false}" />
+                                <div *ngIf="duration.errors && (duration.dirty || duration.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-2" [class.form-error]="destination.errors && (destination.dirty || destination.touched)">
+                                <label>{{r.destination}}</label>
+                                <input name="destination{{hotelIndex}}" class="form-control" type="text" [(ngModel)]="hotel.destination" auto-complete [source]="hotelDestinations"
+                                    (valueChanged)="hotelDestinationChanged($event, hotelIndex)" [disabled]="!hotelDestinationsListReady"
+                                    required #destination="ngModel" />
+                                <div *ngIf="destination.errors && (destination.dirty || destination.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4" [class.form-error]="name.errors && (name.dirty || name.touched)">
+                                <label>{{r.hotelName}}</label>
+                                <input name="name{{hotelIndex}}" class="form-control" type="text" [(ngModel)]="hotel.name" auto-complete [source]="hotel.availableResorts"
+                                    [disabled]="!hotelsListReady" required #name="ngModel" maxlength="50" />
+                                <div *ngIf="name.errors && (name.dirty || name.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-2">
+                                <label>{{r.roomType}}</label>
+                                <input name="roomType{{hotelIndex}}" class="form-control" type="text" [(ngModel)]="hotel.roomType" maxlength="50" />
+                            </div>
+                            <div class="delete">
+                                <button class="btn btn-default" (click)="deleteHotel(hotelIndex)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end foreach hotel-->
+
+                    <div class="request-form__row-split">
+                        <div id="hotelNote" class="request-form__ancillary-note">
+                            <button class="btn btn-secondary btn-wide add-note" (click)="addNote('hotelNote')">{{r.addNote}}
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                            </button>
+                            <div class="ancillary-note hidden">
+                                <label>{{r.note}}</label>
+                                <textarea name="hotelNoteTextArea" cols="40" rows="5" [(ngModel)]="hotelNote.text"></textarea>
+                                <button class="btn btn-primary btn-wide" (click)="deleteNote('hotelNote', hotelNote)">{{r.deleteNote}}
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary btn-wide" (click)="addHotel()" [disabled]="(request.hotels.length >= request.flights.length * 2 && request.flights.length != 0) || (request.hotels.length == 6 && request.flights.length == 0)">{{r.addHotel}}
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </section>
+                <hr />
+
+                <!-- Ancillaries -->
+                <section id="ancillaries">
+                    <div class="request-heading">
+                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                        <div>
+                            <h3>{{r.ancillariesSectionTitle}}</h3>
+                            <p>{{r.ancillariesSectionSubTitle}}</p>
+                        </div>
+                    </div>
+                    <!-- foreach ancillary product in this request -->
+                    <div class="request-form__section" *ngFor="let ancillary of request.ancillaries; let ancillaryIndex = index; let $last = last"
+                        [ngClass]="{'last':$last}">
+                        <!-- labels -->
+                        <div class="request-form__row request-form__row--collapse-md">
+                            <div class="passenger-number">
+                                <label>{{ancillaryIndex + 1}}</label>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3" [class.form-error]="ancillaryDestination.errors && (ancillaryDestination.dirty || ancillaryDestination.touched)">
+                                <label>{{r.destination}}</label>
+                                <input name="ancillaryDestination{{ancillaryIndex}}" class="form-control" type="text" [(ngModel)]="ancillary.destination"
+                                    auto-complete [source]="hotelDestinations" required #ancillaryDestination="ngModel" />
+                                <div *ngIf="ancillaryDestination.errors && (ancillaryDestination.dirty || ancillaryDestination.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-2" [class.form-error]="ancillaryProductType.errors && (ancillaryProductType.dirty || ancillaryProductType.touched)">
+                                <label>{{r.product}}</label>
+                                <select name="ancillaryProductType{{ancillaryIndex}}" class="form-control" [(ngModel)]="ancillary.ancillaryProductType" (ngModelChange)="productChange($event, ancillaryIndex)"
+                                    required #ancillaryProductType="ngModel">
+                                    <option *ngFor="let product of ancillaryProductsArray" [ngValue]="product.value">{{product.name}}</option>
+                                </select>
+                                <div *ngIf="ancillaryProductType.errors && (ancillaryProductType.dirty || ancillaryProductType.touched)" class="form-error__message">
+                                    <span>{{r.ERR_Required}}</span>
+                                </div>
+                            </div>
+                            <!-- show this only when excursion is selected -->
+                            <div class="ancillary-group request-form__row col-md-7" *ngIf="ancillary.ancillaryProductType == 0">
+                                <div class="col-xs-12 col-md-4">
+                                    <label>{{r.excursionDate}}</label>
+                                    <input name="excursionDate{{ancillaryIndex}}" class="form-control" type="text" [(ngModel)]="ancillary.excursionDate" [textMask]="{mask:dateMask}"
+                                        [placeholder]="r.dateFormat" (blur)="validateDate(ancillary.excursionDate, true, false, true)"
+                                    />
+                                </div>
+                                <div class="col-xs-12 col-sm-9 col-md-5">
+                                    <label>{{r.excursionName}}</label>
+                                    <input name="excursionName{{ancillaryIndex}}" class="form-control" type="text" [(ngModel)]="ancillary.excursionName" required
+                                        #excursionName="ngModel" maxlength="50" />
+                                    <div *ngIf="excursionName.errors && (excursionName.dirty || excursionName.touched)" class="form-error__message">
+                                        <span>{{r.ERR_Required}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <label>{{r.passenger}}</label>
+                                    <select name="excursionPassengerName{{ancillaryIndex}}" class="form-control" [(ngModel)]="ancillary.passengerNumber" required
+                                        #excursionPassengerName="ngModel">
+                                        <option *ngFor="let passenger of request.passengers" [ngValue]="passenger.passengerNumber">{{passenger.passengerNumber}} {{passenger.firstName}}</option>
+                                    </select>
+                                    <div *ngIf="excursionPassengerName.errors && (excursionPassengerName.dirty || excursionPassengerName.touched)" class="form-error__message">
+                                        <span>{{r.ERR_Required}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- show this only when transfer is selected -->
+                            <div class="ancillary-group request-form__row col-md-7" *ngIf="ancillary.ancillaryProductType == 1">
+                                <div class="col-xs-12 col-sm-9 col-md-9">
+                                    <label>{{r.transferType}}</label>
+                                    <select name="transferType{{ancillaryIndex}}" class="form-control" [(ngModel)]="ancillary.transferType">
+                                        <option *ngFor="let transfer of transferTypeArray" [ngValue]="transfer.value">{{transfer.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <label>{{r.quantity}}</label>
+                                    <input name="quantity{{ancillaryIndex}}" class="form-control" type="text" [(ngModel)]="ancillary.quantity" [textMask]="{mask:maxValueMask, guide:false}"
+                                    />
+                                </div>
+                            </div>
+
+                            <!-- show this only when insurance is selected -->
+                            <div class="ancillary-group request-form__row col-md-7" *ngIf="ancillary.ancillaryProductType == 2">
+                                <div class="col-xs-12 col-sm-3 col-md-3">
+                                    <label>{{r.passenger}}</label>
+                                    <select name="insurancePassengerName{{ancillaryIndex}}" class="form-control" [(ngModel)]="ancillary.passengerNumber" required
+                                        #insurancePassengerName="ngModel">
+                                        <option *ngFor="let passenger of request.passengers" [ngValue]="passenger.passengerNumber">{{passenger.passengerNumber}} {{passenger.firstName}}</option>
+                                    </select>
+                                    <div *ngIf="insurancePassengerName.errors && (insurancePassengerName.dirty || insurancePassengerName.touched)" class="form-error__message">
+                                        <span>{{r.ERR_Required}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="delete">
+                                <button class="btn btn-default" (click)="deleteAncillary(ancillaryIndex)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end foreach ancillary-->
+
+                    <div class="request-form__row-split">
+                        <div id="ancillaryNote" class="request-form__ancillary-note">
+                            <button class="btn btn-secondary btn-wide add-note" (click)="addNote('ancillaryNote')">{{r.addNote}}
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                            </button>
+                            <div class="ancillary-note hidden">
+                                <label>{{r.note}}</label>
+                                <textarea name="ancillaryNoteTextArea" cols="40" rows="5" [(ngModel)]="ancillaryNote.text"></textarea>
+                                <button class="btn btn-primary btn-wide" (click)="deleteNote('ancillaryNote', ancillaryNote)">{{r.deleteNote}}
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn-secondary btn-wide" (click)="addAncillary()">{{r.addAlt}}
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </section>
+                <hr />
+
+                <section>
+                    <div class="request-form__row-split">
+                        <button class="btn btn-danger btn-wide" (click)="clearRequest()">{{r.clearRequest}}</button>
+                        <button class="btn btn-step btn-wide" (click)="goToReview()" [disabled]="requestForm.invalid">{{r.reviewAndSubmit}}
+                            <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </section>
+            </form>
+
+        </div>
+    </div>
+</div>

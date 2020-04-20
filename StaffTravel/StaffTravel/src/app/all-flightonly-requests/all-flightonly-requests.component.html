@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{r.viewFlightRequests}}</h1>
+            <select class="form-control" [(ngModel)]="statusFilter" (ngModelChange)="statusFilterChanged()">
+                    <option *ngFor="let status of statuses" [ngValue]="status">{{r['status' + status]}}</option>
+                    <option value="">All</option>
+                </select>
+            <list-of-all-requests [tableType]="tableType" [tableSettings]="tableSettings" [source]="source"></list-of-all-requests>
+        </div>
+    </div>
+</div>

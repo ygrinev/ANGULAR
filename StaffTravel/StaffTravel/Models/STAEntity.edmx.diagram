@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d7d41807ed71432d86ad4250fb2ba7d6" Name="Diagram1" ZoomLevel="95" >
+        <EntityTypeShape EntityType="STAutomationModel.ActivityLogs" Width="1.5" PointX="3" PointY="14.625" />
+        <EntityTypeShape EntityType="STAutomationModel.Ancillaries" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="STAutomationModel.Employee" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="STAutomationModel.EmployeePassport" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="STAutomationModel.Flights" Width="1.5" PointX="3" PointY="18.75" />
+        <EntityTypeShape EntityType="STAutomationModel.Hotels" Width="1.5" PointX="3" PointY="2" />
+        <EntityTypeShape EntityType="STAutomationModel.Notes" Width="1.5" PointX="3" PointY="23.125" />
+        <EntityTypeShape EntityType="STAutomationModel.Passengers" Width="1.5" PointX="3" PointY="10.375" />
+        <EntityTypeShape EntityType="STAutomationModel.PassesBalance" Width="1.5" PointX="9.75" PointY="9.75" />
+        <EntityTypeShape EntityType="STAutomationModel.PassesBonus" Width="1.5" PointX="5.75" PointY="11.75" />
+        <EntityTypeShape EntityType="STAutomationModel.Requests" Width="1.5" PointX="0.75" PointY="12.25" />
+        <EntityTypeShape EntityType="STAutomationModel.PassesBonusExpiryDate" Width="1.5" PointX="9.75" PointY="14.75" />
+        <AssociationConnector Association="STAutomationModel.FK_ActivityLogs_Requests" />
+        <AssociationConnector Association="STAutomationModel.FK_Ancillaries_Requests" />
+        <AssociationConnector Association="STAutomationModel.FK_Flights_Requests" />
+        <AssociationConnector Association="STAutomationModel.FK_Hotels_Requests" />
+        <AssociationConnector Association="STAutomationModel.FK_Notes_Requests" />
+        <AssociationConnector Association="STAutomationModel.FK_Passengers_Requests" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

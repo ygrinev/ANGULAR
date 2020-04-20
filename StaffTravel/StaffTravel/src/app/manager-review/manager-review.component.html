@@ -1,0 +1,230 @@
+<basic-info></basic-info>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Request</h1>
+
+            <div class="review">
+
+                <!-- Passengers -->
+                <section id="passengers">
+                    <div class="review-heading">
+                        <i class="fa fa-ticket" aria-hidden="true"></i>
+                        <div>
+                            <h3>{{r.passengersSectionTitle}}</h3>
+                        </div>
+                    </div>
+                    <table class="review-request review-request--passengers">
+                        <thead class="review-request__heading">
+                            <tr>
+                                <th class="passenger-name">{{r.passengersName}}</th>
+                                <th class="passenger-dob">{{r.dob}}</th>
+                                <th class="passenger-pass">{{r.typeOfPass}}</th>
+                                <th class="passenger-phone">{{r.phoneNumber}}</th>
+                                <th class="passenger-email">{{r.email}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="review-request__section">
+                            <tr class="review-request__section__item" *ngFor="let passenger of request.passengers; let passengerIndex = index;" [attr.data-index]="passengerIndex + 1">
+                                <td class="passenger-name" [attr.data-index]="passengerIndex + 1" [attr.data-heading]="r.passengersName + ':'">
+                                    {{passenger.firstName}} {{passenger.middleName}} {{passenger.lastName}}
+                                </td>
+                                <td class="passenger-dob" [attr.data-heading]="r.dob + ':'">{{passenger.DOB | date:'M/d/y'}}</td>
+                                <td class="passenger-pass" [attr.data-heading]="r.typeOfPass + ':'">{{typeOfPassArray[passenger.typeOfPass]?.name}}</td>
+                                <td class="passenger-phone" [attr.data-heading]="r.phoneNumber + ':'">{{passenger.phoneNumber}}</td>
+                                <td class="passenger-email" [attr.data-heading]="r.email + ':'">{{passenger.email}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="review-request__additional-note" *ngIf="notePaxEmp?.length > 0 || notePaxAdmin?.length > 0">
+                            <tr *ngIf="notePaxEmp?.length > 0">
+                                <td colspan="5">
+                                    <strong>{{r.employeeNote}}</strong>
+                                    <p>{{notePaxEmp}}</p>
+                                </td>
+                            </tr>
+                            <tr *ngIf="notePaxAdmin?.length > 0">
+                                <td colspan="5">
+                                    <strong>{{r.adminNote}}</strong>
+                                    <p>{{notePaxAdmin}}</p>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </section>
+
+                <hr *ngIf="request.flights.length > 0" />
+
+                <!-- Flights -->
+                <section id="flights" *ngIf="request.flights.length > 0">
+                    <div class="review-heading">
+                        <i class="fa fa-plane" aria-hidden="true"></i>
+                        <div>
+                            <h3>{{r.flightsSectionTitle}}</h3>
+                        </div>
+                    </div>
+                    <table class="review-request review-request--flights">
+                        <thead class="review-request__heading">
+                            <tr>
+                                <th class="flight-departure" colspan="2">{{r.departing}}</th>
+                                <th class="flight-destination">{{r.arriving}}</th>
+                                <th class="flight-date">{{r.itinerary}}</th>
+                                <th class="divider flight-number">{{r.flightNum}}</th>
+                                <th class="flight-status">{{r.approvalStatus}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="review-request__section__item  review-request__section__item--flight" *ngFor="let flight of request.flights; let flightIndex = index;" [attr.data-index]="flightIndex + 1">
+                            <tr>
+                                <th class="flight-pax" scope="row" rowspan="2">{{flightIndex + 1}}</th>
+                                <td class="flight-departure flight-departure--outbound" [attr.data-heading]="r.departFrom + ':'">{{flight.departFrom}}</td>
+                                <td class="flight-destination" [attr.data-heading]="r.departTo + ':'">{{flight.departTo}}</td>
+                                <td class="flight-date" [attr.data-heading]="r.departDate + ':'">{{flight.departDate | date:'dd MMM yyyy'}}</td>
+                                <td class="flight-number divider" [attr.data-heading]="r.departFlightNumber + ':'">{{flight.departFlight}}</td>
+                                <td class="flight-status" rowspan="2" [attr.data-heading]="r.approvalStatus + ':'">{{statusEnum[flight.approvalStatus]}}</td>
+                            </tr>
+                            <tr>
+                                <td class="flight-departure flight-departure--inbound" [attr.data-heading]="r.returnFrom + ':'">{{flight.returnFrom}}</td>
+                                <td class="flight-destination" [attr.data-heading]="r.returnTo + ':'">{{flight.returnTo}}</td>
+                                <td class="flight-date" [attr.data-heading]="r.returnDate + ':'">{{flight.returnDate | date:'dd MMM yyyy'}}</td>
+                                <td class="flight-number divider" [attr.data-heading]="r.returnFlightNumber + ':'">{{flight.returnFlight}}</td>
+                                <td class="flight-status flight-status--mobile" rowspan="2" [attr.data-heading]="r.approvalStatus + ':'">{{statusEnum[flight.approvalStatus]}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="table-row-spacer"></td>
+                                <td class="table-row-spacer divider"></td>
+                                <td class="table-row-spacer"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="review-request__additional-note" *ngIf="noteFlightEmp?.length > 0 || noteFlightAdmin?.length > 0">
+                            <tr *ngIf="noteFlightEmp?.length > 0">
+                                <td colspan="6">
+                                    <strong>{{r.employeeNote}}</strong>
+                                    <p>{{noteFlightEmp}}</p>
+                                </td>
+                            </tr>
+                            <tr *ngIf="noteFlightAdmin?.length > 0">
+                                <td colspan="6">
+                                    <strong>{{r.adminNote}}</strong>
+                                    <p>{{noteFlightAdmin}}</p>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </section>
+
+                <hr *ngIf="request.hotels.length > 0" />
+
+                <!-- Hotel/Cruise information -->
+                <section id="hotels" *ngIf="request.hotels.length > 0">
+                    <div class="review-heading">
+                        <i class="fa fa-bed" aria-hidden="true"></i>
+                        <div>
+                            <h3>{{r.hotelsSectionTitle}}</h3>
+                        </div>
+                    </div>
+                    <table class="review-request review-request--hotels">
+                        <thead class="review-request__heading">
+                            <tr>
+                                <th class="hotel-date">{{r.checkInDate}} / {{r.duration}}</th>
+                                <th class="hotel-info">{{r.hotelName}}</th>
+                                <th class="divider hotel-type">{{r.roomType}}</th>
+                                <th class="status">{{r.approvalStatus}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="review-request__section">
+                            <tr class="review-request__section__item" *ngFor="let hotel of request.hotels; let hotelIndex = index;" [attr.data-index]="hotelIndex + 1">
+                                <td class="hotel-date" [attr.data-index]="hotelIndex + 1" [attr.data-heading]="r.checkInDate + '/' + r.duration + ':'">{{hotel.checkInDate | date:'dd MMM yyyy'}} / {{hotel.duration}} Nights</td>
+                                <td class="hotel-info" [attr.data-heading]="r.hotelName + ':'">{{hotel.name}} <br /> {{hotel.destination}}</td>
+                                <td class="divider hotel-type" [attr.data-heading]="r.roomType + ':'">{{hotel.roomType}}</td>
+                                <td [attr.data-heading]="r.approvalStatus + ':'" class="status">{{statusEnum[hotel.approvalStatus]}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="review-request__additional-note" *ngIf="noteHotelEmp?.length > 0 || noteHotelAdmin?.length > 0">
+                            <tr *ngIf="noteHotelEmp?.length > 0">
+                                <td colspan="4">
+                                    <strong>{{r.employeeNote}}</strong>
+                                    <p>{{noteHotelEmp}}</p>
+                                </td>
+                            </tr>
+                            <tr *ngIf="noteHotelAdmin?.length > 0">
+                                <td colspan="4">
+                                    <strong>{{r.adminNote}}</strong>
+                                    <p>{{noteHotelAdmin}}</p>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </section>
+
+                <hr *ngIf="request.ancillaries.length > 0" />
+
+                <!-- Ancillaries -->
+                <section id="ancillaries" *ngIf="request.ancillaries.length > 0">
+                    <div class="review-heading">
+                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                        <div>
+                            <h3>{{r.ancillariesSectionTitle}}</h3>
+                        </div>
+                    </div>
+                    <table class="review-request review-request--ancillaries">
+                        <tr>
+                            <td class="review-request__section">
+                                <table class="review-request review-request__section__item" *ngFor="let ancillary of request.ancillaries; let ancillaryIndex = index" [class.employee-approved]="ancillary.status == 1" [attr.data-index]="ancillaryIndex + 1">
+                                    <thead class="review-request__heading">
+                                        <tr>
+                                            <th class="ancillary-destination">{{r.destination}}</th>
+                                            <th class="ancillary-product">{{r.product}}</th>
+
+                                            <th class="ancillary-name" *ngIf="ancillary.ancillaryProductType == 0">{{r.excursionName}}</th>
+                                            <th class="divider ancillary-passenger" *ngIf="ancillary.ancillaryProductType == 0 || ancillary.ancillaryProductType == 2">{{r.passenger}}</th>
+
+                                            <th class="ancillary-type" *ngIf="ancillary.ancillaryProductType == 1">{{r.transferType}}</th>
+                                            <th class="divider ancillary-quantity" *ngIf="ancillary.ancillaryProductType == 1">{{r.quantity}}</th>
+                                            <th class="divider ancillary-car-spacer" *ngIf="ancillary.ancillaryProductType == 3"></th>
+                                            <th class="status">{{r.approvalStatus}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="review-request__section__item">
+
+                                            <td class="ancillary-destination" [attr.data-index]="ancillaryIndex + 1" [attr.data-heading]="r.destination + ':'">{{ancillary.destination}}</td>
+                                            <td class="ancillary-product" [attr.data-heading]="r.product + ':'">{{ancillaryProductsArray[ancillary.ancillaryProductType]?.name}}</td>
+
+                                            <td class="ancillary-name" *ngIf="ancillary.ancillaryProductType == 0" [attr.data-heading]="r.excursionName + ':'">{{ancillary.excursionName}}</td>
+                                            <td class="divider ancillary-passenger" *ngIf="ancillary.ancillaryProductType == 0 || ancillary.ancillaryProductType == 2" [attr.data-heading]="r.passenger + ':'">{{ancillary.passengerNumber}} {{request.passengers[ancillary.passengerNumber - 1].firstName}} {{request.passengers[ancillary.passengerNumber - 1].lastName}}</td>
+
+                                            <td class="ancillary-type" *ngIf="ancillary.ancillaryProductType == 1" [attr.data-heading]="r.transferType + ':'">{{transferTypeArray[ancillary.transferType]?.name}}</td>
+                                            <td class="divider ancillary-quantity" *ngIf="ancillary.ancillaryProductType == 1" [attr.data-heading]="r.quantity + ':'">{{ancillary.quantity}}</td>
+
+                                            <td class="divider ancillary-car-spacer" *ngIf="ancillary.ancillaryProductType == 3"></td>
+
+                                            <td class="status" [attr.data-heading]="r.approvalStatus + ':'">{{statusEnum[ancillary.approvalStatus]}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tfoot class="review-request__additional-note" *ngIf="noteAncEmp?.length > 0 || noteAncAdmin?.length > 0">
+                            <tr *ngIf="noteAncEmp?.length > 0">
+                                <td>
+                                    <strong>{{r.employeeNote}}</strong>
+                                    <p>{{noteAncEmp}}</p>
+                                </td>
+                            </tr>
+                            <tr *ngIf="noteAncAdmin?.length > 0">
+                                <td>
+                                    <strong>{{r.adminNote}}</strong>
+                                    <p>{{noteAncAdmin}}</p>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </section>
+            </div>
+
+            <requests-nav [type]="reviewType" [requestId]="requestId"></requests-nav>
+
+        </div>
+    </div>
+</div>

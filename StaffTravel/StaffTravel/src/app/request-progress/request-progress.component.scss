@@ -1,0 +1,348 @@
+.request-action {
+    display: block;
+    background-color: #007cc3;
+    color: #fff;
+    padding: 45px 30px;
+
+    @media (min-width: 992px) {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: row;
+    }
+
+    &__status {
+
+        @media (min-width: 768px) {
+            display: flex;
+            flex: 1 1 50%;
+            justify-content: space-between;
+        }
+
+        &-item {
+            position: relative;
+            padding: 15px;
+            border: 3px solid #fff;
+            text-align: center;
+            margin-bottom: 15px;
+
+            @media (min-width: 768px) {
+                display: flex;
+                flex: 0 1 30%;
+                flex-direction: column;
+                justify-content: center;
+                margin-bottom: 0;
+            }
+
+            p {
+                margin-top: 10px;
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+            .request-status {
+                position: absolute;
+                border-radius: 50%;
+                top: 50%;
+                left: 0;
+                transform: translate(-50%, -50%);
+                width: 50px;
+                height: 50px;
+                padding: 5px;
+                border: 3px solid #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                @media (min-width: 768px) {
+                    bottom: -25px;
+                    left: 50%;
+                    top: 100%;
+                }
+
+                &.approved {
+                    background-color: #358046;
+                    color: #fff;
+                }
+
+                &.pending {
+                    background-color: #fff;
+                    border-color: #007cc3;
+                    color: #007cc3;
+                }
+
+                &.denied {
+                    background-color: #fcedec;
+                    border-color: #ba1b13;
+                    color: #ba1b13;
+                }
+            }
+        }
+    }
+
+    &__info {
+        padding-top: 15px;
+
+        @media (min-width: 992px) {
+            flex: 1 1 50%;
+            padding: 0 30px 0 60px;
+        }
+
+        &-message {
+
+            p {
+                display: block;
+                max-width: 100%;
+            }
+        }
+
+        &-action {
+
+            @media (min-width: 768px) {
+                display: flex;
+                flex: 1 0 auto;
+                justify-content: space-between;
+                flex-direction: row;
+                align-items: flex-end;
+            }
+
+            span {
+                font-weight: bold;
+            }
+
+            .price {
+                display: block;
+                font-size: 36px;
+            }
+        }
+    }
+}
+
+hr {
+    border-top: 2px solid #fff;
+}
+
+.table-flex-row {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+    padding: 10px;
+    background-color: #e5f2f9;
+    border: 2px solid #d0e2ec;
+
+    @media (min-width: 1200px) {
+        flex-direction: row;
+    }
+    // Target Top Level Status / Price Columns
+    > div {
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .status {
+        margin-bottom: 15px;
+
+        @media(min-width: 1200px) {
+            margin-bottom: 0;
+        }
+
+        &-label {
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+// Column Sizing
+.review-request {
+    @media (min-width: 1200px) {
+        &--passengers {
+            .passenger {
+                &-name {
+                    width: 250px;
+                    min-width: 250px;
+                }
+
+                &-dob {
+                    width: 150px;
+                    min-width: 150px;
+                }
+
+                &-pass {
+                    width: 125px;
+                    min-width: 125px;
+                }
+
+                &-phone {
+                    width: 170px;
+                    min-width: 170px;
+                }
+
+                &-email {
+                    width: 245px;
+                    min-width: 245px;
+                }
+
+                &-edit {
+                    width: 140px;
+                    min-width: 140px;
+                }
+            }
+        }
+
+        .status {
+            padding-right: 15px;
+            width: 185px;
+            min-width: 185px;
+        }
+
+        .pricing {
+            width: 130px;
+            min-width: 130px;
+
+            .input-group {
+                margin-bottom: 0;
+            }
+        }
+
+        &--hotels {
+            .hotel {
+                &-date {
+                    width: 360px;
+                    min-width: 360px;
+                }
+
+                &-info {
+                    width: 360px;
+                    min-width: 360px;
+                }
+
+                &-type {
+                    width: 360px;
+                    min-width: 360px;
+                }
+            }
+        }
+
+        &--ancillaries {
+            margin-bottom: 15px;
+
+            .ancillary {
+                &-destination {
+                    width: 360px;
+                    min-width: 360px;
+                }
+
+                &-product {
+                    width: 150px;
+                    min-width: 150px;
+                }
+                // Excursion name
+                &-name {
+                    width: 370px;
+                    min-width: 370px;
+
+                    & ~ .ancillary-passenger {
+                        width: 200px;
+                        min-width: 200px;
+                    }
+                }
+                // Excursion / Insurance Passengers
+                &-passenger {
+                    width: 570px;
+                    min-width: 570px;
+                }
+                // Transfer type
+                &-type {
+                    width: 370px;
+                    min-width: 370px;
+                }
+                // Transfer quantity
+                &-quantity {
+                    width: 200px;
+                    min-width: 200px;
+                }
+                // Empty column spacer for Car Rentls
+                &-car-spacer {
+                    width: 570px;
+                    min-width: 570px;
+                }
+            }
+        }
+    }
+
+    &--flights {
+        .flight {
+            &-pax {
+                display: none;
+
+                @media (min-width: 1200px) {
+                    display: table-cell;
+                    font-size: 36px;
+                    color: #aeb2b4;
+                }
+            }
+
+            @media (min-width: 1200px) {
+                &-departure {
+                    width: 339px;
+                    min-width: 339px;
+                    padding-right: 15px;
+                    position: relative;
+
+                    &--outbound::after,
+                    &--inbound::after {
+                        content: "\f072";
+                        display: inline-block;
+                        color: #9acbe7;
+                        font: normal normal normal 14px/1 FontAwesome;
+                        font-size: inherit;
+                        text-rendering: auto;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                        position: absolute;
+                        left: 5px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+
+                    &--inbound::after {
+                        transform: translateY(-50%) scale(-1, 1);
+                    }
+                }
+
+                &-destination {
+                    width: 360px;
+                    min-width: 360px;
+                    padding-right: 15px;
+                }
+
+                &-date {
+                    width: 135px;
+                    min-width: 135px;
+                }
+
+                &-number {
+                    width: 225px;
+                    min-width: 225px;
+                }
+            }
+        }
+    }
+}
+
+a.bp-link {
+    color: #fff;
+    font-weight: bold;
+    
+    &:hover, &:focus {
+        color: #fff;
+        font-weight: bold;
+    }
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"note.js","sourceRoot":"","sources":["../../../../../src/app/models/note.ts"],"names":[],"mappings":";;AAEA;IACI,cAAY,EAAS,EAAE,GAAmB,EAAE,GAAiB;QACzD,IAAI,CAAC,SAAS,GAAG,EAAE,CAAC;QACpB,IAAI,CAAC,SAAS,GAAG,GAAG,CAAC;QACrB,IAAI,CAAC,MAAM,GAAG,GAAG,CAAC;QAClB,IAAI,CAAC,SAAS,GAAG,IAAI,IAAI,EAAE,CAAC;IAChC,CAAC;IAOL,WAAC;AAAD,CAAC,AAbD,IAaC;AAbY,oBAAI"}

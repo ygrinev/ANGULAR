@@ -1,0 +1,852 @@
+<section id="search-box">
+  <div class="sb-wrapper clearfix">
+
+      <div class="sb-tab-container dt">
+          <a id="tab-packages" class="tab dtc" href="#">
+
+              <svg xmlns="//www.w3.org/2000/svg" viewBox="0 0 21.95 20" style="display: none;">
+                  <defs>
+                      <g id="packages-icon">
+                          <path d="M0,20a23.5,23.5,0,0,1,10.5-2.68l1.95-6.87c0-.11.06-.21-.14-.25l-3.67-1a21.21,21.21,0,0,1,5.54-5.14A.78.78,0,0,1,14.83,4l1.42.4a.31.31,0,0,1,.25.3c.15,1.29.35,2.58.47,3.87.08.87.1,2.79.1,2.91l-2.61-.69c-.23-.06-.22,0-.28.23-.39,1.4-1.77,6.3-1.79,6.38a19.42,19.42,0,0,1,6.83,1.46c.43.2,1.66,1,2.11,1.16Z" transform="translate(0.02)" />
+                          <path d="M21.93,12.72l-3.64-1a.33.33,0,0,1-.17-.25c0-.78,0-1.57-.06-2.35C18,8,17.82,6.75,17.7,5.54c0-.15,0-.34,0-.54.43.33.92.66,1.32,1a8.59,8.59,0,0,1,2.81,5.11C21.85,11.49,21.93,12.56,21.93,12.72Z" transform="translate(0.02)" />
+                          <path d="M5.2,8.29a8.94,8.94,0,0,1,7.68-4.53c-.49.39-1,.74-1.4,1.12a33.41,33.41,0,0,0-3.7,3.8.46.46,0,0,1-.56.18C6.63,8.68,6,8.54,5.43,8.38Z" transform="translate(0.02)" />
+                          <circle cx="4.45" cy="2.59" r="2.59" />
+                      </g>
+                  </defs>
+              </svg>
+
+              <svg viewBox="0 0 21.95 20">
+                  <use xlink:href="#packages-icon"></use>
+              </svg>
+
+              <span class="label">{{r.searchBox_MainMenu_Packages}}</span>
+          </a>
+          <a id="tab-flights" class="tab dtc" href="#">
+              <span class="icon fa fa-plane fa-fw" aria-hidden="false"></span>
+              <span class="label">{{r.searchBox_MainMenu_Flights}}</span>
+          </a>
+          <a id="tab-hotels" class="tab dtc" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 262 323" style="display: none;">
+                  <defs>
+                      <g id="hotels-icon">
+                          <path d="M245.8 296.4V49.9h7.7V7.1h-243v42.7h7.7v246.5H3.8V323h256.5v-26.6h-14.5zM87.2 279.9H46.7v-40.4h40.4v40.4zm0-58.6H46.7v-40.4h40.4v40.4zm0-58.5H46.7v-40.4h40.4v40.4zm0-58.6H46.7V63.8h40.4v40.4zm65 192.2h-40.4v-56.9h40.4v56.9zm0-75.1h-40.4v-40.4h40.4v40.4zm0-58.5h-40.4v-40.4h40.4v40.4zm0-58.6h-40.4V63.8h40.4v40.4zm65.1 175.7h-40.4v-40.4h40.4v40.4zm0-58.6h-40.4v-40.4h40.4v40.4zm0-58.5h-40.4v-40.4h40.4v40.4zm0-58.6h-40.4V63.8h40.4v40.4z" />
+                      </g>
+                  </defs>
+              </svg>
+
+              <svg viewBox="0 0 262 323">
+                  <use xlink:href="#hotels-icon"></use>
+              </svg>
+
+              <span class="label">{{r.searchBox_MainMenuMore_Hotels}}</span>
+          </a>
+          <a id="tab-cruises" class="tab dtc" href="#">
+              <span class="icon fa fa-anchor fa-fw" aria-hidden="false"></span>
+              <span class="label">{{r.searchBox_MainMenu_Cruises}}</span>
+          </a>
+      </div>
+      <div class="sb-tab-contents">
+          <div id="content-packages" class="tab-content hideTab">
+            <div class="search-box-heading">
+
+                <h2>{{r.searchBox_lblSearchTitle}}</h2>
+                <span id="ie9-error" class="alert alert-danger" style="display: none">{{r.searchBox_Error_IE9}}</span>
+            </div>
+            <div class="wrapper">
+
+                <form ngNoForm name="frm" id="search-box-form-packages" method="get" action="https://book.sunwing.ca/cgi-bin/handler.cgi?" class="dt search-box-form" onsubmit="return validateForm();">
+
+                    <div class="row-wrapper">
+
+                        <div class="mrow1">
+                            <div class="form-group dtc departure-gateway">
+                                <label for="Select1">{{r.searchBox_lblDepartingFrom}} </label>
+                                <select name="gateway_dep" id="Select1" onchange="refreshDest(this.form);"></select>
+                            </div>
+
+                            <div class="form-group dtc arrival-gateway">
+                                <label for="Select2">{{r.searchBox_lblGoingTo}} </label>
+                                <select name="dest_dep" id="Select2" onchange="refreshHotel(this.form);"></select>
+                            </div>
+
+                            <div class="form-group dtc departure-date">
+                                <label for="package_date_dep">{{r.searchBox_lblDepartingOn}}</label>
+
+                                <div class="right-inner-icon">
+                                    <input type="text" id="package_date_dep" class="calendar form-control" placeholder="Select a date" readonly>
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group dtc packages-days">
+                                <label for="duration">{{r.searchBox_lblGoingFor}}</label>
+                                <select name="duration" id="duration"></select>
+                            </div>
+                        </div>
+
+                        <div class="mrow2">
+                            
+                            <div class="mrow2">
+                                <div class="form-group dtc packages-rooms">
+                                    <label for="nb_rooms">{{r.searchBox_lblRooms}}<span>&nbsp;</span></label>
+                                    <select name="nb_rooms" id="nb_rooms">
+                                        <option value="1" selected="selected">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                </div>
+
+                                
+                                <div class="form-group dtc packages-adults">
+                                    <label for="nb_adult">{{r.searchBox_lblAdults}}<span>{{r.searchBox_lbl18Yrs}}</span></label>
+                                    <select name="nb_adult_forf" id="nb_adult">
+                                        <option value="1">1</option>
+                                        <option value="2" selected="selected">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group dtc packages-children">
+                                    <label for="nb_child">{{r.searchBox_lblChildren}}<i class="fa fa-edit fa-fw edit disabled"></i><span>{{r.searchBox_lblChildrenAge}}</span></label>
+                                    <select name="nb_child" id="nb_child">
+                                        <option value="0" selected="selected">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+
+                                    <div class="mrow3 disabled reset">
+                                        <div class="wrapper-inner">
+                                            <div class="form-group childage-wrapper">
+                                                <label for="promo-packages-childage1" class="childage-label">{{r.searchBox_lblAgesofChildren}} <span>{{r.searchBox_lblMsgInfant}}</span></label>
+
+                                                <div class="form-group col-xs-3 disabled">
+                                                    <select id="promo-packages-childage1" class="c_age" name="non_adult_forf1" disabled>
+                                                        <option value="0" selected="selected">--</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group col-xs-3 disabled">
+                                                    <select id="promo-packages-childage2" class="c_age" name="non_adult_forf2" disabled>
+                                                        <option value="0" selected="selected">--</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group col-xs-3 disabled">
+                                                    <select id="promo-packages-childage3" class="c_age" name="non_adult_forf3" disabled>
+                                                        <option value="0" selected="selected">--</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group col-xs-3 disabled">
+                                                    <select id="promo-packages-childage4" class="c_age" name="non_adult_forf4" disabled>
+                                                        <option value="0" selected="selected">--</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group close">
+                                                    <input type="hidden" id="code_ag" name="code_ag" value="rds" />
+                                                    <input type="hidden" id="language" name="language" [attr.value]="lang" />
+                                                    <input type="hidden" name="alias" value="btd" />
+                                                    <input type="hidden" name="isMobile" value="false" />
+                                                    <input type="hidden" name="nb_child_forf" value="0" />
+                                                    <input type="hidden" name="date_dep" value="" />
+                                                    <input type="hidden" id="agent_name" name="agent_name" value="" />
+                                                    <input type="hidden" name="engines" value="S" />
+                                                    <input type="hidden" name="searchtype" value="PA" />
+                                                    <button type="button" class="btn btn-default" typeof="submit">{{r.searchBox_lnkClose}}</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group dtc select-hotel">
+                                    <label for="Select6">{{r.searchBox_lblSelectHotel}}<span>({{r.searchBox_lblOptional}})</span></label>
+                                    <select name="no_hotel" id="Select6">
+                                        <option value="">{{r.searchBox_lblSelect}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group dtc search">
+                                    <span class="lpc dt" id="hotel-lpc" style="display:none;">
+                                        <span class="icon dtc">
+                                            <a id="lightbox" class="calendarLink LPClink lightbox" target="_blank" data-width="466" href="" title="{{r.searchBox_lblPriceCalendar}}">
+                                                <span class="fa fa-calendar"></span>
+                                            </a>
+                                        </span>
+                                        <span class="lpc-container dtc">
+                                            <span class="cta">
+                                                <a id="lightbox-uid-1" class="calendarLink LPClink lightbox" target="_blank" data-width="466" href="" title="{{r.searchBox_lblPriceCalendar}}">{{r.searchBox_lblPriceCalendar}}</a>
+                                            </span>
+                                        </span>
+                                    </span>
+
+                                    <button type="submit" class="btn btn-default">{{r.searchBox_btnSearch}}</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="mrow4"></div>
+
+                    </div>
+                </form>
+
+            </div>
+          </div>
+          <div id="content-flights" class="tab-content hideTab">
+
+              <div class="search-box-heading">
+                  <h2>{{r.searchBox_lblFlightSearchTitle}}</h2>
+              </div>
+              <div class="wrapper">
+                  <form ngNoForm name="flights_frm" id="search-box-form-flights" method="get" action="//book.sunwing.ca/cgi-bin/results.cgi" class="dt search-box-form" onsubmit="return flights_validateForm();">
+
+                      <div class="row-wrapper">
+
+                          <div class="mrow1">
+                              <div class="form-group dtc radio-group-wrapper">
+                                  <div class="trip-type radio-group">
+                                      <input name="searchtype" value="RE" id="round-trip" type="radio" checked onchange="getGatewaySource();">
+                                      <label for="round-trip" class="dtc"><span>{{r.searchBox_lblRoundTrip}}</span></label>
+                                  </div>
+                                  <div class="trip-type radio-group">
+                                      <input name="searchtype" value="OW" id="one-way-trip" type="radio" onchange="getGatewaySource();">
+                                      <label for="one-way-trip" class="dtc"><span>{{r.searchBox_lblOneWayTrip}}</span></label>
+                                  </div>
+                              </div>
+                              <div class="form-group dtc departure-gateway">
+                                  <label for="flights_Select1">{{r.searchBox_lblDepartingFrom}}</label>
+                                  <div class="right-inner-icon">
+                                      <input id="flights_Select1" class="ui-autocomplete-input form-control" placeholder="{{r.searchBox_lblSelect}}" autocomplete="off" aria-autocomplete="list" aria-haspopup="true" type="text">
+                                      <i class="dd-arrow fa fa-angle-down fa-fw" aria-hidden="false"></i>
+                                  </div>
+                              </div>
+
+                              <div class="form-group dtc arrival-gateway">
+                                  <label for="flights_Select2">{{r.searchBox_lblGoingTo}}</label>
+                                  <div class="right-inner-icon">
+                                      <input id="flights_Select2" class="ui-autocomplete-input form-control" placeholder="{{r.searchBox_lblSelect}}" autocomplete="off" aria-autocomplete="list" aria-haspopup="true" type="text">
+                                      <i class="dd-arrow fa fa-angle-down fa-fw" aria-hidden="false"></i>
+                                  </div>
+                              </div>
+
+                          </div>
+
+                          <div class="mrow2">
+
+                              <div class="form-group dtc departure-date">
+                                  <label for="flights_date_dep">{{r.searchBox_lblDepartingOn}}</label>
+
+                                  <div class="right-inner-icon">
+                                      <input type="text" id="flights_date_dep" class="calendar checkin form-control" placeholder="Select a date" readonly>
+                                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                                  </div>
+                              </div>
+
+                              <div class="form-group dtc return-date">
+                                  <label for="flights_date_ret">{{r.searchBox_lblReturningOn}}</label>
+
+                                  <div class="right-inner-icon">
+                                      <input type="text" id="flights_date_ret" class="calendar checkout form-control" placeholder="Select a date" readonly>
+                                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                                  </div>
+                              </div>
+
+                              <div class="form-group dtc flights-days hide">
+                                  <label for="flights_duration">{{r.searchBox_lblDuration}}</label>
+                                  <select id="flights_duration">
+                                      <option value="3">{{r.searchBox_Duration_3to4}}</option>
+                                      <option value="7" selected>{{r.searchBox_Duration_5to10}}</option>
+                                      <option value="14">{{r.searchBox_Duration_11to16}}</option>
+                                      <option value=""></option>
+                                      <option value="2DAY">2 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="3DAY">3 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="4DAY">4 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="5DAY">5 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="6DAY">6 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="7DAY">7 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="8DAY">8 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="9DAY">9 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="10DAY">10 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="11DAY">11 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="12DAY">12 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="13DAY">13 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="14DAY">14 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="15DAY">15 {{r.searchBox_Duration_daysonly}}</option>
+                                      <option value="16DAY">16 {{r.searchBox_Duration_daysonly}}</option>
+                                  </select>
+
+                              </div>
+                              <div class="form-group dtc flights-adults">
+                                  <label for="flights_nb_adult">
+                                      {{r.searchBox_lblAdults}}<span>{{r.searchBox_lbl18Yrs}}</span>
+                                  </label>
+                                  <select name="nb_adult" id="flights_nb_adult">
+                                      <option value="1">1</option>
+                                      <option value="2" selected="selected">2</option>
+                                      <option value="3">3</option>
+                                      <option value="4">4</option>
+                                      <option value="5">5</option>
+                                      <option value="6">6</option>
+                                  </select>
+                              </div>
+
+                              <div class="form-group dtc flights-children">
+                                  <label for="flights_nb_child">
+                                      {{r.searchBox_lblChildren}}<i class="fa fa-edit fa-fw edit disabled"></i><span>{{r.searchBox_lblChildrenAge}}</span>
+                                  </label>
+                                  <select name="nb_child" id="flights_nb_child">
+                                      <option value="0" selected="selected">0</option>
+                                      <option value="1">1</option>
+                                      <option value="2">2</option>
+                                      <option value="3">3</option>
+                                      <option value="4">4</option>
+                                  </select>
+
+                                  <div class="mrow3 disabled reset">
+
+                                      <div class="wrapper-inner">
+
+                                          <div class="form-group childage-wrapper">
+                                              <label for="flights_promo-flights-childage1" class="childage-label">{{r.searchBox_lblAgesofChildren}} <span>{{r.searchBox_lblMsgInfant}}</span></label>
+
+                                              <div class="form-group col-xs-3 disabled">
+                                                  <select id="flights_promo-flights-childage1" class="flights_age" name="non_adult1" disabled>
+                                                      <option value="0" selected="selected">--</option>
+                                                      <option value="1">1</option>
+                                                      <option value="2">2</option>
+                                                      <option value="3">3</option>
+                                                      <option value="4">4</option>
+                                                      <option value="5">5</option>
+                                                      <option value="6">6</option>
+                                                      <option value="7">7</option>
+                                                      <option value="8">8</option>
+                                                      <option value="9">9</option>
+                                                      <option value="10">10</option>
+                                                      <option value="11">11</option>
+                                                      <option value="12">12</option>
+                                                      <option value="13">13</option>
+                                                      <option value="14">14</option>
+                                                      <option value="15">15</option>
+                                                      <option value="16">16</option>
+                                                      <option value="17">17</option>
+                                                  </select>
+                                              </div>
+
+                                              <div class="form-group col-xs-3 disabled">
+                                                  <select id="flights_promo-flights-childage2" class="flights_age" name="non_adult2" disabled>
+                                                      <option value="0" selected="selected">--</option>
+                                                      <option value="1">1</option>
+                                                      <option value="2">2</option>
+                                                      <option value="3">3</option>
+                                                      <option value="4">4</option>
+                                                      <option value="5">5</option>
+                                                      <option value="6">6</option>
+                                                      <option value="7">7</option>
+                                                      <option value="8">8</option>
+                                                      <option value="9">9</option>
+                                                      <option value="10">10</option>
+                                                      <option value="11">11</option>
+                                                      <option value="12">12</option>
+                                                      <option value="13">13</option>
+                                                      <option value="14">14</option>
+                                                      <option value="15">15</option>
+                                                      <option value="16">16</option>
+                                                      <option value="17">17</option>
+                                                  </select>
+                                              </div>
+
+                                              <div class="form-group col-xs-3 disabled">
+                                                  <select id="flights_promo-flights-childage3" class="flights_age" name="non_adult3" disabled>
+                                                      <option value="0" selected="selected">--</option>
+                                                      <option value="1">1</option>
+                                                      <option value="2">2</option>
+                                                      <option value="3">3</option>
+                                                      <option value="4">4</option>
+                                                      <option value="5">5</option>
+                                                      <option value="6">6</option>
+                                                      <option value="7">7</option>
+                                                      <option value="8">8</option>
+                                                      <option value="9">9</option>
+                                                      <option value="10">10</option>
+                                                      <option value="11">11</option>
+                                                      <option value="12">12</option>
+                                                      <option value="13">13</option>
+                                                      <option value="14">14</option>
+                                                      <option value="15">15</option>
+                                                      <option value="16">16</option>
+                                                      <option value="17">17</option>
+                                                  </select>
+                                              </div>
+
+                                              <div class="form-group col-xs-3 disabled">
+                                                  <select id="flights_promo-flights-childage4" class="flights_age" name="non_adult4" disabled>
+                                                      <option value="0" selected="selected">--</option>
+                                                      <option value="1">1</option>
+                                                      <option value="2">2</option>
+                                                      <option value="3">3</option>
+                                                      <option value="4">4</option>
+                                                      <option value="5">5</option>
+                                                      <option value="6">6</option>
+                                                      <option value="7">7</option>
+                                                      <option value="8">8</option>
+                                                      <option value="9">9</option>
+                                                      <option value="10">10</option>
+                                                      <option value="11">11</option>
+                                                      <option value="12">12</option>
+                                                      <option value="13">13</option>
+                                                      <option value="14">14</option>
+                                                      <option value="15">15</option>
+                                                      <option value="16">16</option>
+                                                      <option value="17">17</option>
+                                                  </select>
+                                              </div>
+
+                                              <div class="form-group close">
+                                                  <input type="hidden" name="code_ag" value="rds" />
+                                                  <input type="hidden" name="language" [attr.value]="lang" />
+                                                  <input type="hidden" name="alias" value="btd" />
+                                                  <input type="hidden" name="isMobile" value="false" />
+                                                  <input type="hidden" name="nb_child_forf" value="0" />
+                                                  <input type="hidden" name="date_dep" value="" />
+                                                  <input type="hidden" name="date_ret" value="" />
+                                                  <input type="hidden" name="gateway_dep" value="" />
+                                                  <input type="hidden" name="dest_dep" value="" />
+                                                  <input type="hidden" name="agent_name" value="" />
+                                                  <input type="hidden" name="flex" value="Y" />
+                                                  <input type="hidden" name="duration" value="" />
+                                                  <input type="hidden" name="engines" value="S" />
+
+                                                  <button type="button" class="btn btn-default" typeof="submit">{{r.searchBox_lnkClose}}</button>
+                                              </div>
+
+                                          </div>
+
+                                      </div>
+
+                                  </div>
+
+                              </div>
+
+                              <div class="form-group dtc search">
+                                  <button type="submit" class="btn btn-default">{{r.searchBox_btnSearch}}</button>
+                              </div>
+                          </div>
+
+                      </div>
+
+                      <div class="mrow4"></div>
+
+
+                  </form>
+              </div>
+          </div>
+          <div id="content-hotels" class="tab-content hideTab">
+              <div class="search-box-heading">
+                  <h2>{{r.searchBox_lblHotelSearchTitle}}</h2>
+              </div>
+              <div class="wrapper">
+                  <form ngNoForm name="hotels_frm" autocomplete="off" id="search-box-form-hotels" method="get" action="https://shopping.sunwing.ca/cgi-bin/results-hotel.cgi?" class="dt search-box-form" onsubmit="return validateHotelForm();">
+                      <input type="hidden" name="code_ag" id="code_ag" value="rds">
+                      <input type="hidden" name="alias" value="btd" />
+                      <input type="hidden" id="language" name="language" [attr.value]="lang" />
+                      <input type="hidden" name="agent_name" value="">
+                      <input type="hidden" name="requestdest" value="">
+                      <input type="hidden" class="dest_dep_hotel" name="dest_dep" id="dest_dep" value="">
+                      <input type="hidden" name="engines_hotel" value="S:">
+                      <input type="hidden" name="isMobile" value="false" />
+                      <input type="hidden" name="nb_child_forf" value="0" />
+                      <input type="hidden" id="searchtype" name="searchtype" value="HO">
+
+                      <div class="row-wrapper">
+
+                          <div class="mrow1">
+                              <div class="form-group dtc hotel-destination">
+                                  <label for="hotel-destination">{{r.searchBox_Hotels_SelectDestination}}</label>
+                                  <div class="right-inner-icon">
+                                      <input id="dest_dep_text" name="dest_dep_text" value="" canyouseeme="dest_dep" class="ui-autocomplete-input form-control" placeholder="{{r.searchBox_lblSelect}}" autocomplete="off" aria-autocomplete="list" aria-haspopup="true" type="text">
+                                  </div>
+                              </div>
+                              <div class="form-group dtc hotel-checkin-date">
+                                  <label for="hotel-checkin-date">{{r.searchBox_Hotels_CheckinDate}}</label>
+
+                                  <div class="right-inner-icon">
+                                      <input type="text" id="hotel-checkin-date" name="date_dep" class="calendar checkin form-control" placeholder="Select a date" readonly>
+                                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                                  </div>
+                              </div>
+                              <div class="form-group dtc hotel-checkout-date">
+                                  <label for="hotel-checkout-date">{{r.searchBox_Hotels_CheckoutDate}}</label>
+
+                                  <div class="right-inner-icon">
+                                      <input type="text" id="hotel-checkout-date" name="date_ret" class="calendar checkout form-control" placeholder="Select a date" readonly>
+                                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="mrow2">
+
+                              <div class="mrow2">
+                                  <div class="form-group dtc hotels-rooms">
+                                      <label for="nb_rooms">{{r.searchBox_lblRooms}}<span>&nbsp;</span></label>
+                                      <select name="nb_rooms" id="nb_rooms">
+                                          <option value="1" selected="selected">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option value="5">5</option>
+                                          <option value="6">6</option>
+                                      </select>
+                                  </div>
+
+                                  <div class="form-group dtc hotels-adults">
+                                      <label for="nb_adult">{{r.searchBox_lblAdults}}<span>{{r.searchBox_lbl18Yrs}}</span></label>
+                                      <select name="nb_adult" id="nb_adult">
+                                          <option value="1">1</option>
+                                          <option value="2" selected="selected">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option value="5">5</option>
+                                          <option value="6">6</option>
+                                      </select>
+                                  </div>
+
+                                  <div class="form-group dtc hotels-children">
+                                      <label for="nb_child">{{r.searchBox_lblChildren}}<i class="fa fa-edit fa-fw edit disabled"></i><span>{{r.searchBox_lblChildrenAge}}</span></label>
+                                      <select name="nb_child" id="nb_child">
+                                          <option value="0" selected="selected">0</option>
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                      </select>
+
+                                      <div class="mrow3 disabled reset">
+                                          <div class="wrapper-inner">
+                                              <div class="form-group childage-wrapper">
+                                                  <label for="promo-packages-childage1" class="childage-label">Ages of children<span>(For infant select 1)</span></label>
+
+                                                  <div class="form-group col-xs-3 disabled">
+                                                      <select id="promo-packages-childage1" class="c_age" name="non_adult1" disabled="">
+                                                          <option value="0" selected="selected">--</option>
+                                                          <option value="1">1</option>
+                                                          <option value="2">2</option>
+                                                          <option value="3">3</option>
+                                                          <option value="4">4</option>
+                                                          <option value="5">5</option>
+                                                          <option value="6">6</option>
+                                                          <option value="7">7</option>
+                                                          <option value="8">8</option>
+                                                          <option value="9">9</option>
+                                                          <option value="10">10</option>
+                                                          <option value="11">11</option>
+                                                          <option value="12">12</option>
+                                                          <option value="13">13</option>
+                                                          <option value="14">14</option>
+                                                          <option value="15">15</option>
+                                                          <option value="16">16</option>
+                                                          <option value="17">17</option>
+                                                      </select>
+                                                  </div>
+
+                                                  <div class="form-group col-xs-3 disabled">
+                                                      <select id="promo-packages-childage2" class="c_age" name="non_adult2" disabled="">
+                                                          <option value="0" selected="selected">--</option>
+                                                          <option value="1">1</option>
+                                                          <option value="2">2</option>
+                                                          <option value="3">3</option>
+                                                          <option value="4">4</option>
+                                                          <option value="5">5</option>
+                                                          <option value="6">6</option>
+                                                          <option value="7">7</option>
+                                                          <option value="8">8</option>
+                                                          <option value="9">9</option>
+                                                          <option value="10">10</option>
+                                                          <option value="11">11</option>
+                                                          <option value="12">12</option>
+                                                          <option value="13">13</option>
+                                                          <option value="14">14</option>
+                                                          <option value="15">15</option>
+                                                          <option value="16">16</option>
+                                                          <option value="17">17</option>
+                                                      </select>
+                                                  </div>
+
+                                                  <div class="form-group col-xs-3 disabled">
+                                                      <select id="promo-packages-childage3" class="c_age" name="non_adult3" disabled="">
+                                                          <option value="0" selected="selected">--</option>
+                                                          <option value="1">1</option>
+                                                          <option value="2">2</option>
+                                                          <option value="3">3</option>
+                                                          <option value="4">4</option>
+                                                          <option value="5">5</option>
+                                                          <option value="6">6</option>
+                                                          <option value="7">7</option>
+                                                          <option value="8">8</option>
+                                                          <option value="9">9</option>
+                                                          <option value="10">10</option>
+                                                          <option value="11">11</option>
+                                                          <option value="12">12</option>
+                                                          <option value="13">13</option>
+                                                          <option value="14">14</option>
+                                                          <option value="15">15</option>
+                                                          <option value="16">16</option>
+                                                          <option value="17">17</option>
+                                                      </select>
+                                                  </div>
+
+                                                  <div class="form-group col-xs-3 disabled">
+                                                      <select id="promo-packages-childage4" class="c_age" name="non_adult4" disabled="">
+                                                          <option value="0" selected="selected">--</option>
+                                                          <option value="1">1</option>
+                                                          <option value="2">2</option>
+                                                          <option value="3">3</option>
+                                                          <option value="4">4</option>
+                                                          <option value="5">5</option>
+                                                          <option value="6">6</option>
+                                                          <option value="7">7</option>
+                                                          <option value="8">8</option>
+                                                          <option value="9">9</option>
+                                                          <option value="10">10</option>
+                                                          <option value="11">11</option>
+                                                          <option value="12">12</option>
+                                                          <option value="13">13</option>
+                                                          <option value="14">14</option>
+                                                          <option value="15">15</option>
+                                                          <option value="16">16</option>
+                                                          <option value="17">17</option>
+                                                      </select>
+                                                  </div>
+                                                  <div class="form-group close">
+                                                      <button type="button" id="formsubmit" class="btn btn-default" typeof="submit">{{r.searchBox_lnkClose}}</button>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group dtc search">
+                                      <button type="submit" class="btn btn-default chevron-arrow">{{r.searchBox_btnSearch}}</button>
+                                  </div>
+                              </div>
+
+                          </div>
+
+                      </div>
+
+                      <div class="mrow4"></div>
+
+                      <div id="ajax_autocomplete" style="display: none;"></div>
+                  </form>
+              </div>
+
+          </div>
+
+          <div id="content-cruises" class="tab-content hideTab">
+              <div class="wrapper">
+                  <form ngNoForm id="search-box-form-cruises" autocomplete="off" name="cruise_frm" onsubmit="Submit()" action="https://shopping.sunwing.ca/cgi-bin/resultscruise.cgi?" class="dt cruise-search-box-form active">
+                      <div class="search-box-heading">
+                          <h2>{{r.searchBox_lblCruiseSearchTitle}}</h2>
+                      </div>
+                      <div class="row-wrapper">
+
+                          <div class="mrow1">
+
+                              <div class="form-group dtc cruise-departure-gateway">
+                                  <label for="cruise-departure-gateway">{{r.searchBox_lblDepartingFrom}} </label>
+                                  <select name="gateway_dep" id="Select1" onchange="RefreshCruiseSuite(this.form);"></select>
+                              </div>
+
+                              <div class="form-group dtc cruise-arrival-gateway">
+                                  <label for="cruise-arrival-gateway">{{r.searchBox_lblGoingTo}} </label>
+                                  <select name="dest_dep" id="Select2" onchange="RefreshCruiseSuite(this.form);">
+                                      <option value="ALL">{{r.searchBox_cruise_AllDestinations}}</option>
+                                  </select>
+                              </div>
+
+                          </div>
+
+                          <div class="mrow2">
+                              <div class="input-group-wrapper">
+                                  <label for="cruise-dep-month-toggle">{{r.searchBox_cruise_DepartingDate}} <span>{{r.searchBox_cruise_Bymonth}}</span></label>
+
+                                  <div class="form-group input-group cruise-departure-month">
+
+                                      <span class="input-group-addon radio-group">
+                                          <input id="cruise-dep-month-toggle" value="month" name="date_dep_type" type="radio" checked>
+
+                                          <label for="cruise-dep-month-toggle"></label>
+                                      </span>
+
+                                      <div class="right-inner-icon">
+                                          <input type="text" id="departure_month_au_long" name="departure_month_au_long" class="calendar form-control" placeholder="Select a month" readonly>
+                                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="input-group-wrapper ">
+                                  <label for="cruise-dep-date-toggle">&nbsp;<span>{{r.searchBox_cruise_Bydate}}</span></label>
+                                  <!--<div class="form-group">-->
+                                  <div class="form-group input-group cruise-departure-date">
+
+                                      <span class="input-group-addon radio-group">
+                                          <input id="cruise-dep-date-toggle" name="date_dep_type" value="date_dep" type="radio">
+                                          <label for="cruise-dep-date-toggle"></label>
+                                      </span>
+
+                                      <div class="right-inner-icon">
+                                          <input type="text" id="date_dep" name="date_dep" class="calendar form-control" placeholder="Select a date" readonly>
+                                          <i class="fa fa-calendar"></i>
+                                      </div>
+
+                                  </div>
+                                  <!--</div>-->
+                              </div>
+                          </div>
+                          <div class="mrow3">
+
+                              <div class="form-group dtc cruise-duration">
+                                  <label for="cruise-duration">{{r.searchBox_lblGoingFor}}</label>
+                                  <select name="duration" onchange="RefreshCruiseSuite(this.form);">
+                                      <option value="ALL">{{r.searchBox_CruiseDurationOption}}</option>
+                                  </select>
+                              </div>
+
+                              <div class="form-group dtc cruise-search">
+                                  <button type="submit" class="btn btn-default">{{r.searchBox_btnSearch}}</button>
+                              </div>
+                          </div>
+                      </div>
+                      <input type="hidden" id="code_ag" name="code_ag" value="rds">
+                      <input type="hidden" id="no_hotel" name="no_hotel" value="">
+                      <input type="hidden" id="language" name="language" [attr.value]="lang" />
+                      <input type="hidden" name="alias" value="btd" />
+                      <input type="hidden" id="date_ret" name="date_ret" value="">
+                      <input type="hidden" name="engines" value="S" />
+                      <input type="hidden" name="isMobile" value="false" />
+                      <input type="hidden" name="nb_child_forf" value="0" />
+                      <input type="hidden" id="searchtype" name="searchtype" value="CR">
+                      <input type=hidden name="first_result" value="">
+                      <input type=hidden name="liste_durations" value="">
+                  </form>
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <div class="error-messages packages">
+      <div class="alert alert-danger">
+          <span class="error-heading fa fa-exclamation-triangle"></span>
+          <ul class="contents">
+              <li class="ui-widget-error" id="error-message-destination">{{r.searchBox_PackagesErrMsgDestination}}</li>
+              <li class="ui-widget-error" id="error-message-dates">{{r.searchBox_lblErrMsgInvaliddate}}</li>
+              <li class="ui-widget-error" id="error-message-nonadults">{{r.searchBox_lblErrMsgReservationNonAdults}}</li>
+              <li class="ui-widget-error" id="error-message-totalPax" [innerHTML]="r.searchBox_lblErrMsgTotalPax" ></li>
+              <li class="ui-widget-error" id="error-message-modulo">{{r.searchBox_lblErrMsgReservationAdultsWarning}}</li>
+              <li class="ui-widget-error" id="error-message-nonadultage">{{r.searchBox_lblErrMsgChildrenAge}}</li>
+          </ul>
+      </div>
+  </div>
+  <div class="error-messages flights">
+      <div class="alert alert-danger">
+          <span class="error-heading fa fa-exclamation-triangle"></span>
+          <ul class="contents">
+              <li class="ui-widget-error" id="flights_error-message-gateway">{{r.searchBox_lblErrMsgDeparture}}</li>
+              <li class="ui-widget-error" id="flights_error-message-destination">{{r.searchBox_lblErrMsgDestination}}</li>
+              <li class="ui-widget-error" id="flights_error-message-searchType">{{r.searchBox_lblErrMsgsearchtype}}</li>
+              <li class="ui-widget-error" id="flights_error-message-dates_dep">{{r.searchBox_lblErrMsgDepartureDate}}</li>
+              <li class="ui-widget-error" id="flights_error-message-dates_ret">{{r.searchBox_lblErrMsgReturnDate}}</li>
+              <li class="ui-widget-error" id="flights_error-message-nonadultage">{{r.searchBox_lblErrMsgChildrenAge}}</li>
+          </ul>
+      </div>
+  </div>
+  <div class="error-messages cars">
+      <div class="alert alert-danger">
+          <span class="error-heading fa fa-exclamation-triangle"></span>
+          <ul class="contents">
+              <li class="ui-widget-error" id="cars_error-message-pickup">{{r.searchBox_lblErrMsgPickup}}</li>
+              <li class="ui-widget-error" id="cars_error-message-dropoff">{{r.searchBox_lblErrMsgDropOff}}</li>
+              <li class="ui-widget-error" id="cars_error-message-pickup-date">{{r.searchBox_lblErrMsgPickUpDate}}</li>
+              <li class="ui-widget-error" id="cars_error-message-dropoff-date">{{r.searchBox_lblErrMsgDropOffDate}}</li>
+          </ul>
+      </div>
+  </div>
+</section>

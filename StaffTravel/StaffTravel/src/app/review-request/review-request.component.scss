@@ -1,0 +1,161 @@
+hr {
+    border-top: 2px solid #fff;
+}
+
+// Column Sizing
+.review-request {
+    @media (min-width: 1200px) {
+        &--passengers {
+            .passenger {
+                &-name {
+                    width: 250px;
+                    min-width: 250px;
+                }
+
+                &-dob {
+                    width: 150px;
+                    min-width: 150px;
+                }
+
+                &-pass {
+                    width: 265px;
+                    min-width: 265px;
+                }
+
+                &-phone {
+                    width: 170px;
+                    min-width: 170px;
+                }
+
+                &-email {
+                    width: 245px;
+                    min-width: 245px;
+                }
+            }
+        }
+
+        &--hotels {
+            .hotel {
+                &-date {
+                    width: 360px;
+                    min-width: 360px;
+                }
+
+                &-info {
+                    width: 360px;
+                    min-width: 360px;
+                }
+
+                &-type {
+                    width: 360px;
+                    min-width: 360px;
+                }
+            }
+        }
+
+        &--ancillaries {
+            margin-bottom: 15px;
+
+            .ancillary {
+                &-destination {
+                    width: 360px;
+                    min-width: 360px;
+                }
+
+                &-product {
+                    width: 150px;
+                    min-width: 150px;
+                }
+                // Excursion name
+                &-name {
+                    width: 370px;
+                    min-width: 370px;
+
+                    & ~ .ancillary-passenger {
+                        width: 200px;
+                        min-width: 200px;
+                    }
+                }
+                // Excursion / Insurance Passengers
+                &-passenger {
+                    width: 570px;
+                    min-width: 570px;
+                }
+                // Transfer type
+                &-type {
+                    width: 370px;
+                    min-width: 370px;
+                }
+                // Transfer quantity
+                &-quantity {
+                    width: 200px;
+                    min-width: 200px;
+                }
+                // Empty column spacer for Car Rentls
+                &-car-spacer {
+                    width: 570px;
+                    min-width: 570px;
+                }
+            }
+        }
+    }
+
+    &--flights {
+        .flight {
+            &-pax {
+                display: none;
+
+                @media (min-width: 1200px) {
+                    display: table-cell;
+                    font-size: 36px;
+                    color: #aeb2b4;
+                }
+            }
+
+            @media (min-width: 1200px) {
+                &-departure {
+                    width: 339px;
+                    min-width: 339px;
+                    padding-right: 15px;
+                    position: relative;
+
+                    &--outbound::after,
+                    &--inbound::after {
+                        content: "\f072";
+                        display: inline-block;
+                        color: #9acbe7;
+                        font: normal normal normal 14px/1 FontAwesome;
+                        font-size: inherit;
+                        text-rendering: auto;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                        position: absolute;
+                        left: 5px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+
+                    &--inbound::after {
+                        transform: translateY(-50%) scale(-1, 1);
+                    }
+                }
+
+                &-destination {
+                    width: 360px;
+                    min-width: 360px;
+                    padding-right: 15px;
+                }
+
+                &-date {
+                    width: 135px;
+                    min-width: 135px;
+                }
+
+                &-number {
+                    width: 225px;
+                    min-width: 225px;
+                }
+            }
+        }
+    }
+}

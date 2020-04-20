@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [sta]
+    WITH PASSWORD = N'mW6GeapEUQ99chq^lnvn@lXumsFT7_&#$!~<|{pjxmrmhqng', SID = 0x26A5B0F88245864A8F5B9388D96CF500, DEFAULT_LANGUAGE = [us_english], CHECK_POLICY = OFF;
+

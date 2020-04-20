@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8394f6fe-849f-4959-9e91-07171161e2f4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://yyzappstg1.sunwingstg.local/EmailService/EmailService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EmailService.disco" MetadataType="Disco" ID="dc511b26-1c41-4421-8b68-0435143d5355" SourceId="1" SourceUrl="http://yyzappstg1.sunwingstg.local/EmailService/EmailService.svc?disco" />
+    <MetadataFile FileName="EmailService.wsdl" MetadataType="Wsdl" ID="96504bd3-c946-43d5-bf68-832ff7c7ad5f" SourceId="1" SourceUrl="http://yyzappstg1.sunwingstg.local/EmailService/EmailService.svc?wsdl" />
+    <MetadataFile FileName="EmailService.xsd" MetadataType="Schema" ID="784b878f-4542-4c35-aed9-4ae863b798ff" SourceId="1" SourceUrl="http://yyzappstg1.sunwingstg.local/EmailService/EmailService.svc?xsd=xsd1" />
+    <MetadataFile FileName="EmailService1.xsd" MetadataType="Schema" ID="1b48031d-2039-4a8b-8e5b-88ca4f45e435" SourceId="1" SourceUrl="http://yyzappstg1.sunwingstg.local/EmailService/EmailService.svc?xsd=xsd0" />
+    <MetadataFile FileName="EmailService2.xsd" MetadataType="Schema" ID="e930c7d8-2340-4d70-909f-6d3c02bdf81d" SourceId="1" SourceUrl="http://yyzappstg1.sunwingstg.local/EmailService/EmailService.svc?xsd=xsd3" />
+    <MetadataFile FileName="EmailService3.xsd" MetadataType="Schema" ID="698cdfa1-b63f-4494-9dc0-14431f768cf0" SourceId="1" SourceUrl="http://yyzappstg1.sunwingstg.local/EmailService/EmailService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,63 @@
+﻿<parameters>
+  
+  
+    
+    <parameter name="GatewaysAPI" description="Description for GatewaysAPI" defaultvalue="__GATEWAYSAPI__" tags="">
+    <parameterentry kind="XmlFile" scope="\\Web.config$" match="/configuration/appSettings/add[@key='GatewaysAPI']/@value" />
+    </parameter>
+  
+    
+    <parameter name="DestinationsAPI" description="Description for DestinationsAPI" defaultvalue="__DESTINATIONSAPI__" tags="">
+    <parameterentry kind="XmlFile" scope="\\Web.config$" match="/configuration/appSettings/add[@key='DestinationsAPI']/@value" />
+    </parameter>
+  
+    
+    <parameter name="SVHotelDestinationsAPI" description="Description for SVHotelDestinationsAPI" defaultvalue="__SVHOTELDESTINATIONSAPI__" tags="">
+    <parameterentry kind="XmlFile" scope="\\Web.config$" match="/configuration/appSettings/add[@key='SVHotelDestinationsAPI']/@value" />
+    </parameter>
+  
+    
+    <parameter name="SVHotelsAPI" description="Description for SVHotelsAPI" defaultvalue="__SVHOTELSAPI__" tags="">
+    <parameterentry kind="XmlFile" scope="\\Web.config$" match="/configuration/appSettings/add[@key='SVHotelsAPI']/@value" />
+    </parameter>
+  
+    
+    <parameter name="AdminEmail" description="Description for AdminEmail" defaultvalue="__ADMINEMAIL__" tags="">
+    <parameterentry kind="XmlFile" scope="\\Web.config$" match="/configuration/appSettings/add[@key='AdminEmail']/@value" />
+    </parameter>
+  
+    
+    <parameter name="GlobalEmailOverride" description="Description for GlobalEmailOverride" defaultvalue="__GLOBALEMAILOVERRIDE__" tags="">
+    <parameterentry kind="XmlFile" scope="\\Web.config$" match="/configuration/appSettings/add[@key='GlobalEmailOverride']/@value" />
+    </parameter>
+  
+    
+    <parameter name="AdminReviewRoute" description="Description for AdminReviewRoute" defaultvalue="__ADMINREVIEWROUTE__" tags="">
+    <parameterentry kind="XmlFile" scope="\\Web.config$" match="/configuration/appSettings/add[@key='AdminReviewRoute']/@value" />
+    </parameter>
+  
+    
+    <parameter name="PayloadReviewRoute" description="Description for PayloadReviewRoute" defaultvalue="__PAYLOADREVIEWROUTE__" tags="">
+    <parameterentry kind="XmlFile" scope="\\Web.config$" match="/configuration/appSettings/add[@key='PayloadReviewRoute']/@value" />
+    </parameter>
+  
+    
+    <parameter name="ManagerReviewRoute" description="Description for ManagerReviewRoute" defaultvalue="__MANAGERREVIEWROUTE__" tags="">
+    <parameterentry kind="XmlFile" scope="\\Web.config$" match="/configuration/appSettings/add[@key='ManagerReviewRoute']/@value" />
+    </parameter>
+  
+    
+    <parameter name="EmployeeRequestProgressRoute" description="Description for EmployeeRequestProgressRoute" defaultvalue="__EMPLOYEEREQUESTPROGRESSROUTE__" tags="">
+    <parameterentry kind="XmlFile" scope="\\Web.config$" match="/configuration/appSettings/add[@key='EmployeeRequestProgressRoute']/@value" />
+    </parameter>
+  
+    
+    <parameter name="mbp" description="Description for mbp" defaultvalue="__MBP__" tags="">
+    <parameterentry kind="XmlFile" scope="\\Web.config$" match="/configuration/appSettings/add[@key='mbp']/@value" />
+    </parameter>
+
+  <parameter name="EMAIL_SERVICE" description="Email service url" defaultvalue="__EMAIL_SERVICE__" tags="">
+    <parameterentry kind="XmlFile" scope="\\web.config$" match="/configuration/*[local-name()='system.serviceModel']/*[local-name()='client']/*[local-name()='endpoint'][@name='BasicHttpBinding_IEmailService']/@address" />
+  </parameter>
+    
+</parameters>

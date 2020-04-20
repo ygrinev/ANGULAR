@@ -1,0 +1,1196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="adminUserName" xml:space="preserve">
+    <value>(or Admin's username)</value>
+  </data>
+  <data name="backToSignIn" xml:space="preserve">
+    <value>Back to Sign in</value>
+  </data>
+  <data name="checkEmail" xml:space="preserve">
+    <value>Please check your email for instructions on how to retrieve your password.</value>
+  </data>
+  <data name="confirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="employeeId" xml:space="preserve">
+    <value>Employee ID</value>
+  </data>
+  <data name="employeeNumber" xml:space="preserve">
+    <value>Employee Number</value>
+  </data>
+  <data name="ERR_LOG_001" xml:space="preserve">
+    <value>The employee ID and/or password are incorrect, please try again.</value>
+  </data>
+  <data name="ERR_LOG_002" xml:space="preserve">
+    <value>Server Error.</value>
+  </data>
+  <data name="ERR_REG_001" xml:space="preserve">
+    <value>You are already registered, please click login to enter your credentials.</value>
+  </data>
+  <data name="ERR_REG_002" xml:space="preserve">
+    <value>Unable to create account</value>
+  </data>
+  <data name="ERR_REG_003" xml:space="preserve">
+    <value>Your employee ID and/or last name do not match our records in the Employee Portal.  Please ensure your employee ID is correct and your last name is the same as entered in the Employee Portal (including all hyphens or spaces).</value>
+  </data>
+  <data name="ERR_REG_004" xml:space="preserve">
+    <value>Server Error.</value>
+  </data>
+  <data name="ERR_RES_001" xml:space="preserve">
+    <value>Employee number is required.</value>
+  </data>
+  <data name="ERR_RES_002" xml:space="preserve">
+    <value>The employee number entered has not been registered, please try again.</value>
+  </data>
+  <data name="ERR_RES_003" xml:space="preserve">
+    <value>Email not found.</value>
+  </data>
+  <data name="forgotPassword" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="forgotYourPassword" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
+  <data name="instructions" xml:space="preserve">
+    <value>If you've forgotten your password, just enter your employee number you registered with and you will receive an email with instructions for resetting your password.</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="passwordMismatch" xml:space="preserve">
+    <value>Password confirmation doesn't match Password</value>
+  </data>
+  <data name="passwordRequirementsLine1" xml:space="preserve">
+    <value>Upper case letter (A,B,C,D...)</value>
+  </data>
+  <data name="passwordRequirementsLine2" xml:space="preserve">
+    <value>Lower case (a,b,c,d...)</value>
+  </data>
+  <data name="passwordRequirementsLine3" xml:space="preserve">
+    <value>Number (1,2,3,4..)</value>
+  </data>
+  <data name="passwordRequirementsLine4" xml:space="preserve">
+    <value>Special character (@#$%!...)</value>
+  </data>
+  <data name="passwordRequirementsTitle" xml:space="preserve">
+    <value>Your password must be a minimum of 6 characters and contain:</value>
+  </data>
+  <data name="register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="rememberMe" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="unknownError" xml:space="preserve">
+    <value>Unknown error.</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Welcome to Staff Travel benefits! You are now registered.</value>
+  </data>
+  <data name="switchLanguage" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="additionalNote" xml:space="preserve">
+    <value>Additional Note:</value>
+  </data>
+  <data name="addNote" xml:space="preserve">
+    <value>Add note</value>
+  </data>
+  <data name="approvalStatus" xml:space="preserve">
+    <value>Aproval status</value>
+  </data>
+  <data name="backToFlightRequestsList" xml:space="preserve">
+    <value>Back to request list</value>
+  </data>
+  <data name="dateSubmitted" xml:space="preserve">
+    <value>Date submitted</value>
+  </data>
+  <data name="deleteNote" xml:space="preserve">
+    <value>Delete Note</value>
+  </data>
+  <data name="departDate" xml:space="preserve">
+    <value>Departing on</value>
+  </data>
+  <data name="departFrom" xml:space="preserve">
+    <value>Departing from</value>
+  </data>
+  <data name="departTo" xml:space="preserve">
+    <value>Going to</value>
+  </data>
+  <data name="flightsSectionTitle" xml:space="preserve">
+    <value>Flight information</value>
+  </data>
+  <data name="flightNum" xml:space="preserve">
+    <value>Flight #</value>
+  </data>
+  <data name="note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="numOfPass" xml:space="preserve">
+    <value>Type/Number of pass</value>
+  </data>
+  <data name="returnDate" xml:space="preserve">
+    <value>Return On</value>
+  </data>
+  <data name="returnTo" xml:space="preserve">
+    <value>Return to</value>
+  </data>
+  <data name="reviewNextFlightRequest" xml:space="preserve">
+    <value>Review next request</value>
+  </data>
+  <data name="typeOfPassAbbrev0" xml:space="preserve">
+    <value>YCP</value>
+  </data>
+  <data name="typeOfPassAbbrev1" xml:space="preserve">
+    <value>BCP</value>
+  </data>
+  <data name="typeOfPassAbbrev2" xml:space="preserve">
+    <value>LMCP</value>
+  </data>
+  <data name="typeOfPassAbbrev3" xml:space="preserve">
+    <value>NONE</value>
+  </data>
+  <data name="typeOfPassDesc0" xml:space="preserve">
+    <value>Yearly confirmed pass</value>
+  </data>
+  <data name="typeOfPassDesc1" xml:space="preserve">
+    <value>Bonus confirmed pass</value>
+  </data>
+  <data name="typeOfPassDesc2" xml:space="preserve">
+    <value>Last Minute confirmed pass</value>
+  </data>
+  <data name="typeOfPassDesc3" xml:space="preserve">
+    <value>Without pass (no flights)</value>
+  </data>
+  <data name="addAlt" xml:space="preserve">
+    <value>Add an alternative item</value>
+  </data>
+  <data name="addFlight" xml:space="preserve">
+    <value>Add a flight</value>
+  </data>
+  <data name="addPassenger" xml:space="preserve">
+    <value>Add a passenger</value>
+  </data>
+  <data name="ancillariesSectionTitle" xml:space="preserve">
+    <value>Ancillary products</value>
+  </data>
+  <data name="ancillaryProductDesc0" xml:space="preserve">
+    <value>Excursion</value>
+  </data>
+  <data name="ancillaryProductDesc1" xml:space="preserve">
+    <value>Transfer</value>
+  </data>
+  <data name="ancillaryProductDesc2" xml:space="preserve">
+    <value>Insurance</value>
+  </data>
+  <data name="checkInDate" xml:space="preserve">
+    <value>Check in date</value>
+  </data>
+  <data name="clearRequest" xml:space="preserve">
+    <value>Clear request</value>
+  </data>
+  <data name="departFlightNumber" xml:space="preserve">
+    <value>Depart flight #</value>
+  </data>
+  <data name="destination" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="dob" xml:space="preserve">
+    <value>Date of birth</value>
+  </data>
+  <data name="duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="employee" xml:space="preserve">
+    <value>(Employee)</value>
+  </data>
+  <data name="ERR_PassBalance" xml:space="preserve">
+    <value>Number of passes selected exceeds available</value>
+  </data>
+  <data name="ERR_PassCombination" xml:space="preserve">
+    <value>Pass types cannot be combined in the same request.  Yearly or Bonus confirmed passes can be combined in the same request.  Last Minute Confirmed passes or Without Pass/No flight must be submitted in separate requests.</value>
+  </data>
+  <data name="ERR_Required" xml:space="preserve">
+    <value>Required Field</value>
+  </data>
+  <data name="excursionDate" xml:space="preserve">
+    <value>Date of tour</value>
+  </data>
+  <data name="excursionName" xml:space="preserve">
+    <value>Excursion name</value>
+  </data>
+  <data name="hotelName" xml:space="preserve">
+    <value>Hotel/Cruise name</value>
+  </data>
+  <data name="hotelsSectionSubTitle" xml:space="preserve">
+    <value>Please select your hotel preferences; refer to Sunwing.ca to review hotel options.  If you are requesting more than one room, please request on separate lines and include occupancy preferences within the Room Type field.
+To request Cruises, simply type in the name of the Cruise in the Hotel/Cruise name field.
+You can select up to 2 hotel options per destination.</value>
+  </data>
+  <data name="hotelsSectionTitle" xml:space="preserve">
+    <value>Hotel/Cruise information</value>
+  </data>
+  <data name="optional" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="passenger" xml:space="preserve">
+    <value>Passenger</value>
+  </data>
+  <data name="passengerName" xml:space="preserve">
+    <value>Passenger name</value>
+  </data>
+  <data name="passengersSectionSubTitle" xml:space="preserve">
+    <value>Please enter the names and dates of birth for each passenger travelling with you.  Be sure the names match the passenger's passport name to avoid delays when travelling. A phone number and email address must be populated for the first passenger.</value>
+  </data>
+  <data name="passengersSectionTitle" xml:space="preserve">
+    <value>Passenger Information</value>
+  </data>
+  <data name="dateFormat" xml:space="preserve">
+    <value>MM/DD/YYYY</value>
+  </data>
+  <data name="firstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="middleName" xml:space="preserve">
+    <value>Middle Name</value>
+  </data>
+  <data name="phoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="returnFlightNumber" xml:space="preserve">
+    <value>Return flight #</value>
+  </data>
+  <data name="returnFrom" xml:space="preserve">
+    <value>Return from</value>
+  </data>
+  <data name="reviewAndSubmit" xml:space="preserve">
+    <value>Review and submit</value>
+  </data>
+  <data name="roomType" xml:space="preserve">
+    <value>Room type</value>
+  </data>
+  <data name="submitNewRequest" xml:space="preserve">
+    <value>Submit new request</value>
+  </data>
+  <data name="transferType" xml:space="preserve">
+    <value>Transfer type</value>
+  </data>
+  <data name="transferTypeDesc0" xml:space="preserve">
+    <value>Shared</value>
+  </data>
+  <data name="transferTypeDesc1" xml:space="preserve">
+    <value>Private</value>
+  </data>
+  <data name="typeOfPass" xml:space="preserve">
+    <value>Type of pass</value>
+  </data>
+  <data name="assignBookingNumber" xml:space="preserve">
+    <value>Assign booking number</value>
+  </data>
+  <data name="assignedBookingNumber" xml:space="preserve">
+    <value>Assigned booking number</value>
+  </data>
+  <data name="backToRequestsList" xml:space="preserve">
+    <value>Back to request list</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ERR_HotelsCount" xml:space="preserve">
+    <value>Only two hotel options are allowed per destination</value>
+  </data>
+  <data name="ERR_InvalidDateFormat" xml:space="preserve">
+    <value>Date format is incorrect.</value>
+  </data>
+  <data name="ERR_InvalidDateInFuture" xml:space="preserve">
+    <value>Invalid Date - must be in the future</value>
+  </data>
+  <data name="ERR_InvalidDateInPast" xml:space="preserve">
+    <value>Invalid Date - must be in the past</value>
+  </data>
+  <data name="ERR_InvalidRequest" xml:space="preserve">
+    <value>Please correct the errors on the form and try again</value>
+  </data>
+  <data name="ERR_RequestFailed" xml:space="preserve">
+    <value>Request failed</value>
+  </data>
+  <data name="ERR_RequestNotFound" xml:space="preserve">
+    <value>No requests found!</value>
+  </data>
+  <data name="ERR_ZeroProducts" xml:space="preserve">
+    <value>You must select at least one product with your request</value>
+  </data>
+  <data name="insuranceType" xml:space="preserve">
+    <value>Insurance Type</value>
+  </data>
+  <data name="passengersName" xml:space="preserve">
+    <value>Passengers name</value>
+  </data>
+  <data name="payloadNote" xml:space="preserve">
+    <value>Payload Note:</value>
+  </data>
+  <data name="request" xml:space="preserve">
+    <value>Request</value>
+  </data>
+  <data name="requestAddedSuccessfully" xml:space="preserve">
+    <value>Your request has been submitted and will be reviewed by the Staff Travel team.  Please allow 2-3 days for updates on your request.</value>
+  </data>
+  <data name="reviewer" xml:space="preserve">
+    <value>Reviewer</value>
+  </data>
+  <data name="reviewNextRequest" xml:space="preserve">
+    <value>Next request</value>
+  </data>
+  <data name="reviewRequest" xml:space="preserve">
+    <value>Review your request</value>
+  </data>
+  <data name="totalPrice" xml:space="preserve">
+    <value>Total price</value>
+  </data>
+  <data name="adminNote" xml:space="preserve">
+    <value>Admin Note</value>
+  </data>
+  <data name="approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="available" xml:space="preserve">
+    <value>Available</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="copyright" xml:space="preserve">
+    <value>Copyright © 2017 Sunwing Vacations - Member of the</value>
+  </data>
+  <data name="employeeNote" xml:space="preserve">
+    <value>Employee Note</value>
+  </data>
+  <data name="entitlement" xml:space="preserve">
+    <value>Entitlement</value>
+  </data>
+  <data name="faq" xml:space="preserve">
+    <value>FAQ</value>
+  </data>
+  <data name="faq_unabbreviated" xml:space="preserve">
+    <value>Frequently asked questions</value>
+  </data>
+  <data name="fnf" xml:space="preserve">
+    <value>Friends &amp; Family portal</value>
+  </data>
+  <data name="footerNav" xml:space="preserve">
+    <value>Footer Navigation</value>
+  </data>
+  <data name="hi" xml:space="preserve">
+    <value>Hi</value>
+  </data>
+  <data name="lengthOfService" xml:space="preserve">
+    <value>Length of service as of</value>
+  </data>
+  <data name="pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="processing" xml:space="preserve">
+    <value>Processing</value>
+  </data>
+  <data name="rightsReserved" xml:space="preserve">
+    <value>All rights reserved. Ont. Reg. #2476582, Quebec Licensee # 702928.</value>
+  </data>
+  <data name="skipNav" xml:space="preserve">
+    <value>Skip Navigation</value>
+  </data>
+  <data name="staffTravel" xml:space="preserve">
+    <value>Staff Travel portal</value>
+  </data>
+  <data name="stg" xml:space="preserve">
+    <value>Sunwing Travel Group</value>
+  </data>
+  <data name="sunwing_ca" xml:space="preserve">
+    <value>Sunwing.ca</value>
+  </data>
+  <data name="toggleNav" xml:space="preserve">
+    <value>Toggle navigation</value>
+  </data>
+  <data name="tou" xml:space="preserve">
+    <value>Terms of Use</value>
+  </data>
+  <data name="tutorial" xml:space="preserve">
+    <value>Staff Travel Guide</value>
+  </data>
+  <data name="unavailable" xml:space="preserve">
+    <value>Unavailable</value>
+  </data>
+  <data name="used" xml:space="preserve">
+    <value>Used</value>
+  </data>
+  <data name="welcomeTo" xml:space="preserve">
+    <value>Welcome to</value>
+  </data>
+  <data name="actionRequiredMsg" xml:space="preserve">
+    <value>Please review your request below and update your preference for each option. As you confirm travel options, your total price will be update automatically.</value>
+  </data>
+  <data name="department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="departureDate" xml:space="preserve">
+    <value>Departure date</value>
+  </data>
+  <data name="employeeStatus" xml:space="preserve">
+    <value>Employee status</value>
+  </data>
+  <data name="flightStatus" xml:space="preserve">
+    <value>Payload/Flight status</value>
+  </data>
+  <data name="hotelStatus" xml:space="preserve">
+    <value>Hotel status</value>
+  </data>
+  <data name="myRequest" xml:space="preserve">
+    <value>My request</value>
+  </data>
+  <data name="overallStatus" xml:space="preserve">
+    <value>Overall status</value>
+  </data>
+  <data name="requestedDate" xml:space="preserve">
+    <value>Requested date</value>
+  </data>
+  <data name="resetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="signOut" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="typeOfPasses" xml:space="preserve">
+    <value>Type of passes</value>
+  </data>
+  <data name="viewAllRequests" xml:space="preserve">
+    <value>View all requests</value>
+  </data>
+  <data name="viewFlightRequests" xml:space="preserve">
+    <value>View flight requests</value>
+  </data>
+  <data name="viewMyRequests" xml:space="preserve">
+    <value>View my requests</value>
+  </data>
+  <data name="viewTeamRequests" xml:space="preserve">
+    <value>View team Requests</value>
+  </data>
+  <data name="ERR_REG_005" xml:space="preserve">
+    <value>You do not have an email address in your Ultipro profile.  To receive email notifications on your travel requests, please be sure to update your profile in Ultipro with your latest email address.</value>
+  </data>
+  <data name="yourActionRequired" xml:space="preserve">
+    <value>Your action is required</value>
+  </data>
+  <data name="yourBookingNumber" xml:space="preserve">
+    <value>Your booking number is</value>
+  </data>
+  <data name="yourTotal" xml:space="preserve">
+    <value>Your total is</value>
+  </data>
+  <data name="importantNotes" xml:space="preserve">
+    <value>Important Notes</value>
+  </data>
+  <data name="reject" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="checkBack" xml:space="preserve">
+    <value>Check back on the</value>
+  </data>
+  <data name="clickThebutton" xml:space="preserve">
+    <value>Simply click on the button below to choose a new one. Please note that this link will be expired after 3 hours.</value>
+  </data>
+  <data name="disregardThisEmail" xml:space="preserve">
+    <value>If you didn’t request this or you no longer wish to change your password, you don't have to do anything and can simply disregard this email.</value>
+  </data>
+  <data name="forDetails" xml:space="preserve">
+    <value>for all the details.</value>
+  </data>
+  <data name="hotel" xml:space="preserve">
+    <value>Hotel</value>
+  </data>
+  <data name="newFlightRequest" xml:space="preserve">
+    <value>A new Staff Travel flight request has been submitted with the following details:</value>
+  </data>
+  <data name="newRequest" xml:space="preserve">
+    <value>A new Staff Travel request has been submitted by</value>
+  </data>
+  <data name="numberOfPassengers" xml:space="preserve">
+    <value>Number of Passengers</value>
+  </data>
+  <data name="passengers" xml:space="preserve">
+    <value>Passengers</value>
+  </data>
+  <data name="pleaseLoginto" xml:space="preserve">
+    <value>Please log into the</value>
+  </data>
+  <data name="pleaseVisitThe" xml:space="preserve">
+    <value>Please visit the</value>
+  </data>
+  <data name="productInfo" xml:space="preserve">
+    <value>Product information</value>
+  </data>
+  <data name="requestReveived" xml:space="preserve">
+    <value>We have received your travel request and will provide you updates as soon as they become available.</value>
+  </data>
+  <data name="sunwing" xml:space="preserve">
+    <value>Sunwing</value>
+  </data>
+  <data name="toUpdateFlight" xml:space="preserve">
+    <value>to update availability for this flight.</value>
+  </data>
+  <data name="toViewUpdates" xml:space="preserve">
+    <value>to view the updates.</value>
+  </data>
+  <data name="updatesMade" xml:space="preserve">
+    <value>Updates have been made to your travel request!  Please log into the Staff Travel portal to view the updates.</value>
+  </data>
+  <data name="userSubmittedRequest" xml:space="preserve">
+    <value>has submitted a new Staff Travel request.</value>
+  </data>
+  <data name="userUpdatedRequest" xml:space="preserve">
+    <value>has updated their Staff Travel request.</value>
+  </data>
+  <data name="wonderfulVacation" xml:space="preserve">
+    <value>We hope you have a wonderful vacation!</value>
+  </data>
+  <data name="yourFlightUpdated" xml:space="preserve">
+    <value>Your flight request has been updated by the Payload team.  Please log into the Staff Travel Portal to view the updates.</value>
+  </data>
+  <data name="amountDue" xml:space="preserve">
+    <value>Amount due</value>
+  </data>
+  <data name="bookingNumber" xml:space="preserve">
+    <value>Booking number</value>
+  </data>
+  <data name="mbp" xml:space="preserve">
+    <value>My booking portal</value>
+  </data>
+  <data name="paymentInfo" xml:space="preserve">
+    <value>Log into My Booking Portal to complete payment for your trip.  The balance must be paid in full prior to departure.  Your Edocs are also available on My Booking Portal after payment is complete.</value>
+  </data>
+  <data name="initiated" xml:space="preserve">
+    <value>Initiated</value>
+  </data>
+  <data name="myRecentRequests" xml:space="preserve">
+    <value>My recent requests</value>
+  </data>
+  <data name="passesCount" xml:space="preserve">
+    <value>Number of passes</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="addHotel" xml:space="preserve">
+    <value>Add a Hotel/Cruise</value>
+  </data>
+  <data name="eligibility" xml:space="preserve">
+    <value>Eligibility</value>
+  </data>
+  <data name="policy" xml:space="preserve">
+    <value>Policies and Questions</value>
+  </data>
+  <data name="editPassenger" xml:space="preserve">
+    <value>Edit Passenger</value>
+  </data>
+  <data name="flight" xml:space="preserve">
+    <value>Flight</value>
+  </data>
+  <data name="hotelCruise" xml:space="preserve">
+    <value>Hotel/Cruise name</value>
+  </data>
+  <data name="staffTravelNote" xml:space="preserve">
+    <value>Staff Travel note</value>
+  </data>
+  <data name="ancillaryProductDesc3" xml:space="preserve">
+    <value>Car rental</value>
+  </data>
+  <data name="touUrl" xml:space="preserve">
+    <value>https://www.sunwing.ca/Pages/en/terms-and-conditions</value>
+  </data>
+  <data name="updateRequest" xml:space="preserve">
+    <value>Update Request</value>
+  </data>
+  <data name="ancillariesSectionSubTitle" xml:space="preserve">
+    <value>Discounted rates are available for Transfers, Excursions and Insurance.  To find available excursions, visit the Destiantion pages on the Sunwing.ca site.  
+After your trip is booked, you will have the ability to purchase additional ancillary items (such as seat selection) on My Booking Portal.</value>
+  </data>
+  <data name="bookingRequestReceived" xml:space="preserve">
+    <value>Your booking request has been received and the Staff Travel team will process your booking.  Once your trip has been booked, you will receive an email confirmation with your booking number.  Please be sure to log into My Booking Portal after you have received your booking number to complete payment.</value>
+  </data>
+  <data name="cancelRequest" xml:space="preserve">
+    <value>Cancel Request</value>
+  </data>
+  <data name="ERR_dobInFuture" xml:space="preserve">
+    <value>Date of Birth must be in the past</value>
+  </data>
+  <data name="flightsSectionSubTitle" xml:space="preserve">
+    <value>Please select your preferred flights.  Please visit Sunwing.ca for flight schedules.  You can select up to 3 flight options in one request.</value>
+  </data>
+  <data name="reviewPageSubTitle" xml:space="preserve">
+    <value>Review the details of your request before submitting.  To edit any part of your request, click Edit at the bottom of the page to return to the entry page.</value>
+  </data>
+  <data name="success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="typeOfPassInfo0" xml:space="preserve">
+    <value>A yearly confirmed pass is granted annually to eligible employees and expire on December 15 each year.
+Requests can be submitted a maximum of 14 calendar days prior to departure date. During peak periods, requests can be submitted a maximum of 4 calendar days prior.</value>
+  </data>
+  <data name="typeOfPassInfo1" xml:space="preserve">
+    <value>Your Bonus Yearly Confirmed Passes will expire on expiryDate.
+Requests can be submitted a maximum of 14 calendar days prior to departure date. During peak periods, requests can be submitted a maximum of 4 calendar days prior.</value>
+  </data>
+  <data name="typeOfPassInfo2" xml:space="preserve">
+    <value>Eligible employees can request an unlimited number of LMCPs. Requests can be submitted a maximum of 4 calendar days prior to departure date.</value>
+  </data>
+  <data name="errorHeader" xml:space="preserve">
+    <value>Oops!</value>
+  </data>
+  <data name="ERR_ContactInfoMissing" xml:space="preserve">
+    <value>You must supply a phone number and email address for at least one passenger.</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="confirmCancelRequest" xml:space="preserve">
+    <value>Are you sure want to cancel your request?</value>
+  </data>
+  <data name="arriving" xml:space="preserve">
+    <value>Arriving</value>
+  </data>
+  <data name="departing" xml:space="preserve">
+    <value>Departing</value>
+  </data>
+  <data name="itinerary" xml:space="preserve">
+    <value>Itinerary</value>
+  </data>
+  <data name="denied" xml:space="preserve">
+    <value>Denied</value>
+  </data>
+  <data name="bookingUpdated" xml:space="preserve">
+    <value>Booking Request updated</value>
+  </data>
+  <data name="ERR_ApprovalRequired" xml:space="preserve">
+    <value>Your approval is required</value>
+  </data>
+  <data name="ERR_InvalidRequestId" xml:space="preserve">
+    <value>Invalid request Id</value>
+  </data>
+  <data name="ERR_TryAgain" xml:space="preserve">
+    <value>Please try again!</value>
+  </data>
+  <data name="flightUpdated" xml:space="preserve">
+    <value>Flight status updated</value>
+  </data>
+  <data name="noteAdded" xml:space="preserve">
+    <value>Note added</value>
+  </data>
+  <data name="requestRejected" xml:space="preserve">
+    <value>Request rejected</value>
+  </data>
+  <data name="tutorialLink" xml:space="preserve">
+    <value>https://images.sunwingtravelgroup.com/applications/staff-travel/staff-travel-guide.pdf</value>
+  </data>
+  <data name="ERR_REG_006" xml:space="preserve">
+    <value>Permanent employees must complete 6 months of cumulative active employment to be eligible.  Our records indicate you are not yet eligible for Staff Travel. If you have any questions please contact hrquestions@sunwing.ca</value>
+  </data>
+  <data name="lastUpdatedBy" xml:space="preserve">
+    <value>Last updated by</value>
+  </data>
+  <data name="passwordRequirements" xml:space="preserve">
+    <value>Your password must be a minimum of 6 characters and contain an upper case letter, a lower case letter, a number and a special character.</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>Loading</value>
+  </data>
+  <data name="optionStatus" xml:space="preserve">
+    <value>Option status</value>
+  </data>
+  <data name="yourAction" xml:space="preserve">
+    <value>Your action</value>
+  </data>
+  <data name="nights" xml:space="preserve">
+    <value>Nights</value>
+  </data>
+  <data name="accessRole_Admin" xml:space="preserve">
+    <value>Staff Travel</value>
+  </data>
+  <data name="accessRole_Employee" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="accessRole_Manager" xml:space="preserve">
+    <value>Manager</value>
+  </data>
+  <data name="accessRole_Payload" xml:space="preserve">
+    <value>Payload</value>
+  </data>
+  <data name="accessRole_SuperAdmin" xml:space="preserve">
+    <value>Super Admin</value>
+  </data>
+  <data name="typeOfPassAbbrev4" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="typeOfPassDesc4" xml:space="preserve">
+    <value>Infant pass</value>
+  </data>
+  <data name="mbpUrl" xml:space="preserve">
+    <value>https://www2.sunwing.ca/mybooking/Login/Login</value>
+  </data>
+  <data name="na" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="payBookingPart1" xml:space="preserve">
+    <value>Be sure to pay for your booking on</value>
+  </data>
+  <data name="payBookingPart2" xml:space="preserve">
+    <value>My Booking Portal</value>
+  </data>
+  <data name="payBookingPart3" xml:space="preserve">
+    <value>prior to travel.  If you need to make any changes to your booking, please contact Staff Travel (StaffTravel@sunwing.ca).</value>
+  </data>
+  <data name="reviewPreviousRequest" xml:space="preserve">
+    <value>Previous request</value>
+  </data>
+  <data name="status0" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="status1" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="status2" xml:space="preserve">
+    <value>Denied</value>
+  </data>
+  <data name="youAreBooked" xml:space="preserve">
+    <value>You are now booked!</value>
+  </data>
+  <data name="ERR_GenericMessage" xml:space="preserve">
+    <value>Something went wrong and we are working hard to fix it!</value>
+  </data>
+  <data name="searchBox_btnSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="searchBox_CarDropOffTime" xml:space="preserve">
+    <value>Drop off time</value>
+  </data>
+  <data name="searchBox_CarPickUpTime" xml:space="preserve">
+    <value>Pick up time</value>
+  </data>
+  <data name="searchBox_cars_DropoffCity" xml:space="preserve">
+    <value>Drop off city</value>
+  </data>
+  <data name="searchBox_cars_DropoffDate" xml:space="preserve">
+    <value>Drop off date</value>
+  </data>
+  <data name="searchBox_cars_PickupCity" xml:space="preserve">
+    <value>Pick up city</value>
+  </data>
+  <data name="searchBox_cars_PickupDate" xml:space="preserve">
+    <value>Pick up date</value>
+  </data>
+  <data name="searchBox_CruiseDurationOption" xml:space="preserve">
+    <value>Any</value>
+  </data>
+  <data name="searchBox_cruise_AllDestinations" xml:space="preserve">
+    <value>All destinations</value>
+  </data>
+  <data name="searchBox_cruise_Bydate" xml:space="preserve">
+    <value>By date</value>
+  </data>
+  <data name="searchBox_cruise_Bymonth" xml:space="preserve">
+    <value>By month</value>
+  </data>
+  <data name="searchBox_cruise_DepartingDate" xml:space="preserve">
+    <value>Departing date</value>
+  </data>
+  <data name="searchBox_Duration_11to16" xml:space="preserve">
+    <value>11 to 16 days</value>
+  </data>
+  <data name="searchBox_Duration_3to4" xml:space="preserve">
+    <value>3 or 4 days</value>
+  </data>
+  <data name="searchBox_Duration_5to10" xml:space="preserve">
+    <value>5 to 10 days</value>
+  </data>
+  <data name="searchBox_Duration_daysonly" xml:space="preserve">
+    <value>days only</value>
+  </data>
+  <data name="searchBox_Error_IE9" xml:space="preserve">
+    <value>The website is optimized for Internet Explorer 10 and higher.  Please upgrade your current version or use another browser.</value>
+  </data>
+  <data name="searchBox_Groups_10_plus" xml:space="preserve">
+    <value>10+ Travellers?</value>
+  </data>
+  <data name="searchBox_Hotels_CheckinDate" xml:space="preserve">
+    <value>Check in date</value>
+  </data>
+  <data name="searchBox_Hotels_CheckoutDate" xml:space="preserve">
+    <value>Check out date</value>
+  </data>
+  <data name="searchBox_Hotels_SelectDestination" xml:space="preserve">
+    <value>Select destination</value>
+  </data>
+  <data name="searchBox_lbl18Yrs" xml:space="preserve">
+    <value>18+ yrs</value>
+  </data>
+  <data name="searchBox_lblAdults" xml:space="preserve">
+    <value>Adults</value>
+  </data>
+  <data name="searchBox_lblAgesofChildren" xml:space="preserve">
+    <value>Age of non-adults</value>
+  </data>
+  <data name="searchBox_lblCarsSearchTitle" xml:space="preserve">
+    <value>Find your perfect car rental now</value>
+  </data>
+  <data name="searchBox_lblChildren" xml:space="preserve">
+    <value>Children</value>
+  </data>
+  <data name="searchBox_lblChildrenAge" xml:space="preserve">
+    <value>0-17 yrs </value>
+  </data>
+  <data name="searchBox_lblCruiseSearchTitle" xml:space="preserve">
+    <value>Find your cruise now</value>
+  </data>
+  <data name="searchBox_lblDepartingFrom" xml:space="preserve">
+    <value>Departing from</value>
+  </data>
+  <data name="searchBox_lblDepartingOn" xml:space="preserve">
+    <value>Departing on</value>
+  </data>
+  <data name="searchBox_lblDuration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
+  <data name="searchBox_lblErrMsgChildrenAge" xml:space="preserve">
+    <value>Please enter the age of all children.</value>
+  </data>
+  <data name="searchBox_lblErrMsgDeparture" xml:space="preserve">
+    <value>Please enter a departure city or gateway</value>
+  </data>
+  <data name="searchBox_lblErrMsgDepartureDate" xml:space="preserve">
+    <value>Please enter a valid departure date</value>
+  </data>
+  <data name="searchBox_lblErrMsgDestination" xml:space="preserve">
+    <value>Please enter a destination city or gateway</value>
+  </data>
+  <data name="searchBox_lblErrMsgDropOff" xml:space="preserve">
+    <value>Please enter or select drop off city</value>
+  </data>
+  <data name="searchBox_lblErrMsgDropOffDate" xml:space="preserve">
+    <value>Please select drop off date</value>
+  </data>
+  <data name="searchBox_lblErrMsgInvaliddate" xml:space="preserve">
+    <value>Invalid date</value>
+  </data>
+  <data name="searchBox_lblErrMsgPickup" xml:space="preserve">
+    <value>Please enter or select pick up city</value>
+  </data>
+  <data name="searchBox_lblErrMsgPickUpDate" xml:space="preserve">
+    <value>Please select pick up date</value>
+  </data>
+  <data name="searchBox_lblErrMsgReservationAdultsWarning" xml:space="preserve">
+    <value>The number of adults must be separated equally between the number of rooms.</value>
+  </data>
+  <data name="searchBox_lblErrMsgReservationNonAdults" xml:space="preserve">
+    <value>To customize room options with kids and adults, you have to make two separate bookings or call our sales centre for assistance at 1-877-SUNWING.</value>
+  </data>
+  <data name="searchBox_lblErrMsgReturnDate" xml:space="preserve">
+    <value>Please enter a valid return date</value>
+  </data>
+  <data name="searchBox_lblErrMsgsearchtype" xml:space="preserve">
+    <value>Sorry, there are no flights for the selected trip type</value>
+  </data>
+  <data name="searchBox_lblErrMsgTotalPax" xml:space="preserve">
+    <value>Travelling as a group with ten or more people? You may qualify for exclusive perks and savings at our top group-friendly resorts! Contact our Groups Department at 1-877-SUNWING or &lt;a href="/Pages/en/group-quote"&gt;click here to get an estimate on your group vacation&lt;/a&gt;.</value>
+  </data>
+  <data name="searchBox_lblFlightSearchTitle" xml:space="preserve">
+    <value>Find your flight now</value>
+  </data>
+  <data name="searchBox_lblGoingFor" xml:space="preserve">
+    <value>Going for</value>
+  </data>
+  <data name="searchBox_lblGoingTo" xml:space="preserve">
+    <value>Going to</value>
+  </data>
+  <data name="searchBox_lblHotelSearchTitle" xml:space="preserve">
+    <value>Find your hotel now</value>
+  </data>
+  <data name="searchBox_lblMsgInfant" xml:space="preserve">
+    <value>(For infant select 1)</value>
+  </data>
+  <data name="searchBox_lblOneWayTrip" xml:space="preserve">
+    <value>One way</value>
+  </data>
+  <data name="searchBox_lblOptional" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="searchBox_lblPriceCalendar" xml:space="preserve">
+    <value>See our lowest price calendar</value>
+  </data>
+  <data name="searchBox_lblReturningOn" xml:space="preserve">
+    <value>Return date</value>
+  </data>
+  <data name="searchBox_lblRooms" xml:space="preserve">
+    <value>Rooms </value>
+  </data>
+  <data name="searchBox_lblRoundTrip" xml:space="preserve">
+    <value>Round trip</value>
+  </data>
+  <data name="searchBox_lblSearchTitle" xml:space="preserve">
+    <value>Find your perfect vacation now</value>
+  </data>
+  <data name="searchBox_lblSelect" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="searchBox_lblSelectHotel" xml:space="preserve">
+    <value>Select a hotel</value>
+  </data>
+  <data name="searchBox_lnkClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="searchBox_MainMenuMore_Cars" xml:space="preserve">
+    <value>Cars</value>
+  </data>
+  <data name="searchBox_MainMenuMore_Hotels" xml:space="preserve">
+    <value>Hotels</value>
+  </data>
+  <data name="searchBox_MainMenu_Cruises" xml:space="preserve">
+    <value>Cruises</value>
+  </data>
+  <data name="searchBox_MainMenu_Flights" xml:space="preserve">
+    <value>Flights</value>
+  </data>
+  <data name="searchBox_MainMenu_Packages" xml:space="preserve">
+    <value>Packages</value>
+  </data>
+  <data name="searchBox_PackagesErrMsgDestination" xml:space="preserve">
+    <value>Please enter a destination city or gateway</value>
+  </data>
+  <data name="searchBox_VacationFinder" xml:space="preserve">
+    <value>Try Vacation Finder</value>
+  </data>
+  <data name="searchBox_VF_ArrowPathNumber" xml:space="preserve">
+    <value>M0 227.1h500l-80-113.5L500 .1H0</value>
+  </data>
+  <data name="searchBox_VF_ButtonCTA" xml:space="preserve">
+    <value>Try Vacation Finder</value>
+  </data>
+  <data name="searchBox_VF_New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="searchBox_VF_ViewBoxNumber" xml:space="preserve">
+    <value>0 0 500 227.1</value>
+  </data>
+  <data name="bookTravel" xml:space="preserve">
+    <value>Book travel</value>
+  </data>
+  <data name="newBadge" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="FirstNamePassport" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="LastNamePassport" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="MidNamePassport" xml:space="preserve">
+    <value>Middle Name</value>
+  </data>
+  <data name="FirstNamePassportHint" xml:space="preserve">
+    <value>Please provide your first name as it appears on your passport.</value>
+  </data>
+  <data name="LastNamePassportHint" xml:space="preserve">
+    <value>Please provide your last name as it appears on your passport.</value>
+  </data>
+  <data name="ERR_REG_007" xml:space="preserve">
+    <value>Passport data not found.</value>
+  </data>
+  <data name="PassportNameHead" xml:space="preserve">
+    <value>Please provide your name as it appears on your passport.</value>
+  </data>
+  <data name="PassportNameHeadHint" xml:space="preserve">
+    <value>In order to process your booking the name you enter below must match your name exactly as it appears on your passport.</value>
+  </data>
+  <data name="ERR_REG_008" xml:space="preserve">
+    <value>Please submit your passport name.</value>
+  </data>
+  <data name="ERR_REG_009" xml:space="preserve">
+    <value>You need to register first.</value>
+  </data>
+  <data name="Passport" xml:space="preserve">
+    <value>Employee Passport</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="successSavePassport" xml:space="preserve">
+    <value>Passport info saved successfully.</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="AmendProfile" xml:space="preserve">
+    <value>Amend Profile</value>
+  </data>
+  <data name="employeeName" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
+  <data name="ERR_REG_000" xml:space="preserve">
+    <value>Employee ID is invalid.</value>
+  </data>
+  <data name="Validate" xml:space="preserve">
+    <value>Retrieve</value>
+  </data>
+  <data name="ContactHRAdmin" xml:space="preserve">
+    <value>Any changes, please email</value>
+  </data>
+  <data name="HREmail" xml:space="preserve">
+    <value>HRQuestions@sunwing.ca</value>
+  </data>
+</root>

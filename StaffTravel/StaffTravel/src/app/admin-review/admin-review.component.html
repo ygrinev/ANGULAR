@@ -1,0 +1,344 @@
+<basic-info></basic-info>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{r.request}}</h1>
+
+            <div class="review">
+
+                <!-- Passengers -->
+                <section id="passengers">
+                    <div class="review-heading">
+                        <i class="fa fa-ticket" aria-hidden="true"></i>
+                        <div>
+                            <h3>{{r.passengersSectionTitle}}</h3>
+                        </div>
+                    </div>
+                    <table class="review-request review-request--passengers">
+                        <thead class="review-request__heading">
+                            <tr>
+                                <th class="passenger-name">{{r.passengerName}}</th>
+                                <th class="passenger-dob">{{r.dob}}</th>
+                                <th class="passenger-pass">{{r.typeOfPass}}</th>
+                                <th class="passenger-phone">{{r.phoneNumber}}</th>
+                                <th class="passenger-email">{{r.email}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="review-request__section">
+                            <tr class="review-request__section__item" *ngFor="let passenger of request.passengers; let passengerIndex = index" [attr.data-index]="passengerIndex + 1">
+                                <td class="passenger-name" [attr.data-index]="passengerIndex + 1" [attr.data-heading]="'Passengers name:'">{{passenger.firstName}} {{passenger.middleName}} {{passenger.lastName}}</td>
+                                <td class="passenger-dob" [attr.data-heading]="r.dob + ':'">{{passenger.DOB | date:'dd MMM yyyy'}}</td>
+                                <td class="passenger-pass" [attr.data-heading]="r.typeOfPass + ':'">{{typeOfPassArray[passenger.typeOfPass]?.name}}</td>
+                                <td class="passenger-phone" [attr.data-heading]="r.phoneNumber + ':'">{{passenger.phoneNumber}}</td>
+                                <td class="passenger-email" [attr.data-heading]="r.email + ':'">{{passenger.email}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="review-request__additional-note" *ngIf="employeePassengerNote.text?.length > 0">
+                            <tr>
+                                <td colspan="5">
+                                    <strong>{{r.additionalNote}} </strong>
+                                    <p>{{employeePassengerNote.text}}</p>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <div class="review-request__row-split">
+                        <div id="passengerNote" class="review__ancillary-note">
+                            <button class="btn btn-secondary btn-wide add-note" (click)="addNote('passengerNote')" [disabled]="request.flights.length < 1">{{r.addNote}}
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                            </button>
+                            <div class="ancillary-note hidden">
+                                <label>{{r.note}}</label>
+                                <textarea name="Text1" cols="40" rows="5" class="form-control" [(ngModel)]="adminPassengerNote.text"></textarea>
+                                <button class="btn btn-primary btn-wide" (click)="deleteNote('passengerNote', adminPassengerNote)">{{r.deleteNote}}
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <hr *ngIf="request.flights.length > 0" />
+
+                <!-- Flights -->
+                <section id="flights" [hidden]="request.flights.length == 0">
+                    <div class="review-heading">
+                        <i class="fa fa-plane" aria-hidden="true"></i>
+                        <h3>{{r.flightsSectionTitle}}</h3>
+                    </div>
+                    <table class="review-request review-request--flights">
+                        <thead class="review-request__heading">
+                            <tr>
+                                <th class="flight-departure" colspan="2">{{r.departing}}</th>
+                                <th class="flight-destination">{{r.arriving}}</th>
+                                <th class="flight-date">{{r.itinerary}}</th>
+                                <th class="divider flight-number">{{r.flightNum}}</th>
+                                <th class="divider flight-status">{{r.approvalStatus}}</th>
+                                <th class="flight-pricing">{{r.totalPrice}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="review-request__section__item review-request__section__item--flight" [class.employee-approved]="flight.status == 1" *ngFor="let flight of request.flights; let flightIndex = index" [attr.data-index]="flightIndex + 1">
+                            <tr class="">
+                                <th class="flight-pax" scope="row" rowspan="2">{{flightIndex + 1}}</th>
+                                <td class="flight-departure flight-departure--outbound" [attr.data-heading]="r.departFrom + ':'">{{flight.departFrom}}</td>
+                                <td class="flight-destination" [attr.data-heading]="r.departTo + ':'">{{flight.departTo}}</td>
+                                <td class="flight-date" [attr.data-heading]="r.departDate + ':'">{{flight.departDate | date:'dd MMM yyyy'}}</td>
+                                <td class="flight-number divider" [attr.data-heading]="r.departFlightNumber + ':'">{{flight.departFlight}}</td>
+                                <td class="flight-status divider" rowspan="2" [attr.data-heading]="r.approvalStatus + ':'">
+                                    <status-toggle [id]="'flight-' + flightIndex" [status]="flight.approvalStatus" (statusChange)="flight.approvalStatus = $event"></status-toggle>
+                                    <div class="status-updated" *ngIf="flight.lastUpdatedBy?.length > 0">{{r.lastUpdatedBy}} <span>{{flight.lastUpdatedBy}}</span></div>
+                                </td>
+                                <td class="flight-pricing" rowspan="2" [attr.data-heading]="r.totalPrice + ':'">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input class="form-control" type="text" [(ngModel)]="flight.price" placeholder="00.00" oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                maxlength="10" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="">
+                                <td class="flight-departure flight-departure--inbound" [attr.data-heading]="r.returnFrom + ':'">{{flight.returnFrom}}</td>
+                                <td class="flight-destination" [attr.data-heading]="r.returnTo + ':'">{{flight.returnTo}}</td>
+                                <td class="flight-date" [attr.data-heading]="r.returnDate + ':'">{{flight.returnDate | date:'dd MMM yyyy'}}</td>
+                                <td class="flight-number divider" [attr.data-heading]="r.returnFlightNumber + ':'">{{flight.returnFlight}}</td>
+                                <td class="flight-status flight-status--mobile divider" rowspan="2" [attr.data-heading]="r.approvalStatus + ':'">
+                                    <status-toggle [id]="'flight-' + flightIndex" [status]="flight.approvalStatus" (statusChange)="flight.approvalStatus = $event"></status-toggle>
+                                    <div class="status-updated" *ngIf="flight.lastUpdatedBy?.length > 0">{{r.lastUpdatedBy}} <span>{{flight.lastUpdatedBy}}</span></div>
+                                </td>
+                                <td class="flight-pricing flight-pricing--mobile" rowspan="2" [attr.data-heading]="r.totalPrice + ':'">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input class="form-control" type="text" [(ngModel)]="flight.price" placeholder="00.00" oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                maxlength="10" />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="table-row-spacer"></td>
+                                <td class="table-row-spacer divider"></td>
+                                <td class="table-row-spacer divider"></td>
+                                <td class="table-row-spacer"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="review-request__additional-note" *ngIf="employeeFlightNote.text?.length > 0 || payloadFlightNote.text?.length > 0">
+                            <tr *ngIf="employeeFlightNote.text?.length > 0">
+                                <td colspan="7">
+                                    <strong>{{r.additionalNote}}: </strong>
+                                    <p>{{employeeFlightNote.text}}</p>
+                                </td>
+                            </tr>
+                            <tr *ngIf="payloadFlightNote.text?.length > 0">
+                                <td colspan="7">
+                                    <strong>{{r.payloadNote}} </strong>
+                                    <p>{{payloadFlightNote.text}}</p>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <div class="review-request__row-split">
+                        <div id="flightNote" class="review__ancillary-note">
+                            <button class="btn btn-secondary btn-wide add-note" (click)="addNote('flightNote')" [disabled]="request.flights.length < 1">{{r.addNote}}
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                            </button>
+                            <div class="ancillary-note hidden">
+                                <label>{{r.note}}</label>
+                                <textarea name="Text1" cols="40" rows="5" class="form-control" [(ngModel)]="adminFlightNote.text"></textarea>
+                                <button class="btn btn-primary btn-wide" (click)="deleteNote('flightNote', adminFlightNote)">{{r.deleteNote}}
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <hr *ngIf="request.hotels.length > 0" />
+
+                <!-- Hotel/Cruise information -->
+                <section id="hotels" [hidden]="request.hotels.length == 0">
+                    <div class="review-heading">
+                        <i class="fa fa-bed" aria-hidden="true"></i>
+                        <h3>{{r.hotelsSectionTitle}}</h3>
+                    </div>
+                    <table class="review-request review-request--hotels">
+                        <thead class="review-request__heading">
+                            <tr>
+                                <th class="hotel-date">{{r.checkInDate}} / {{r.duration}}</th>
+                                <th class="hotel-info">{{r.hotelName}}</th>
+                                <th class="divider hotel-type">{{r.roomType}}</th>
+                                <th class="divider status">{{r.approvalStatus}}</th>
+                                <th class="price">{{r.totalPrice}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="review-request__section">
+                            <tr class="review-request__section__item" *ngFor="let hotel of request.hotels; let hotelIndex = index" [class.employee-approved]="hotel.status == 1" [attr.data-index]="hotelIndex + 1">
+                                <td  class="hotel-date" [attr.data-index]="hotelIndex + 1" [attr.data-heading]="r.checkInDate + '/' + r.duration + ':'">{{hotel.checkInDate | date:'dd MMM yyyy'}} / {{hotel.duration}} {{r.nights}}</td>
+                                <td  class="hotel-info" [attr.data-heading]="r.hotelName + ':'">{{hotel.name}} <br/> {{hotel.destination}}</td>
+                                <td class="divider hotel-type" [attr.data-heading]="r.roomType + ':'">{{hotel.roomType}}</td>
+                                <td [attr.data-heading]="r.approvalStatus + ':'" class="divider status">
+                                    <status-toggle [id]="'hotel-' + hotelIndex" [status]="hotel.approvalStatus" (statusChange)="hotel.approvalStatus = $event"></status-toggle>
+                                </td>
+                                <td [attr.data-heading]="r.totalPrice + ':'" class="pricing">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input class="form-control" type="text" [(ngModel)]="hotel.price" placeholder="00.00" oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                            maxlength="10" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="review-request__additional-note" *ngIf="employeeHotelNote.text?.length > 0">
+                            <tr>
+                                <td colspan="5">
+                                    <strong>{{r.additionalNote}} </strong>
+                                    <p>{{employeeHotelNote.text}}</p>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <div class="review-request__row-split">
+                        <div id="hotelNote" class="review__ancillary-note">
+                            <button class="btn btn-secondary btn-wide add-note" (click)="addNote('hotelNote')" [disabled]="request.hotels.length < 1">{{r.addNote}}
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                            </button>
+                            <div class="ancillary-note hidden">
+                                <label>{{r.note}}</label>
+                                <textarea name="Text1" cols="40" rows="5" class="form-control" [(ngModel)]="adminHotelNote.text"></textarea>
+                                <button class="btn btn-primary btn-wide" (click)="deleteNote('hotelNote', adminHotelNote)">{{r.deleteNote}}
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <hr *ngIf="request.ancillaries.length > 0" />
+
+                <!-- Ancillaries -->
+                <section id="ancillaries" [hidden]="request.ancillaries.length == 0">
+                    <div class="review-heading">
+                        <i class="fa fa-cubes" aria-hidden="true"></i>
+                        <h3>{{r.ancillariesSectionTitle}}</h3>
+                    </div>
+                    <table class="review-request review-request--ancillaries">
+                        <tr>
+                            <td class="review-request__section">
+                                <table class="review-request review-request__section__item"  *ngFor="let ancillary of request.ancillaries; let ancillaryIndex = index" [class.employee-approved]="ancillary.status == 1" [attr.data-index]="ancillaryIndex + 1">
+                                    <thead class="review-request__heading">
+                                        <tr>
+                                            <th class="ancillary-destination">{{r.destination}}</th>
+                                            <th class="ancillary-product">{{r.product}}</th>
+    
+                                            <th class="ancillary-name" *ngIf="ancillary.ancillaryProductType == 0">{{r.excursionName}}</th>
+                                            <th class="divider ancillary-passenger" *ngIf="ancillary.ancillaryProductType == 0 || ancillary.ancillaryProductType == 2">{{r.passenger}}</th>
+    
+                                            <th class="ancillary-type" *ngIf="ancillary.ancillaryProductType == 1">{{r.transferType}}</th>
+                                            <th class="divider ancillary-quantity" *ngIf="ancillary.ancillaryProductType == 1">{{r.quantity}}</th>
+                                            <th class="divider ancillary-car-spacer" *ngIf="ancillary.ancillaryProductType == 3"></th>
+                                            <th class="divider status">{{r.approvalStatus}}</th>
+                                            <th class="pricing">{{r.totalPrice}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="review-request__section__item">
+
+                                            <td class="ancillary-destination" [attr.data-index]="ancillaryIndex + 1" [attr.data-heading]="r.destination + ':'">{{ancillary.destination}}</td>
+                                            <td class="ancillary-product" [attr.data-heading]="r.product + ':'">{{ancillaryProductsArray[ancillary.ancillaryProductType]?.name}}</td>
+
+                                            <td class="ancillary-name" *ngIf="ancillary.ancillaryProductType == 0" [attr.data-heading]="r.excursionName + ':'">{{ancillary.excursionName}}</td>
+                                            <td class="divider ancillary-passenger" *ngIf="ancillary.ancillaryProductType == 0 || ancillary.ancillaryProductType == 2" [attr.data-heading]="r.passenger + ':'">{{ancillary.passengerNumber}} {{request.passengers[ancillary.passengerNumber - 1].firstName}} {{request.passengers[ancillary.passengerNumber - 1].lastName}}</td>
+
+                                            <td class="ancillary-type" *ngIf="ancillary.ancillaryProductType == 1" [attr.data-heading]="r.transferType + ':'">{{transferTypeArray[ancillary.transferType]?.name}}</td>
+                                            <td class="divider ancillary-quantity" *ngIf="ancillary.ancillaryProductType == 1" [attr.data-heading]="r.quantity + ':'">{{ancillary.quantity}}</td>
+
+                                            <td class="divider ancillary-car-spacer" *ngIf="ancillary.ancillaryProductType == 3"></td>
+
+                                            <td class="divider status" [attr.data-heading]="r.approvalStatus + ':'">
+                                                <status-toggle [id]="'ancillary-' + ancillaryIndex" [status]="ancillary.approvalStatus" (statusChange)="ancillary.approvalStatus = $event"></status-toggle>
+                                            </td>
+                                            <td class="pricing" [attr.data-heading]="r.totalPrice + ':'">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">$</span>
+                                                    <input class="form-control" type="text" [(ngModel)]="ancillary.price" placeholder="00.00" oninput="this.value=this.value.replace(/[^0-9.]/g,'');"
+                                                        maxlength="10" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tfoot class="review-request__additional-note" *ngIf="employeeAncillaryNote.text?.length > 0">
+                            <tr>
+                                <td>
+                                    <strong>{{r.additionalNote}} </strong>
+                                    <p>{{employeeAncillaryNote.text}}</p>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <div class="review-request__row-split">
+                        <div id="ancillaryNote" class="review__ancillary-note">
+                            <button class="btn btn-secondary btn-wide add-note" (click)="addNote('ancillaryNote')" [disabled]="request.ancillaries.length < 1">{{r.addNote}}
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                            </button>
+                            <div class="ancillary-note hidden">
+                                <label>{{r.note}}</label>
+                                <textarea name="Text1" cols="40" rows="5" class="form-control" [(ngModel)]="adminAncillaryNote.text"></textarea>
+                                <button class="btn btn-primary btn-wide" (click)="deleteNote('ancillaryNote', adminAncillaryNote)">{{r.deleteNote}}
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+
+            <!-- Booking information -->
+            <div class="assign-booking">
+                <h2>{{r.assignBookingNumber}}</h2>
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>{{r.reviewer}}</label>
+                                <input class="form-control" type="text" [(ngModel)]="request.reviewer" />
+                            </div>
+                            <div class="col-md-12">
+                                <label>{{r.assignedBookingNumber}}</label>
+                                <input class="form-control" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' [(ngModel)]="request.bookingNumber" maxlength="15" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div id="AdminBookingNote">
+                            <label>{{r.importantNotes}}</label>
+                            <textarea name="Text1" cols="40" rows="6" class="form-control" [(ngModel)]="adminBookingNote.text"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-request__row-split">
+                    <button class="btn btn-danger btn-wide" [disabled]="rejectMade?true:false" (click)="confirmRejectRequest()">
+                        <i class="fa fa-ban fa-lg" aria-hidden="true"></i>
+                        {{r.reject}}
+                    </button>
+                    <button class="btn btn-step btn-wide" [disabled]="rejectMade?true:false" (click)="updateRequest()">{{r.updateRequest}}
+                        <i class="fa fa-angle-right fa-lg" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+
+            <requests-nav [type]="reviewType" [requestId]="requestId"></requests-nav>
+
+        </div>
+    </div>
+</div>

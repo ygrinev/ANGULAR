@@ -1,0 +1,64 @@
+.dialog-header {
+    display: flex;
+    flex: 1 0 auto;
+    padding: 25px 25px 0;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+        margin: 0;
+        color: #333;
+
+        .fa {
+            padding-right: 15px;
+
+            &.fa-check-circle {
+                color: #367f46;
+            }
+
+            &.fa-exclamation-triangle {
+                color: #ba1b14;
+            }
+
+            &.fa-info-circle {
+                color: #277bc3;
+            }
+        }
+    }
+
+    .close {
+        float: none;
+        font-size: 1.5em;
+        line-height: 1.3em;
+        color: #333;
+        opacity: 1;
+        outline: none;
+        border-radius: 0;
+        margin-top: 0;
+    }
+}
+
+.dialog-content {
+    padding: 25px;
+}
+
+.mat-dialog-content {
+    padding: 0;
+    margin: 0;
+}
+
+.dialog-footer {
+    .btn:nth-of-type(1) {
+        margin-bottom: 15px;
+    }
+
+    @media (min-width: 768px) {
+        display: flex;
+        flex: 1 0 auto;
+        justify-content: space-between;
+
+        .btn:nth-of-type(1) {
+            margin-bottom: 0;
+        }
+    }
+}

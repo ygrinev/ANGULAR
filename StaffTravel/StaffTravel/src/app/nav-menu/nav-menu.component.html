@@ -1,0 +1,12 @@
+<nav class="container">
+    <ul class="nav">
+        <li role="presentation" *ngIf="userInfo.hasPassport"><a routerLink="/my-requests" routerLinkActive="active">{{r.viewMyRequests}}</a></li>
+        <li role="presentation" *ngIf="userInfo.hasPassport"><a routerLink="/new-request" routerLinkActive="active">{{r.submitNewRequest}}</a></li>
+        <li role="presentation" *ngIf="userInfo.hasPassport"><a routerLink="/home" fragment="book-travel" routerLinkActive="active"><span class="badge">{{r.newBadge}}!</span> {{r.bookTravel}}</a></li>
+        <li role="presentation" *ngIf="userInfo.roles.isManager && userInfo.hasPassport"><a routerLink="/team-requests" routerLinkActive="active">{{r.viewTeamRequests}}</a></li>
+        <li role="presentation" *ngIf="userInfo.roles.isAdmin && userInfo.hasPassport"><a routerLink="/all-requests" routerLinkActive="active">{{r.viewAllRequests}}</a></li>
+        <li role="presentation" *ngIf="userInfo.roles.isPayload && userInfo.hasPassport"><a routerLink="/all-flightonly-requests" routerLinkActive="active">{{r.viewFlightRequests}}</a></li>
+        <li role="presentation" *ngIf="userInfo.hasPassport" class="alignRight"><a routerLink="/save-passport" routerLinkActive="active">{{userInfo.roles.isHRAdmin ? r.AmendProfile : r.Profile}}</a></li>
+        <li role="presentation"><a routerLink="/login-register" routerLinkActive="active">{{r.signOut}} <i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+    </ul>
+</nav>

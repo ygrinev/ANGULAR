@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{r.policy}}</h1>
+            <div *ngIf="loading">
+                <div class="loading__dots">Loading...</div>
+            </div>
+            <div *ngIf="!loading && showError" class="alert alert-danger">
+                <h4>{{r.errorHeader}}</h4>
+                <p>{{r.ERR_GenericMessage}}</p>
+            </div>
+            <div class="row" *ngIf="selectedCategory !== null && !loading">
+                <div class="col-md-3">
+                    <ul class="faq__menu">
+                        <li *ngFor="let category of faqList; let categoryIndex = index;">
+                            <a class="faq__menu-item" [ngClass]="{'active': selectedCategory == category.CategoryID}" (click)="openSection(category.CategoryID)">{{ category.CategoryName }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-9">
+                    <section class="faq" [ngClass]="{'active': selectedCategory == category.CategoryID}" *ngFor="let category of faqList">
+                        <h2>{{ category.CategoryName }}</h2>
+                        <markdown [innerHTML]="category.CategoryContent"></markdown>
+                        <hr/>
+                        <article *ngFor="let faqList of category.FAQs">
+                            <h3 class="faq__question">{{ faqList.FaqQuestion}}</h3>
+                            <markdown [innerHTML]="faqList.FaqAnswer"></markdown>
+                        </article>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

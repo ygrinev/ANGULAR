@@ -1,0 +1,46 @@
+<contentfulentries></contentfulentries>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" id="book-travel">
+            <search-box></search-box>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="feature-box">
+                <img src="/Content/Images/submit.jpg"/>
+                <div class="feature-box__link">
+                    <a routerLink="/new-request">{{r.submitNewRequest}}</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-box">
+                <img src="/Content/Images/faq.jpg"/>
+                <div class="feature-box__link">
+                    <a routerLink="/faq">{{r.policy}}</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-box">
+                <img src="/Content/Images/video.jpg"/>
+                <div class="feature-box__link">
+                    <a target="_blank" href="{{r.tutorialLink}}">{{r.tutorial}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <list-of-all-requests [tableType]="tableType" [tableSettings]="tableSettings" [source]="source"></list-of-all-requests>
+        </div>
+    </div>
+</div>

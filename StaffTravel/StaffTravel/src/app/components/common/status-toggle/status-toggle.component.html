@@ -1,0 +1,31 @@
+<input class="status__selector" type="radio"
+       name="status-{{id}}"
+       id="status_deny-{{id}}"
+       [value]="2"
+       [(ngModel)]="approvalStatus"
+       (change)="updateRequest()"
+       [disabled]="readOnly || linkedStatus == 0" />
+<label *ngIf="type == 'action'" for="status_deny-{{id}}">{{r.cancel}}</label>
+<label *ngIf="type != 'action'" for="status_deny-{{id}}">{{r.denied}}</label>
+
+<input class="status__selector" type="radio"
+       name="status-{{id}}"
+       [value]="0"
+       [(ngModel)]="approvalStatus"
+       disabled />
+<label *ngIf="!readOnly && linkedStatus != 0">{{r.pending}}</label>
+<label *ngIf="readOnly || linkedStatus == 0" class="read-only">{{r.processing}}</label>
+
+<input class="status__selector" type="radio"
+       name="status-{{id}}"
+       id="status_approve-{{id}}"
+       [value]="1"
+       [(ngModel)]="approvalStatus"
+       (change)="updateRequest()"
+       [disabled]="readOnly || linkedStatus == 0" />
+<label *ngIf="type == 'action'" for="status_approve-{{id}}">{{r.confirm}}</label>
+<label *ngIf="type != 'action'" for="status_approve-{{id}}">{{r.approved}}</label>
+
+<span [class]="readOnly ? 'status__selected status__selected--disabled' : 'status__selected'">
+    <span class="status__selected-toggle"></span>
+</span>

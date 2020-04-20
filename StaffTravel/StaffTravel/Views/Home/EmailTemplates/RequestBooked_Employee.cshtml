@@ -1,0 +1,1158 @@
+﻿@using StaffTravel.Models
+@using System.Resources;
+@using System.Globalization;
+@using System.Configuration;
+
+@{
+    var request = (Requests)ViewData.Eval("request");
+    //bool containsFlight = request.Flights.Where(f => f.status == (int)Enums.StatusEnum.Approved && f.approvalStatus == (int)Enums.StatusEnum.Approved).FirstOrDefault() != null;
+    bool containsHotel = request.Hotels.Where(h => h.status == (int)Enums.StatusEnum.Approved && h.approvalStatus == (int)Enums.StatusEnum.Approved).FirstOrDefault() != null;
+    bool containsAncillary = request.Ancillaries.Where(a => a.status == (int)Enums.StatusEnum.Approved && a.approvalStatus == (int)Enums.StatusEnum.Approved).FirstOrDefault() != null;
+
+    ResourceManager rm = new ResourceManager(typeof(StaffTravel.Resources.Resource));
+    CultureInfo en = new CultureInfo("en");
+    CultureInfo fr = new CultureInfo("fr");
+    Notes bookingNote = request.Notes.Where(n => n.requestId == request.id && n.sectionId == (int)Enums.NoteSectionEnum.Booking && n.typeId == (int)Enums.NoteTypeEnum.Admin).FirstOrDefault();
+    string bookingNoteText = "";
+    string mbpURL = ConfigurationManager.AppSettings["mbp"];
+
+    if (bookingNote != null)
+    {
+        bookingNoteText = bookingNote.text;
+    }
+
+
+    decimal? totalPrice = request.Flights
+        .Where(f => f.status == (int)Enums.StatusEnum.Approved && f.approvalStatus == (int)Enums.StatusEnum.Approved)
+        .Select(f => f.price)
+        .Sum() ?? 0;
+
+    totalPrice += request.Hotels
+        .Where(h => h.status == (int)Enums.StatusEnum.Approved && h.approvalStatus == (int)Enums.StatusEnum.Approved)
+        .Select(f => f.price)
+        .Sum() ?? 0;
+
+    totalPrice += request.Ancillaries
+        .Where(a => a.status == (int)Enums.StatusEnum.Approved && a.approvalStatus == (int)Enums.StatusEnum.Approved)
+        .Select(f => f.price)
+        .Sum() ?? 0;
+}
+
+<!--English-->
+<!-- HEADER SUMMARY -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="width: 600px; background-color:#e2edf4;" class="deviceWidth" bgcolor="#e2edf4">
+                <tr>
+                    <td align="center" height="100%" valign="top" width="100%">
+                        <!--[if (gte mso 9)|(IE)]>
+                        <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+                        <tr>
+                        <td align="center" valign="top" width="600">
+                        <![endif]-->
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
+                            <tr>
+                                <td align="left" valign="top" style="font-size:0; padding-left:15px; padding-right:15px; padding-top:15px; padding-bottom:15px;">
+                                    <!--[if (gte mso 9)|(IE)]>
+                                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="570">
+                                    <tr>
+                                    <td align="left" valign="top" width="342">
+                                    <![endif]-->
+                                    <div style="display:inline-block; max-width:60%; min-width:342px; vertical-align:top; width:100%;" class="deviceWidth">
+                                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:360px;" class="header-table">
+                                            <tr>
+                                                <td valign="top" style="padding:5px; padding-bottom:0; text-decoration: none; text-align: left; font-size: 13px; color: #1e1e1e; font-family:Arial, Helvetica, sans-serif" width="175" class="header-table--title">
+                                                    @rm.GetString("bookingNumber", en): @request.bookingNumber.Value.ToString()
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top" style="padding:5px; text-decoration: none; text-align: left; font-size: 13px; color: #1e1e1e; font-family:Arial, Helvetica, sans-serif" width="175" class="header-table--title">
+                                                    @rm.GetString("amountDue", en): $ @totalPrice.Value.ToString()
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!--[if (gte mso 9)|(IE)]>
+                                    </td>
+                                    <td width="10" style="font-size: 1px;">&nbsp;</td>
+                                    <td align="right" valign="top" width="218">
+                                    <![endif]-->
+                                    <div style="display:inline-block; max-width:30%; min-width:218px; vertical-align:top; width:100%;" class="deviceWidth">
+                                        <table align="center" border="0" cellpadding="0" cellspacing="0" style="min-width:218px; background-color:#358046; border:2px solid #358046;" class="button">
+                                            <tr>
+                                                <td align="center" valign="middle" style="padding:10px;" width="218" class="deviceWidth">
+                                                    <a href="@mbpURL" target="_blank" align="center" style="color:#fffffe; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:16px; font-weight:bold; text-decoration:none;">@rm.GetString("mbp", en)</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!--[if (gte mso 9)|(IE)]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px; padding-right:15px; padding-top:10px; text-decoration: none; text-align: left; font-size: 13px; color: #1e1e1e; font-family:Arial, Helvetica, sans-serif">
+                                    @rm.GetString("paymentInfo", en)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px; padding-right:15px; padding-top:15px; padding-bottom:15px; text-decoration: none; text-align: left; font-size: 13px; color: #1e1e1e; font-family:Arial, Helvetica, sans-serif">
+                                    <strong>@rm.GetString("importantNotes", en):</strong><br />
+                                    @bookingNoteText
+                                </td>
+                            </tr>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        </tr>
+                        </table>
+                        <![endif]-->
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+    <tr>
+        <td height="20" style="font-size: 1px;">&nbsp;</td>
+    </tr>
+</table>
+
+<!-- Request Details -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align="left" valign="top" style="font-size:0;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                                        <tr>
+                                            <td>
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:2px solid #007cc3; padding:5px;">
+                                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth" bgcolor="#fffffe">
+                                                                <tr>
+                                                                    <td valign="middle" style="text-decoration: none; font-size: 18px; color: #007cc3; font-weight: bold; font-family:Arial, Helvetica, sans-serif ">
+                                                                        @rm.GetString("passengersSectionTitle", en)
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="20" style="font-size: 1px;">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="top" style="font-size:0;">
+                                                            <table align="left" border="0" cellpadding="5" cellspacing="0" width="100%" style="color:#333333; font-size: 16px; line-height:20px; font-family:Arial, Helvetica, sans-serif;">
+                                                                <tr>
+                                                                    <td width="180" valign="bottom" style="font-weight:bold">@rm.GetString("passengers", en)</td>
+                                                                    <td width="160" valign="bottom" style="font-weight:bold">@rm.GetString("dob", en)</td>
+                                                                    <td width="260" valign="bottom" style="font-weight:bold">@rm.GetString("typeOfPass", en)</td>
+                                                                </tr>
+
+                                                                @{
+                                                                    foreach (var passenger in request.Passengers)
+                                                                    {
+                                                                        <tr>
+                                                                            <td width="180" valign="top">@passenger.firstName @passenger.lastName</td>
+                                                                            <td width="160" valign="top">
+                                                                                @if (passenger.DOB != null)
+                                                                                {
+                                                                                    @passenger.DOB.Value.ToString("dd MMM yyyy")
+                                                                                }
+                                                                            </td>
+                                                                            <td width="260" valign="top">@rm.GetString("typeOfPassDesc" + @passenger.typeOfPass.Value, en)</td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+
+
+<!-- Product information -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td height="20" style="font-size: 1px;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" style="font-size:0;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                                        <tr>
+                                            <td>
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:2px solid #007cc3; padding:5px;">
+                                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth" bgcolor="#fffffe">
+                                                                <tr>
+                                                                    <td valign="middle" style="text-decoration: none; font-size: 18px; color: #007cc3; font-weight: bold; font-family:Arial, Helvetica, sans-serif ">
+                                                                        @rm.GetString("productInfo", en)
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="20" style="font-size: 1px;">&nbsp;</td>
+                                                    </tr>
+                                                    <!-- Hotel -->
+                                                    @{
+                                                        if (containsHotel)
+                                                        {
+                                                            <tr>
+                                                                <td align="left" valign="top" style="font-size:0;">
+                                                                    <table align="left" border="0" cellpadding="5" cellspacing="0" width="100%" style="color:#333333; font-size: 16px; line-height:20px; font-family:Arial, Helvetica, sans-serif;">
+                                                                        <tr>
+                                                                            <td width="350" valign="bottom" style="font-weight:bold">@rm.GetString("hotel", en)</td>
+                                                                            <td width="150" valign="bottom" style="font-weight:bold">@rm.GetString("checkInDate", en)</td>
+                                                                            <td width="100" valign="bottom" style="font-weight:bold">@rm.GetString("duration", en)</td>
+                                                                        </tr>
+                                                                        @{
+                                                                            foreach (var hotel in request.Hotels)
+                                                                            {
+                                                                                if (hotel.approvalStatus.Value == (int)Enums.StatusEnum.Approved && hotel.status.Value == (int)Enums.StatusEnum.Approved)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td width="350" valign="top">@hotel.name</td>
+                                                                                        <td width="150" valign="top">@hotel.checkInDate.Value.ToString("dd MMM yyyy")</td>
+                                                                                        <td width="100" valign="top">@hotel.duration</td>
+                                                                                    </tr>
+                                                                                }
+
+                                                                            }
+                                                                        }
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="10" style="font-size: 1px; border-bottom: 1px solid #ddd;">&nbsp;</td>
+                                                            </tr>
+
+                                                        }
+                                                    }
+
+                                                    <!--Flights-->
+                                                    @{ foreach (var flight in request.Flights)
+                                                        {
+                                                            if (flight.status.Value == (int)Enums.StatusEnum.Approved && flight.status.Value == (int)Enums.StatusEnum.Approved)
+                                                            {
+                                                                <tr>
+                                                                    <td align="left" valign="top" style="font-size:0;">
+                                                                        <table align="left" border="0" cellpadding="5" cellspacing="0" width="100%" style="color:#333333; font-size: 16px; line-height:18px; font-family:Arial, Helvetica, sans-serif;">
+                                                                            <tr>
+                                                                                <td height="5" style="font-size: 1px; line-height: 0;">&nbsp;</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("departureDate", en) :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.departDate.Value.ToString("MMMM dd, yyyy")
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("departFrom", en)  :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.departFrom
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("departTo", en)  :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.departTo
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("flightNum", en) :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.departFlight
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("returnDate", en)  :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.returnDate.Value.ToString("MMMM dd, yyyy")
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("returnFrom", en) :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.returnFrom
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("returnTo", en) :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.returnTo
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("flightNum", en) :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.returnFlight
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    }
+
+
+                                                    <!--Ancillaries-->
+                                                    @{
+                                                        if (containsAncillary)
+                                                        {
+                                                            <tr>
+                                                                <td height="10" style="font-size: 1px; border-bottom: 1px solid #ddd;">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" valign="top" style="font-size:0;">
+                                                                    <table align="left" border="0" cellpadding="5" cellspacing="0" width="100%" style="color:#333333; font-size: 16px; line-height:20px; font-family:Arial, Helvetica, sans-serif;">
+                                                                        <tr>
+                                                                            <td height="5" colspan="3" style="font-size: 1px; line-height: 0;">&nbsp;</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="400" valign="bottom" style="font-weight:bold">@rm.GetString("ancillariesSectionTitle", en)</td>
+                                                                            <td width="200" valign="bottom" style="font-weight:bold">@rm.GetString("quantity", en)</td>
+                                                                        </tr>
+
+
+                                                                        @{
+                                                                            foreach (var ancillary in request.Ancillaries)
+                                                                            {
+                                                                                if (ancillary.status.Value == (int)Enums.StatusEnum.Approved && ancillary.approvalStatus.Value == (int)Enums.StatusEnum.Approved)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td width="400" valign="top">@rm.GetString("ancillaryProductDesc" + ancillary.ancillaryProductType.Value, en)</td>
+                                                                                        <td width="200" valign="top">@ancillary.quantity</td>
+                                                                                    </tr>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+
+<!--Separator-->
+<table name="separator" border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="width: 600px;" class="deviceWidth">
+                <tr>
+                    <td height="20" style="font-size: 1px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td height="20" style="font-size: 1px; border-top: 2px solid #ddd">&nbsp;</td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+
+
+
+<!--French-->
+<!-- HEADER SUMMARY -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="width: 600px; background-color:#e2edf4;" class="deviceWidth" bgcolor="#e2edf4">
+                <tr>
+                    <td align="center" height="100%" valign="top" width="100%">
+                        <!--[if (gte mso 9)|(IE)]>
+                        <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+                        <tr>
+                        <td align="center" valign="top" width="600">
+                        <![endif]-->
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
+                            <tr>
+                                <td align="left" valign="top" style="font-size:0; padding-left:15px; padding-right:15px; padding-top:15px; padding-bottom:15px;">
+                                    <!--[if (gte mso 9)|(IE)]>
+                                    <table align="left" border="0" cellspacing="0" cellpadding="0" width="570">
+                                    <tr>
+                                    <td align="left" valign="top" width="342">
+                                    <![endif]-->
+                                    <div style="display:inline-block; max-width:60%; min-width:342px; vertical-align:top; width:100%;" class="deviceWidth">
+                                        <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:360px;" class="header-table">
+                                            <tr>
+                                                <td valign="top" style="padding:5px; padding-bottom:0; text-decoration: none; text-align: left; font-size: 13px; color: #1e1e1e; font-family:Arial, Helvetica, sans-serif" width="175" class="header-table--title">
+                                                    @rm.GetString("bookingNumber", fr): @request.bookingNumber.Value.ToString()
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top" style="padding:5px; text-decoration: none; text-align: left; font-size: 13px; color: #1e1e1e; font-family:Arial, Helvetica, sans-serif" width="175" class="header-table--title">
+                                                    @rm.GetString("amountDue", fr): $ @totalPrice.Value.ToString()
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!--[if (gte mso 9)|(IE)]>
+                                    </td>
+                                    <td width="10" style="font-size: 1px;">&nbsp;</td>
+                                    <td align="right" valign="top" width="218">
+                                    <![endif]-->
+                                    <div style="display:inline-block; max-width:30%; min-width:218px; vertical-align:top; width:100%;" class="deviceWidth">
+                                        <table align="center" border="0" cellpadding="0" cellspacing="0" style="min-width:218px; background-color:#358046; border:2px solid #358046;" class="button">
+                                            <tr>
+                                                <td align="center" valign="middle" style="padding:10px;" width="218" class="deviceWidth">
+                                                    <a href="@mbpURL" target="_blank" align="center" style="color:#fffffe; text-align:center; font-family: Arial, Helvetica, sans-serif; font-size:16px; font-weight:bold; text-decoration:none;">@rm.GetString("mbp", fr)</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!--[if (gte mso 9)|(IE)]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                    <![endif]-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px; padding-right:15px; padding-top:10px; text-decoration: none; text-align: left; font-size: 13px; color: #1e1e1e; font-family:Arial, Helvetica, sans-serif">
+                                    @rm.GetString("paymentInfo", fr)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px; padding-right:15px; padding-top:15px; padding-bottom:15px; text-decoration: none; text-align: left; font-size: 13px; color: #1e1e1e; font-family:Arial, Helvetica, sans-serif">
+                                    <strong>@rm.GetString("importantNotes", fr):</strong><br />
+                                    @bookingNoteText
+                                </td>
+                            </tr>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+                        </tr>
+                        </table>
+                        <![endif]-->
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+    <tr>
+        <td height="20" style="font-size: 1px;">&nbsp;</td>
+    </tr>
+</table>
+
+<!--Request Details-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align="left" valign="top" style="font-size:0;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                                        <tr>
+                                            <td>
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:2px solid #007cc3; padding:5px;">
+                                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth" bgcolor="#fffffe">
+                                                                <tr>
+                                                                    <td valign="middle" style="text-decoration: none; font-size: 18px; color: #007cc3; font-weight: bold; font-family:Arial, Helvetica, sans-serif ">
+                                                                        @rm.GetString("passengersSectionTitle", fr)
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="20" style="font-size: 1px;">&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="left" valign="top" style="font-size:0;">
+                                                            <table align="left" border="0" cellpadding="5" cellspacing="0" width="100%" style="color:#333333; font-size: 16px; line-height:20px; font-family:Arial, Helvetica, sans-serif;">
+                                                                <tr>
+                                                                    <td width="180" valign="bottom" style="font-weight:bold">@rm.GetString("passengers", fr)</td>
+                                                                    <td width="160" valign="bottom" style="font-weight:bold">@rm.GetString("dob", fr)</td>
+                                                                    <td width="260" valign="bottom" style="font-weight:bold">@rm.GetString("typeOfPass", fr)</td>
+                                                                </tr>
+
+                                                                @{
+                                                                    foreach (var passenger in request.Passengers)
+                                                                    {
+                                                                        <tr>
+                                                                            <td width="180" valign="top">@passenger.firstName @passenger.lastName</td>
+                                                                            <td width="160" valign="top">
+                                                                                @if (passenger.DOB != null)
+                                                                                {
+                                                                                    @passenger.DOB.Value.ToString("dd MMM yyyy")
+                                                                                }
+                                                                            </td>
+                                                                            <td width="260" valign="top">@rm.GetString("typeOfPassDesc" + @passenger.typeOfPass.Value, fr)</td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+
+
+<!-- Product information -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td height="20" style="font-size: 1px;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="left" valign="top" style="font-size:0;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                                        <tr>
+                                            <td>
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td align="left" valign="middle" style="border-bottom:2px solid #007cc3; padding:5px;">
+                                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth" bgcolor="#fffffe">
+                                                                <tr>
+                                                                    <td valign="middle" style="text-decoration: none; font-size: 18px; color: #007cc3; font-weight: bold; font-family:Arial, Helvetica, sans-serif ">
+                                                                        @rm.GetString("productInfo", fr)
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td height="20" style="font-size: 1px;">&nbsp;</td>
+                                                    </tr>
+                                                    <!-- Hotel -->
+                                                    @{
+                                                        if (containsHotel)
+                                                        {
+                                                            <tr>
+                                                                <td align="left" valign="top" style="font-size:0;">
+                                                                    <table align="left" border="0" cellpadding="5" cellspacing="0" width="100%" style="color:#333333; font-size: 16px; line-height:20px; font-family:Arial, Helvetica, sans-serif;">
+                                                                        <tr>
+                                                                            <td width="350" valign="bottom" style="font-weight:bold">@rm.GetString("hotel", fr)</td>
+                                                                            <td width="150" valign="bottom" style="font-weight:bold">@rm.GetString("checkInDate", fr)</td>
+                                                                            <td width="100" valign="bottom" style="font-weight:bold">@rm.GetString("duration", fr)</td>
+                                                                        </tr>
+                                                                        @{
+                                                                            foreach (var hotel in request.Hotels)
+                                                                            {
+                                                                                if (hotel.approvalStatus.Value == (int)Enums.StatusEnum.Approved && hotel.status.Value == (int)Enums.StatusEnum.Approved)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td width="350" valign="top">@hotel.name</td>
+                                                                                        <td width="150" valign="top">@hotel.checkInDate.Value.ToString("dd MMM yyyy")</td>
+                                                                                        <td width="100" valign="top">@hotel.duration</td>
+                                                                                    </tr>
+                                                                                }
+
+                                                                            }
+                                                                        }
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="10" style="font-size: 1px; border-bottom: 1px solid #ddd;">&nbsp;</td>
+                                                            </tr>
+
+                                                        }
+                                                    }
+
+                                                    <!--Flights-->
+                                                    @{ foreach (var flight in request.Flights)
+                                                        {
+                                                            if (flight.status.Value == (int)Enums.StatusEnum.Approved && flight.status.Value == (int)Enums.StatusEnum.Approved)
+                                                            {
+                                                                <tr>
+                                                                    <td align="left" valign="top" style="font-size:0;">
+                                                                        <table align="left" border="0" cellpadding="5" cellspacing="0" width="100%" style="color:#333333; font-size: 16px; line-height:18px; font-family:Arial, Helvetica, sans-serif;">
+                                                                            <tr>
+                                                                                <td height="5" style="font-size: 1px; line-height: 0;">&nbsp;</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("departureDate", fr) :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.departDate.Value.ToString("MMMM dd, yyyy")
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("departFrom", fr)  :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.departFrom
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("departTo", fr)  :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.departTo
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("flightNum", fr) :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.departFlight
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("returnDate", fr)  :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.returnDate.Value.ToString("MMMM dd, yyyy")
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("returnFrom", fr) :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.returnFrom
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("returnTo", fr) :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.returnTo
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    <table align="center" border="0" cellspacing="0" cellpadding="0" width="590">
+                                                                                    <tr>
+                                                                                    <td align="center" valign="top" width="590">
+                                                                                    <![endif]-->
+                                                                                    <table width="240" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: bold; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @rm.GetString("flightNum", fr) :
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <table width="300" border="0" cellpadding="0" cellspacing="0" align="left" class="deviceWidth">
+                                                                                        <tr>
+                                                                                            <td style="color: #333333; font-weight: normal; text-align: left; font-family: Arial, Helvetica, sans-serif; line-height: 18px; vertical-align: top;">
+                                                                                                @flight.returnFlight
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                                                                                    </td>
+                                                                                    </tr>
+                                                                                    </table>
+                                                                                    <![endif]-->
+                                                                                </td>
+                                                                            </tr>
+
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        }
+                                                    }
+
+
+                                                    <!--Ancillaries-->
+                                                    @{
+                                                        if (containsAncillary)
+                                                        {
+                                                            <tr>
+                                                                <td height="10" style="font-size: 1px; border-bottom: 1px solid #ddd;">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="left" valign="top" style="font-size:0;">
+                                                                    <table align="left" border="0" cellpadding="5" cellspacing="0" width="100%" style="color:#333333; font-size: 16px; line-height:20px; font-family:Arial, Helvetica, sans-serif;">
+                                                                        <tr>
+                                                                            <td height="5" colspan="3" style="font-size: 1px; line-height: 0;">&nbsp;</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td width="400" valign="bottom" style="font-weight:bold">@rm.GetString("ancillariesSectionTitle", fr)</td>
+                                                                            <td width="200" valign="bottom" style="font-weight:bold">@rm.GetString("quantity", fr)</td>
+                                                                        </tr>
+
+
+                                                                        @{
+                                                                            foreach (var ancillary in request.Ancillaries)
+                                                                            {
+                                                                                if (ancillary.status.Value == (int)Enums.StatusEnum.Approved && ancillary.approvalStatus.Value == (int)Enums.StatusEnum.Approved)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <td width="400" valign="top">@rm.GetString("ancillaryProductDesc" + ancillary.ancillaryProductType.Value, fr)</td>
+                                                                                        <td width="200" valign="top">@ancillary.quantity</td>
+                                                                                    </tr>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+

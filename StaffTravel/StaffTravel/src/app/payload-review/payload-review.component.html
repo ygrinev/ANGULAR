@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="review">
+                <section id="flights">
+                    <div class="review-info">
+                        <h2><strong>{{r.numOfPass}}: </strong>{{numOfPass}}</h2>
+                        <p>{{r.dateSubmitted}}: <span>{{request.requestDate | date:'d MMM yyyy'}}</span></p>
+                    </div>
+                    <hr />
+                    <div class="review-heading">
+                        <i class="fa fa-plane" aria-hidden="true"></i>
+                        <h3>{{r.flightsSectionTitle}}</h3>
+                    </div>
+                    <!-- foreach flight in this request -->
+                    <table class="review-request review-request--flights">
+                        <thead class="review-request__heading">
+                            <tr>
+                                <th class="flight-departure" colspan="2">{{r.departing}}</th>
+                                <th class="flight-destination">{{r.arriving}}</th>
+                                <th class="flight-date">{{r.itinerary}}</th>
+                                <th class="divider flight-number">{{r.flightNum}}</th>
+                                <th class="flight-status">{{r.approvalStatus}}</th>
+                            </tr>
+                        </thead>
+                        <tbody class="review-request__section__item review-request__section__item--flight" *ngFor="let flight of request.flights; let flightIndex = index" [attr.data-index]="flightIndex + 1">
+                            <tr>
+                                <th class="flight-pax" scope="row" rowspan="2">{{flightIndex + 1}}</th>
+                                <td class="flight-departure flight-departure--outbound" [attr.data-heading]="r.departFrom + ':'">{{flight.departFrom}}</td>
+                                <td class="flight-destination" [attr.data-heading]="r.departTo + ':'">{{flight.departTo}}</td>
+                                <td class="flight-date" [attr.data-heading]="r.departDate + ':'">{{flight.departDate | date:'dd MMM yyyy'}}</td>
+                                <td class="flight-number divider" [attr.data-heading]="r.departFlightNumber + ':'">{{flight.departFlight}}</td>
+                                <td class="flight-status" rowspan="2" [attr.data-heading]="r.approvalStatus + ':'" >
+                                    <status-toggle [id]="'flight-' + flightIndex" [status]="flight.approvalStatus" (statusChange)="flight.approvalStatus = $event"></status-toggle>
+                                    <div class="status-updated" *ngIf="flight.lastUpdatedBy?.length > 0">{{r.lastUpdatedBy}} <span>{{flight.lastUpdatedBy}}</span></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="flight-departure flight-departure--inbound" [attr.data-heading]="r.returnFrom + ':'">{{flight.returnFrom}}</td>
+                                <td class="flight-destination" [attr.data-heading]="r.returnTo + ':'">{{flight.returnTo}}</td>
+                                <td class="flight-date" [attr.data-heading]="r.returnDate + ':'">{{flight.returnDate | date:'dd MMM yyyy'}}</td>
+                                <td class="flight-number divider" [attr.data-heading]="r.returnFlightNumber + ':'">{{flight.returnFlight}}</td>
+                                <td class="flight-status flight-status--mobile" rowspan="2" [attr.data-heading]="r.approvalStatus + ':'">
+                                    <status-toggle [id]="'flight-' + flightIndex" [status]="flight.approvalStatus" (statusChange)="flight.approvalStatus = $event"></status-toggle>
+                                    <div class="status-updated" *ngIf="flight.lastUpdatedBy?.length > 0">{{r.lastUpdatedBy}} <span>{{flight.lastUpdatedBy}}</span></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="table-row-spacer"></td>
+                                <td class="table-row-spacer divider"></td>
+                                <td class="table-row-spacer"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="review-request__additional-note" *ngIf="employeeFlightNote.text?.length > 0 || payloadFlightNote.text?.length > 0">
+                            <tr *ngIf="employeeFlightNote.text?.length > 0">
+                                <td colspan="6">
+                                    <strong>{{r.additionalNote}} </strong>
+                                    <p>{{employeeFlightNote.text}}</p>
+                                </td>
+                            </tr>
+                            <tr *ngIf="payloadFlightNote.text?.length > 0">
+                                <td colspan="6">
+                                    <strong>{{r.payloadNote}} </strong>
+                                    <p>{{payloadFlightNote.text}}</p>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <!--end foreach flight-->
+                    <div class="review-request__row-split">
+                        <div id="flightNote" class="review__ancillary-note">
+                            <button class="btn btn-secondary btn-wide add-note" (click)="addNote('flightNote')" [disabled]="request.flights.length < 1 || changesDisabled">{{r.addNote}} <i class="fa fa-file-text-o" aria-hidden="true"></i></button>
+                            <div class="ancillary-note hidden">
+                                <label>{{r.note}}</label>
+                                <textarea name="Text1" cols="40" rows="5" class="form-control" [(ngModel)]="payloadFlightNote.text"></textarea>
+                                <button class="btn btn-primary btn-wide" (click)="deleteNote('flightNote', payloadFlightNote)" [disabled]="changesDisabled">{{r.deleteNote}} <i class="fa fa-file-text-o" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-wide" (click)="save()" [disabled]="request.flights.length < 1 || changesDisabled">{{r.submit}}</button>
+                    </div>
+                </section>
+            </div>
+            <requests-nav [type]="reviewType" [requestId]="requestId"></requests-nav>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaffTravel", "StaffTravel\StaffTravel.csproj", "{0242E204-8676-4B1C-84E7-30C2A78F2C2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaffTravel.Tests", "StaffTravel.Tests\StaffTravel.Tests.csproj", "{B31410B9-E405-4E32-A92D-BD2A261C4D18}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "STAutomaionDatabase", "STAutomaionDatabase\STAutomaionDatabase.sqlproj", "{E754DF8B-F2A6-4843-8599-01470A397D91}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Production|Any CPU = Production|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Staging|Any CPU = Staging|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0242E204-8676-4B1C-84E7-30C2A78F2C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0242E204-8676-4B1C-84E7-30C2A78F2C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0242E204-8676-4B1C-84E7-30C2A78F2C2D}.Production|Any CPU.ActiveCfg = Production|Any CPU
+		{0242E204-8676-4B1C-84E7-30C2A78F2C2D}.Production|Any CPU.Build.0 = Production|Any CPU
+		{0242E204-8676-4B1C-84E7-30C2A78F2C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0242E204-8676-4B1C-84E7-30C2A78F2C2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0242E204-8676-4B1C-84E7-30C2A78F2C2D}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{0242E204-8676-4B1C-84E7-30C2A78F2C2D}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{B31410B9-E405-4E32-A92D-BD2A261C4D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B31410B9-E405-4E32-A92D-BD2A261C4D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B31410B9-E405-4E32-A92D-BD2A261C4D18}.Production|Any CPU.ActiveCfg = Production|Any CPU
+		{B31410B9-E405-4E32-A92D-BD2A261C4D18}.Production|Any CPU.Build.0 = Production|Any CPU
+		{B31410B9-E405-4E32-A92D-BD2A261C4D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B31410B9-E405-4E32-A92D-BD2A261C4D18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B31410B9-E405-4E32-A92D-BD2A261C4D18}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{B31410B9-E405-4E32-A92D-BD2A261C4D18}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{E754DF8B-F2A6-4843-8599-01470A397D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E754DF8B-F2A6-4843-8599-01470A397D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E754DF8B-F2A6-4843-8599-01470A397D91}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E754DF8B-F2A6-4843-8599-01470A397D91}.Production|Any CPU.ActiveCfg = Production|Any CPU
+		{E754DF8B-F2A6-4843-8599-01470A397D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E754DF8B-F2A6-4843-8599-01470A397D91}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E34FC5E2-A6B3-44BD-B137-DFDAF4106B5E}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://yyztfs3:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = StaffTravel.Tests\\StaffTravel.Tests.csproj
+		SccProjectName1 = StaffTravel.Tests
+		SccLocalPath1 = StaffTravel.Tests
+		SccProjectUniqueName2 = StaffTravel\\StaffTravel.csproj
+		SccProjectName2 = StaffTravel
+		SccLocalPath2 = StaffTravel
+		SccProjectUniqueName3 = STAutomaionDatabase\\STAutomaionDatabase.sqlproj
+		SccProjectName3 = STAutomaionDatabase
+		SccLocalPath3 = STAutomaionDatabase
+	EndGlobalSection
+EndGlobal

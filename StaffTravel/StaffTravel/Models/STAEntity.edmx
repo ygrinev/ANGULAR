@@ -1,0 +1,854 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="STAutomationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActivityLogs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="updateType" Type="int" Nullable="false" />
+          <Property Name="updatedOn" Type="datetime" Nullable="false" />
+          <Property Name="empName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="empNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sectionType" Type="int" Nullable="false" />
+          <Property Name="userType" Type="int" Nullable="false" />
+          <Property Name="statusChange" Type="int" />
+          <Property Name="text" Type="nvarchar(max)" />
+          <Property Name="foreignId" Type="int" Nullable="false" />
+          <Property Name="requestId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ancillaries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ancillaryProductType" Type="int" />
+          <Property Name="destination" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
+          <Property Name="excursionDate" Type="date" />
+          <Property Name="excursionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="transferType" Type="int" />
+          <Property Name="insuranceType" Type="int" />
+          <Property Name="passengerNumber" Type="int" />
+          <Property Name="approvalStatus" Type="int" />
+          <Property Name="quantity" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="requestId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'STAutomation.dbo.BYCP_2019' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="BYCP_2019">
+          <Property Name="Employee Number" Type="nvarchar" MaxLength="255" />
+          <Property Name="how many bonus?" Type="float" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'STAutomation.dbo.BYCP_20190320' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="BYCP_20190320">
+          <Property Name="Employee Number " Type="float" />
+          <Property Name="Agent" Type="nvarchar" MaxLength="255" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpNumber" />
+          </Key>
+          <Property Name="EmpNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ManagerEmpNumber" Type="varchar" MaxLength="20" />
+          <Property Name="SeniorityDate" Type="datetime" Nullable="false" />
+          <Property Name="Organization" Type="varchar" MaxLength="100" />
+          <Property Name="CompanyCode" Type="varchar" MaxLength="20" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="RegisterDate" Type="datetime" />
+          <Property Name="Eligibility" Type="int" Nullable="false" />
+          <Property Name="IsFullTime" Type="int" Nullable="false" />
+          <Property Name="IsSending" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Language" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'STAutomation.dbo.Employee_Backup_2019_10_23' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'STAutomation.dbo.Employee_import$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Employee_import$">
+          <Property Name="EmpNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="ManagerEmpNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="SeniorityDate" Type="datetime" />
+          <Property Name="Organization" Type="nvarchar" MaxLength="255" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="RegisterDate" Type="datetime" />
+          <Property Name="Eligibility" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsFullTime" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsSending" Type="nvarchar" MaxLength="255" />
+          <Property Name="Status" Type="nvarchar" MaxLength="255" />
+          <Property Name="Language" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'STAutomation.dbo.employee_temp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'STAutomation.dbo.employee_temp_error' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EmployeePassport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MidName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Flights">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="departDate" Type="datetime" />
+          <Property Name="departFrom" Type="nvarchar" MaxLength="50" />
+          <Property Name="departTo" Type="nvarchar" MaxLength="50" />
+          <Property Name="departFlight" Type="nvarchar" MaxLength="50" />
+          <Property Name="returnDate" Type="datetime" />
+          <Property Name="returnFrom" Type="nvarchar" MaxLength="50" />
+          <Property Name="returnTo" Type="nvarchar" MaxLength="50" />
+          <Property Name="returnFlight" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
+          <Property Name="approvalStatus" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="requestId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotels">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="checkInDate" Type="datetime" />
+          <Property Name="duration" Type="int" />
+          <Property Name="destination" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="roomType" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="int" />
+          <Property Name="approvalStatus" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="requestId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="enteredBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="enteredOn" Type="datetime" />
+          <Property Name="text" Type="nvarchar(max)" />
+          <Property Name="sectionId" Type="int" />
+          <Property Name="typeId" Type="int" />
+          <Property Name="requestId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passengers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="middleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="typeOfPass" Type="int" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="passengerNumber" Type="int" />
+          <Property Name="status" Type="int" />
+          <Property Name="approvalStatus" Type="int" />
+          <Property Name="requestId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PassesBalance">
+          <Key>
+            <PropertyRef Name="employeeNumber" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Name="employeeNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="used" Type="int" Nullable="false" />
+          <Property Name="updateDate" Type="datetime" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="10" />
+          <Property Name="year" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'STAutomation.dbo.PassesBalance_01182018' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'STAutomation.dbo.PassesBalance_20190917' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PassesBonus">
+          <Key>
+            <PropertyRef Name="employeeNumber" />
+            <PropertyRef Name="ExpiryDate" />
+          </Key>
+          <Property Name="employeeNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="howmanybonus" Type="int" Nullable="false" />
+          <Property Name="ExpiryDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'STAutomation.dbo.PassesBonus_01182018' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'STAutomation.dbo.PassesBonus_10312018' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'STAutomation.dbo.PassesBonus_20190917' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'STAutomation.dbo.PassesBonusExpiryDate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PassesBonusExpiryDate">
+          <Key>
+            <PropertyRef Name="ExpiredBy" />
+          </Key>
+          <Property Name="ExpiredBy" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'STAutomation.dbo.PassesBonusExpiryDate_20190917' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'STAutomation.dbo.passToBeAdded_01182018' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="passToBeAdded_01182018">
+          <Property Name="Employee" Type="nvarchar" MaxLength="255" />
+          <Property Name="Employee Number" Type="float" />
+          <Property Name="Accrual Option" Type="nvarchar" MaxLength="255" />
+          <Property Name="To Be Added" Type="float" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'STAutomation.dbo.passToBeReduced_01182018' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="passToBeReduced_01182018">
+          <Property Name="Employee" Type="nvarchar" MaxLength="255" />
+          <Property Name="Employee #" Type="float" />
+          <Property Name="To" Type="float" />
+          <Property Name="pass" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="requestDate" Type="datetime" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="reviewer" Type="nvarchar" MaxLength="50" />
+          <Property Name="bookingNumber" Type="numeric" Precision="18" Scale="0" />
+        </EntityType>
+        <Association Name="FK_ActivityLogs_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+          <End Role="ActivityLogs" Type="Self.ActivityLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActivityLogs">
+              <PropertyRef Name="requestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ancillaries_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+          <End Role="Ancillaries" Type="Self.Ancillaries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ancillaries">
+              <PropertyRef Name="requestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flights_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+          <End Role="Flights" Type="Self.Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="requestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hotels_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+          <End Role="Hotels" Type="Self.Hotels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Hotels">
+              <PropertyRef Name="requestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notes_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+          <End Role="Notes" Type="Self.Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="requestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passengers_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+          <End Role="Passengers" Type="Self.Passengers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Passengers">
+              <PropertyRef Name="requestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="STAutomationModelStoreContainer">
+          <EntitySet Name="ActivityLogs" EntityType="Self.ActivityLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ancillaries" EntityType="Self.Ancillaries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeePassport" EntityType="Self.EmployeePassport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flights" EntityType="Self.Flights" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotels" EntityType="Self.Hotels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notes" EntityType="Self.Notes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passengers" EntityType="Self.Passengers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassesBalance" EntityType="Self.PassesBalance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassesBonus" EntityType="Self.PassesBonus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PassesBonusExpiryDate" EntityType="Self.PassesBonusExpiryDate" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PassesBonusExpiryDate].[ExpiredBy] AS [ExpiredBy]
+    FROM [dbo].[PassesBonusExpiryDate] AS [PassesBonusExpiryDate]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ActivityLogs_Requests" Association="Self.FK_ActivityLogs_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="ActivityLogs" EntitySet="ActivityLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ancillaries_Requests" Association="Self.FK_Ancillaries_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Ancillaries" EntitySet="Ancillaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flights_Requests" Association="Self.FK_Flights_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hotels_Requests" Association="Self.FK_Hotels_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Hotels" EntitySet="Hotels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notes_Requests" Association="Self.FK_Notes_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Notes" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passengers_Requests" Association="Self.FK_Passengers_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Passengers" EntitySet="Passengers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="STAutomationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="STAutomationEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="ActivityLogs" EntityType="STAutomationModel.ActivityLogs" />
+          <EntitySet Name="Ancillaries" EntityType="STAutomationModel.Ancillaries" />
+          <EntitySet Name="Employee" EntityType="STAutomationModel.Employee" />
+          <EntitySet Name="EmployeePassport" EntityType="STAutomationModel.EmployeePassport" />
+          <EntitySet Name="Flights" EntityType="STAutomationModel.Flights" />
+          <EntitySet Name="Hotels" EntityType="STAutomationModel.Hotels" />
+          <EntitySet Name="Notes" EntityType="STAutomationModel.Notes" />
+          <EntitySet Name="Passengers" EntityType="STAutomationModel.Passengers" />
+          <EntitySet Name="PassesBalance" EntityType="STAutomationModel.PassesBalance" />
+          <EntitySet Name="PassesBonus" EntityType="STAutomationModel.PassesBonus" />
+          <EntitySet Name="Requests" EntityType="STAutomationModel.Requests" />
+          <EntitySet Name="PassesBonusExpiryDate" EntityType="STAutomationModel.PassesBonusExpiryDate" />
+          <AssociationSet Name="FK_ActivityLogs_Requests" Association="STAutomationModel.FK_ActivityLogs_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="ActivityLogs" EntitySet="ActivityLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ancillaries_Requests" Association="STAutomationModel.FK_Ancillaries_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Ancillaries" EntitySet="Ancillaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flights_Requests" Association="STAutomationModel.FK_Flights_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Flights" EntitySet="Flights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hotels_Requests" Association="STAutomationModel.FK_Hotels_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Hotels" EntitySet="Hotels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notes_Requests" Association="STAutomationModel.FK_Notes_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Notes" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passengers_Requests" Association="STAutomationModel.FK_Passengers_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Passengers" EntitySet="Passengers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ActivityLogs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="updateType" Type="Int32" Nullable="false" />
+          <Property Name="updatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="empName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="empNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sectionType" Type="Int32" Nullable="false" />
+          <Property Name="userType" Type="Int32" Nullable="false" />
+          <Property Name="statusChange" Type="Int32" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="foreignId" Type="Int32" Nullable="false" />
+          <Property Name="requestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="STAutomationModel.FK_ActivityLogs_Requests" FromRole="ActivityLogs" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Ancillaries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ancillaryProductType" Type="Int32" />
+          <Property Name="destination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="excursionDate" Type="DateTime" Precision="0" />
+          <Property Name="excursionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="transferType" Type="Int32" />
+          <Property Name="insuranceType" Type="Int32" />
+          <Property Name="passengerNumber" Type="Int32" />
+          <Property Name="approvalStatus" Type="Int32" />
+          <Property Name="quantity" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="requestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="STAutomationModel.FK_Ancillaries_Requests" FromRole="Ancillaries" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmpNumber" />
+          </Key>
+          <Property Name="EmpNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ManagerEmpNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SeniorityDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Organization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="RegisterDate" Type="DateTime" Precision="3" />
+          <Property Name="Eligibility" Type="Int32" Nullable="false" />
+          <Property Name="IsFullTime" Type="Int32" Nullable="false" />
+          <Property Name="IsSending" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Language" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EmployeePassport">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MidName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Flights">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="departDate" Type="DateTime" Precision="3" />
+          <Property Name="departFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="departTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="departFlight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="returnDate" Type="DateTime" Precision="3" />
+          <Property Name="returnFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="returnTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="returnFlight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="approvalStatus" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="requestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="STAutomationModel.FK_Flights_Requests" FromRole="Flights" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Hotels">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="checkInDate" Type="DateTime" Precision="3" />
+          <Property Name="duration" Type="Int32" />
+          <Property Name="destination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="roomType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="approvalStatus" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="requestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="STAutomationModel.FK_Hotels_Requests" FromRole="Hotels" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Notes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="enteredBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="enteredOn" Type="DateTime" Precision="3" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sectionId" Type="Int32" />
+          <Property Name="typeId" Type="Int32" />
+          <Property Name="requestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="STAutomationModel.FK_Notes_Requests" FromRole="Notes" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="Passengers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="middleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="typeOfPass" Type="Int32" />
+          <Property Name="phoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="passengerNumber" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="approvalStatus" Type="Int32" />
+          <Property Name="requestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Requests" Relationship="STAutomationModel.FK_Passengers_Requests" FromRole="Passengers" ToRole="Requests" />
+        </EntityType>
+        <EntityType Name="PassesBalance">
+          <Key>
+            <PropertyRef Name="employeeNumber" />
+            <PropertyRef Name="type" />
+            <PropertyRef Name="year" />
+          </Key>
+          <Property Name="employeeNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="used" Type="Int32" Nullable="false" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="year" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PassesBonus">
+          <Key>
+            <PropertyRef Name="employeeNumber" />
+            <PropertyRef Name="ExpiryDate" />
+          </Key>
+          <Property Name="employeeNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="howmanybonus" Type="Int32" Nullable="false" />
+          <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="requestDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="reviewer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="bookingNumber" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="ActivityLogs" Relationship="STAutomationModel.FK_ActivityLogs_Requests" FromRole="Requests" ToRole="ActivityLogs" />
+          <NavigationProperty Name="Ancillaries" Relationship="STAutomationModel.FK_Ancillaries_Requests" FromRole="Requests" ToRole="Ancillaries" />
+          <NavigationProperty Name="Flights" Relationship="STAutomationModel.FK_Flights_Requests" FromRole="Requests" ToRole="Flights" />
+          <NavigationProperty Name="Hotels" Relationship="STAutomationModel.FK_Hotels_Requests" FromRole="Requests" ToRole="Hotels" />
+          <NavigationProperty Name="Notes" Relationship="STAutomationModel.FK_Notes_Requests" FromRole="Requests" ToRole="Notes" />
+          <NavigationProperty Name="Passengers" Relationship="STAutomationModel.FK_Passengers_Requests" FromRole="Requests" ToRole="Passengers" />
+        </EntityType>
+        <EntityType Name="PassesBonusExpiryDate">
+          <Key>
+            <PropertyRef Name="ExpiredBy" />
+          </Key>
+          <Property Name="ExpiredBy" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_ActivityLogs_Requests">
+          <End Type="STAutomationModel.Requests" Role="Requests" Multiplicity="1" />
+          <End Type="STAutomationModel.ActivityLogs" Role="ActivityLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ActivityLogs">
+              <PropertyRef Name="requestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ancillaries_Requests">
+          <End Type="STAutomationModel.Requests" Role="Requests" Multiplicity="1" />
+          <End Type="STAutomationModel.Ancillaries" Role="Ancillaries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ancillaries">
+              <PropertyRef Name="requestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flights_Requests">
+          <End Type="STAutomationModel.Requests" Role="Requests" Multiplicity="1" />
+          <End Type="STAutomationModel.Flights" Role="Flights" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Flights">
+              <PropertyRef Name="requestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hotels_Requests">
+          <End Type="STAutomationModel.Requests" Role="Requests" Multiplicity="1" />
+          <End Type="STAutomationModel.Hotels" Role="Hotels" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Hotels">
+              <PropertyRef Name="requestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notes_Requests">
+          <End Type="STAutomationModel.Requests" Role="Requests" Multiplicity="1" />
+          <End Type="STAutomationModel.Notes" Role="Notes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Notes">
+              <PropertyRef Name="requestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passengers_Requests">
+          <End Type="STAutomationModel.Requests" Role="Requests" Multiplicity="1" />
+          <End Type="STAutomationModel.Passengers" Role="Passengers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Passengers">
+              <PropertyRef Name="requestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="STAutomationModelStoreContainer" CdmEntityContainer="STAutomationEntities" >
+          <EntitySetMapping Name="ActivityLogs">
+            <EntityTypeMapping TypeName="STAutomationModel.ActivityLogs">
+              <MappingFragment StoreEntitySet="ActivityLogs">
+                <ScalarProperty Name="requestId" ColumnName="requestId" />
+                <ScalarProperty Name="foreignId" ColumnName="foreignId" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="statusChange" ColumnName="statusChange" />
+                <ScalarProperty Name="userType" ColumnName="userType" />
+                <ScalarProperty Name="sectionType" ColumnName="sectionType" />
+                <ScalarProperty Name="empNumber" ColumnName="empNumber" />
+                <ScalarProperty Name="empName" ColumnName="empName" />
+                <ScalarProperty Name="updatedOn" ColumnName="updatedOn" />
+                <ScalarProperty Name="updateType" ColumnName="updateType" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ancillaries">
+            <EntityTypeMapping TypeName="STAutomationModel.Ancillaries">
+              <MappingFragment StoreEntitySet="Ancillaries">
+                <ScalarProperty Name="requestId" ColumnName="requestId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="approvalStatus" ColumnName="approvalStatus" />
+                <ScalarProperty Name="passengerNumber" ColumnName="passengerNumber" />
+                <ScalarProperty Name="insuranceType" ColumnName="insuranceType" />
+                <ScalarProperty Name="transferType" ColumnName="transferType" />
+                <ScalarProperty Name="excursionName" ColumnName="excursionName" />
+                <ScalarProperty Name="excursionDate" ColumnName="excursionDate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="destination" ColumnName="destination" />
+                <ScalarProperty Name="ancillaryProductType" ColumnName="ancillaryProductType" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="STAutomationModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsSending" ColumnName="IsSending" />
+                <ScalarProperty Name="IsFullTime" ColumnName="IsFullTime" />
+                <ScalarProperty Name="Eligibility" ColumnName="Eligibility" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="SeniorityDate" ColumnName="SeniorityDate" />
+                <ScalarProperty Name="ManagerEmpNumber" ColumnName="ManagerEmpNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EmpNumber" ColumnName="EmpNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeePassport">
+            <EntityTypeMapping TypeName="STAutomationModel.EmployeePassport">
+              <MappingFragment StoreEntitySet="EmployeePassport">
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MidName" ColumnName="MidName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EmpNumber" ColumnName="EmpNumber" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flights">
+            <EntityTypeMapping TypeName="STAutomationModel.Flights">
+              <MappingFragment StoreEntitySet="Flights">
+                <ScalarProperty Name="requestId" ColumnName="requestId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="approvalStatus" ColumnName="approvalStatus" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="returnFlight" ColumnName="returnFlight" />
+                <ScalarProperty Name="returnTo" ColumnName="returnTo" />
+                <ScalarProperty Name="returnFrom" ColumnName="returnFrom" />
+                <ScalarProperty Name="returnDate" ColumnName="returnDate" />
+                <ScalarProperty Name="departFlight" ColumnName="departFlight" />
+                <ScalarProperty Name="departTo" ColumnName="departTo" />
+                <ScalarProperty Name="departFrom" ColumnName="departFrom" />
+                <ScalarProperty Name="departDate" ColumnName="departDate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotels">
+            <EntityTypeMapping TypeName="STAutomationModel.Hotels">
+              <MappingFragment StoreEntitySet="Hotels">
+                <ScalarProperty Name="requestId" ColumnName="requestId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="approvalStatus" ColumnName="approvalStatus" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="roomType" ColumnName="roomType" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="destination" ColumnName="destination" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="checkInDate" ColumnName="checkInDate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notes">
+            <EntityTypeMapping TypeName="STAutomationModel.Notes">
+              <MappingFragment StoreEntitySet="Notes">
+                <ScalarProperty Name="requestId" ColumnName="requestId" />
+                <ScalarProperty Name="typeId" ColumnName="typeId" />
+                <ScalarProperty Name="sectionId" ColumnName="sectionId" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="enteredOn" ColumnName="enteredOn" />
+                <ScalarProperty Name="enteredBy" ColumnName="enteredBy" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passengers">
+            <EntityTypeMapping TypeName="STAutomationModel.Passengers">
+              <MappingFragment StoreEntitySet="Passengers">
+                <ScalarProperty Name="requestId" ColumnName="requestId" />
+                <ScalarProperty Name="approvalStatus" ColumnName="approvalStatus" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="passengerNumber" ColumnName="passengerNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="typeOfPass" ColumnName="typeOfPass" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassesBalance">
+            <EntityTypeMapping TypeName="STAutomationModel.PassesBalance">
+              <MappingFragment StoreEntitySet="PassesBalance">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+                <ScalarProperty Name="used" ColumnName="used" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="employeeNumber" ColumnName="employeeNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassesBonus">
+            <EntityTypeMapping TypeName="STAutomationModel.PassesBonus">
+              <MappingFragment StoreEntitySet="PassesBonus">
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="howmanybonus" ColumnName="howmanybonus" />
+                <ScalarProperty Name="employeeNumber" ColumnName="employeeNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="STAutomationModel.Requests">
+              <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="bookingNumber" ColumnName="bookingNumber" />
+                <ScalarProperty Name="reviewer" ColumnName="reviewer" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="requestDate" ColumnName="requestDate" />
+                <ScalarProperty Name="employeeNumber" ColumnName="employeeNumber" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassesBonusExpiryDate">
+            <EntityTypeMapping TypeName="STAutomationModel.PassesBonusExpiryDate">
+              <MappingFragment StoreEntitySet="PassesBonusExpiryDate">
+                <ScalarProperty Name="ExpiredBy" ColumnName="ExpiredBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,30 @@
+﻿<div class="slider-container">
+    <div class="bx-container">
+        <ul class="primary-slider">
+            <li #allslides *ngFor="let entry of entries; let last = last; ">
+                <div class="slider-heading-container">
+                    <span class="title">{{entry.fields?.mainTitle}}</span>
+                    <span class="sub-title">{{entry.fields?.subTitle}}</span>
+                </div>
+                <a [title]="entry.fields?.mainTitle" [target]="entry.fields?.target" [href]="entry.fields?.urlLink" style.background-image="url({{entry.fields.imageLink.fields.file.url}})" (click)="canslide(entry)" [class.disabled]="!canslide(entry)"></a>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="mobile-slider" id="slider-mobile">
+        <div id="mobile-slider-bx-container" class="mobile-bx-container">
+
+            <ul class="mobile-primary-slider">
+                <li *ngFor="let entry of entries">
+                    <div class="slider-heading-container">
+                        <span class="title">{{entry.fields?.mainTitle}}</span>
+                        <span class="sub-title">{{entry.fields?.SubTitle}}</span>
+                    </div>
+                    <a href={{entry.fields?.urlLink}} target={{entry.fields?.target}} title={{entry.fields?.mainTitle}}> <img src={{entry.fields.imageLinkMobile.fields.file.url}} alt={{entry.fields?.mainTitle}} /></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

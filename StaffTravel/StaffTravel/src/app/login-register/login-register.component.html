@@ -1,0 +1,146 @@
+<div class="container">
+    <div class="tab-group" role="tablist">
+        <div class="tab active" id="login">
+            <h4 class="tab-title">
+                <a href="#login" aria-controls="login" role="tab" data-toggle="tab" (click)="toggleTab($event)">{{r.login}}</a>
+            </h4>
+            <div role="tabpanel" class="tab-body">
+                <form class="form-horizontal form-flex-error" name="loginForm" (ngSubmit)="login()" #loginForm="ngForm">
+                    <div *ngIf="!isValid" class="alert alert-danger">
+                        {{errorMessage}}
+                    </div>
+                    <div class="form-group form-group--bottom">
+                        <div class="col-sm-6">
+                            <label for="login_empNumber">{{r.employeeId}}</label>
+                            <input type="text" [(ngModel)]="loginModel.empNumber" id="login_empNumber" name="login_empNumber" class="form-control" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="login_password">{{r.password}}</label>
+                            <div class="input-group">
+                                <input type="password" [(ngModel)]="loginModel.password" id="login_password" name="login_password" class="form-control" required>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default form-control" type="button" (click)="togglePassword($event)">{{r.show}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <div class="input-group--checkbox">
+                                <input type="checkbox" [(ngModel)]="loginModel.rememberMe" name="login_rememberMe" id="rememberMe">
+                                <label for="rememberMe">{{r.rememberMe}}</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-full btn-primary" [ngClass]="{'btn-loader': loadingBtn}" [disabled]="loginForm.invalid || !loginBtnReady">{{r.login}}</button>
+                        </div>
+                    </div>
+                    <div class="form-group form-flex-bottom">
+                        <div class="col-sm-6">
+                            <a routerLink="/forgot-password">{{r.forgotPassword}}</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="tab" id="register">
+            <h4 class="tab-title">
+                <a href="#register" aria-controls="register" role="tab" data-toggle="tab" (click)="toggleTab($event)">{{r.register}}</a>
+            </h4>
+            <div role="tabpanel" class="tab-body">
+                <form class="form-horizontal form-flex-error" name="registerForm" (ngSubmit)="register()" #registerForm="ngForm">
+                    <div *ngIf="!isValid" class="alert alert-danger">
+                        {{errorMessage}}
+                    </div>
+                    <div *ngIf="!isPasswordValid" class="alert alert-danger">
+                        <label>{{r.passwordRequirementsTitle}}</label>
+                        <ul>
+                            <li>{{r.passwordRequirementsLine1}}</li>
+                            <li>{{r.passwordRequirementsLine2}}</li>
+                            <li>{{r.passwordRequirementsLine3}}</li>
+                            <li>{{r.passwordRequirementsLine4}}</li>
+                        </ul>
+                    </div>
+                    <div *ngIf="!isPasswordMatch" class="alert alert-danger">
+                        <label>{{r.passwordMismatch}}</label>
+                    </div>
+                    <div *ngIf="isRegisteredSuccessfully" class="success alert-success">
+                        <label>{{r.welcome}}</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <label for="register_empNumber">{{r.employeeId}}</label>
+                            <input type="text" [(ngModel)]="registerModel.empNumber" id="register_empNumber" name="register_empNumber" #register_empNumber
+                                   class="form-control" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="register_lastName">{{r.lastName}}</label>
+                            <input type="text" [(ngModel)]="registerModel.lastName" name="register_lastName" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <label for="register_password">
+                                {{r.password}}&nbsp;&nbsp;<i class="fa fa-info-circle" [matTooltip]="r.passwordRequirements" matTooltipClass="tooltip--bottom" matTooltipPosition="below"></i>
+                            </label>
+                            <div class="input-group">
+                                <input type="password" #register_password="ngModel" [(ngModel)]="registerModel.password" id="register_password" name="register_password"
+                                       class="form-control" required>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default form-control" type="button" (click)="togglePassword($event)">{{r.show}}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="register_confirmPassword">{{r.confirmPassword}}</label>
+                            <div class="input-group">
+                                <input type="password" #register_confirmPassword="ngModel" [(ngModel)]="registerModel.confirmPassword" id="register_confirmPassword"
+                                       name="register_confirmPassword" class="form-control" required>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default form-control" type="button" (click)="togglePassword($event)">{{r.show}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">
+                        <div class="col-sm-12">
+                            <label>{{r.passwordRequirements}}</label>
+                        </div>
+                    </div>-->
+                    <br/>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <label>
+                                {{r.PassportNameHead}}&nbsp;&nbsp;<i class="fa fa-info-circle" [matTooltip]="r.PassportNameHeadHint" matTooltipClass="tooltip--bottom" matTooltipPosition="below"></i>
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="FirstNamePassport">
+                                {{r.FirstNamePassport}}
+                            </label>
+                            <input type="text" #FirstNamePassport="ngModel" pattern="[ A-Za-z]{1,50}" [(ngModel)]="registerModel.firstNamePassport" id="FirstNamePassport" name="FirstNamePassport"
+                                    class="form-control" required>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="MidNamePassport">{{r.middleName}}</label>
+                            <input type="text" #MidNamePassport="ngModel" pattern="[ A-Za-z]{1,50}" [(ngModel)]="registerModel.midNamePassport" id="MidNamePassport"
+                                    name="MidNamePassport" class="form-control" placeholder="[{{r.optional}}]" >
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="LastNamePassport">
+                                {{r.LastNamePassport}}
+                            </label>
+                            <input type="text" #LastNamePassport="ngModel" pattern="[ A-Za-z]{1,100}" [(ngModel)]="registerModel.lastNamePassport" id="LastNamePassport"
+                                    name="LastNamePassport" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-6">
+                            <button type="submit" class="btn btn-full btn-primary" [ngClass]="{'btn-loader': loadingBtn}" [disabled]="registerForm.invalid || !registerBtnReady">{{r.register}}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="save-passport">
+        <form class="form-horizontal form-flex-error" name="passportForm" (ngSubmit)="savePassport()" #passportForm="ngForm">
+            <div class="form-group">
+                <div class="save-passport-title col-sm-10">
+                    <h2>{{r.Passport}}</h2>
+                </div>
+                <div *ngIf="isHRAdmin || hasPassport" class="col-sm-2">
+                    <a routerLink="/home" routerLinkActive="active">{{r.cancel}}</a>
+                </div>
+            </div>
+            <div *ngIf="errorMessage && (isHRAdmin || !hasPassport) && (!isValidationSuccessful || !isSaveSuccessful)" class="alert alert-danger col-sm-12">
+                <label>{{errorMessage}}</label>
+            </div>
+            <div *ngIf="errorMessage && isSaveSuccessful && isValidationSuccessful" class="success alert-success">
+                <label>{{errorMessage}}</label>
+            </div>
+            <div class="form-group" *ngIf="isHRAdmin">
+                <div class="col-sm-4">
+                    <label for="passport_empNumber">{{r.employeeId}}</label>
+                    <input type="text" [(ngModel)]="passportModel.empNumber" (ngModelChange)="invalidatePassport()"
+                           name="passport_empNumber" class="form-control" required />
+                </div>
+                <div class="col-sm-8">
+                    <label for="passport_Name">{{r.employeeName}}</label>
+                    <input type="text" [(ngModel)]="passportModel.name" name="passport_Name" class="form-control" disabled required />
+                </div>
+                <div *ngIf="isHRAdmin" class="col-sm-6 col-sm-offset-6">
+                    <button class="btn btn-full btn-primary" [ngClass]="{'btn-loader': loadingBtn2}" (click)="getPassport()" [disabled]="!chkBtnReady || isValidationSuccessful">{{r.Validate}}</button>
+                </div>
+            </div>
+            <br />
+            <div class="form-group" *ngIf="isValidationSuccessful">
+                <div *ngIf="isHRAdmin || !hasPassport" class="col-sm-12">
+                    <label>
+                        {{r.PassportNameHead}}&nbsp;&nbsp;<i class="fa fa-info-circle" [matTooltip]="r.PassportNameHeadHint" matTooltipClass="tooltip--bottom" matTooltipPosition="below"></i>
+                    </label>
+                </div>
+                <div class="col-sm-4">
+                    <label for="FirstNamePassport">
+                        {{r.FirstNamePassport}}
+                    </label>
+                    <input type="text" #FirstNamePassport="ngModel" pattern="[ A-Za-z]{1,50}" [(ngModel)]="passportModel.firstNamePassport" id="FirstNamePassport"
+                           name="FirstNamePassport" class="form-control" [disabled]="hasPassport && !isHRAdmin" required />
+                </div>
+                <div class="col-sm-4">
+                    <label for="MidNamePassport">
+                        {{r.middleName}}
+                    </label>
+                    <input type="text" #MidNamePassport="ngModel" pattern="[ A-Za-z]{1,50}" [(ngModel)]="passportModel.midNamePassport" id="MidNamePassport"
+                           name="MidNamePassport" class="form-control" [disabled]="hasPassport && !isHRAdmin" placeholder="[{{r.optional}}]" />
+                </div>
+                <div class="col-sm-4">
+                    <label for="LastNamePassport">
+                        {{r.LastNamePassport}}
+                    </label>
+                    <input type="text" #LastNamePassport="ngModel" pattern="[ A-Za-z]{1,100}" [(ngModel)]="passportModel.lastNamePassport" id="LastNamePassport"
+                           name="LastNamePassport" class="form-control" [disabled]="hasPassport && !isHRAdmin" required />
+                </div>
+                <div *ngIf="!isHRAdmin && hasPassport" class="col-sm-12">
+                    <label>{{r.ContactHRAdmin}} <a href="mailto:HRQuestions@sunwing.ca">{{r.HREmail}}</a></label>
+                </div>
+            </div>
+            <div class="form-group" *ngIf="(isHRAdmin || !hasPassport) && isValidationSuccessful">
+                <div class="col-sm-6 col-sm-offset-6">
+                    <button type="submit" class="btn btn-full btn-primary" [ngClass]="{'btn-loader': loadingBtn1}" [disabled]="passportForm.invalid || !saveBtnReady">{{r.Save}}</button>
+                </div>
+            </div>
+        </form>
+</div>
+</div>

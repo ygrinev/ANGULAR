@@ -1,0 +1,21 @@
+<div class="panel panel-primary">
+    <div class="panel-heading panel-heading--split">
+        <ng-template [ngIf]="tableType == 'search'">
+            <h2>{{r.search}}</h2>
+            <div class="form-search">
+                <input #search type="Search" class="form-control form-search" placeholder="Search..." (keyup)="onSearch(search.value)">
+            </div>
+        </ng-template>
+        <ng-template [ngIf]="tableType == 'viewAll'">
+            <h2>{{r.myRecentRequests}}</h2>
+            <button class="btn btn-secondary-dark btn-xs-full" routerLink="/my-requests">{{r.viewAllRequests}}</button>
+        </ng-template>
+        <ng-template [ngIf]="tableType == 'viewByYear'">
+            <h2>{{r.myRecentRequests}}</h2>
+        </ng-template>
+    </div>
+    <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="routingto($event)" *ngIf="source"></ng2-smart-table>
+    <div *ngIf="!source">
+        <label>{{r.loading}}</label>
+    </div>
+</div>

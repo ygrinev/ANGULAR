@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://yyzappstg1.sunwingstg.local/EmailService/EmailService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/sunwing.Ens.WcfServices.Common" />
+  <xs:import schemaLocation="http://yyzappstg1.sunwingstg.local/EmailService/EmailService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/sunwing.Ens.BLL.CustomException" />
+  <xs:element name="SendEmail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/sunwing.Ens.WcfServices.Common" minOccurs="0" name="obj" nillable="true" type="q1:emailObjectClass" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendEmailResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessPendingEmails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="agentId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="requestTimestamp" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ProcessPendingEmailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/sunwing.Ens.BLL.CustomException" minOccurs="0" name="ProcessPendingEmailsResult" nillable="true" type="q2:ArrayOfAgentJobException" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

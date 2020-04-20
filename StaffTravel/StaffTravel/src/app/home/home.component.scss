@@ -1,0 +1,29 @@
+.feature-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.feature-box__link {
+    background-color: #ecf5fb;
+    margin-bottom: 15px;
+}
+
+.feature-box__link > a {
+    display: block;
+    padding: 15px;
+    font-size: 24px;
+    color: #515151;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+@media (min-width: 768px){
+    .feature-box {
+        margin-top: 15px;
+    }
+
+    .feature-box__link {
+        margin-bottom: 30px;
+    }
+}

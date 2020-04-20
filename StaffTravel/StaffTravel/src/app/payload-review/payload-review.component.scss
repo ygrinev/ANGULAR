@@ -1,0 +1,126 @@
+:host {
+    margin-top: 15px;
+}
+
+hr {
+    border-top: 2px solid #fff;
+}
+.status-updated {
+    margin-top:5px;
+    font-size:12px;
+    text-align: center;
+
+    span {
+        display: block;
+        font-weight: bold;
+    }
+}
+
+.review-info {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    // Passes
+    > h2 {
+        max-width: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 28px;
+        font-weight: normal;
+    }
+
+    > p {
+        max-width: 100%;
+        margin-top: 10px;
+        margin-bottom: 0;
+
+        @media (min-width: 768px) {
+            margin-top: 0;
+        }
+    }
+}
+
+// Column Sizing
+.review-request {
+    &--flights {
+        .flight {
+            &-pax {
+                display: none;
+
+                @media (min-width: 1200px) {
+                    display: table-cell;
+                    font-size: 36px;
+                    color: #aeb2b4;
+                }
+            }
+
+            @media (min-width: 1200px) {
+                &-departure {
+                    width: 254px;
+                    min-width: 254px;
+                    padding-right: 15px;
+                    position: relative;
+
+                    &--outbound::after,
+                    &--inbound::after {
+                        content: "\f072";
+                        display: inline-block;
+                        color: #9acbe7;
+                        font: normal normal normal 14px/1 FontAwesome;
+                        font-size: inherit;
+                        text-rendering: auto;
+                        -webkit-font-smoothing: antialiased;
+                        -moz-osx-font-smoothing: grayscale;
+                        position: absolute;
+                        left: 5px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
+
+                    &--inbound::after {
+                        transform: translateY(-50%) scale(-1, 1);
+                    }
+                }
+
+                &-destination {
+                    width: 275px;
+                    min-width: 275px;
+                    padding-right: 15px;
+                }
+
+                &-date {
+                    width: 135px;
+                    min-width: 135px;
+                }
+
+                &-number {
+                    width: 210px;
+                    min-width: 210px;
+                }
+            }
+
+            &-status {
+                display: none;
+
+                @media (min-width: 1200px) {
+                    display: table-cell;
+                    width: 185px;
+                    min-width: 185px;
+                    padding-right: 15px;
+                }
+
+                &--mobile {
+                    display: block;
+
+                    @media (min-width: 1200px) {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/sunwing.Ens.WcfServices.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/sunwing.Ens.WcfServices.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://yyzappstg1.sunwingstg.local/EmailService/EmailService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="emailObjectClass">
+    <xs:sequence>
+      <xs:element name="ClientID" nillable="true" type="xs:string" />
+      <xs:element name="Subject" nillable="true" type="xs:string" />
+      <xs:element name="EmailBody" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmailTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CCTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BodyHtml" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Priority" type="tns:emailPriorityItems" />
+      <xs:element minOccurs="0" name="EmailType" type="tns:emailTypeItems" />
+      <xs:element minOccurs="0" name="SendEmaiAfterTimestamp" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="emailObjectClass" nillable="true" type="tns:emailObjectClass" />
+  <xs:simpleType name="emailPriorityItems">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="normal" />
+      <xs:enumeration value="high">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="low">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="emailPriorityItems" nillable="true" type="tns:emailPriorityItems" />
+  <xs:simpleType name="emailTypeItems">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="information">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="exception">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="notification">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="emailTypeItems" nillable="true" type="tns:emailTypeItems" />
+  <xs:complexType name="EnsExceptionContainer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Messsage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EnsExceptionContainer" nillable="true" type="tns:EnsExceptionContainer" />
+</xs:schema>

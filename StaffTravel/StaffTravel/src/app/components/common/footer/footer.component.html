@@ -1,0 +1,21 @@
+<footer>
+    <section class="footer__nav">
+        <h1 class="sr-only">{{r.footerNav}}</h1>
+        <nav class="container">
+            <ul class="footer__nav-list">
+                <li class="footer__nav-list-item"><a href="https://sunwing.ca/" target="_blank">{{r.sunwing_ca}}</a></li>
+                <li class="footer__nav-list-item"><a href="https://vip.sunwing.ca">{{r.fnf}}</a></li>
+                <li class="footer__nav-list-item" *ngIf="userInfo.isLoggedIn"><a routerLink="/faq">{{r.policy}}</a></li>
+                <li class="footer__nav-list-item"><a href="{{r.touUrl}}">{{r.tou}}</a></li>
+                <li class="footer__nav-list-item"><a href="#" (click)="switchLanguage()">{{r.switchLanguage}}</a></li>
+            </ul>
+        </nav>
+    </section>
+    <div class="footer__copyright">
+        <div class="container">
+            <p class="footer__copyright-text">
+                {{r.copyright}} <a href="http://sunwingtravelgroup.com/" target="_blank">{{r.stg}}</a>. {{r.rightsReserved}}
+            </p>
+        </div>
+    </div>
+</footer>

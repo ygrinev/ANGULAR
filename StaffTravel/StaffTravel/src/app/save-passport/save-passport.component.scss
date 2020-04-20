@@ -1,0 +1,76 @@
+.container {
+    max-width: 100vw;
+    min-width: 100vw;
+    display: flex;
+    margin-top: 6%;
+}
+
+@media (min-width: 768px) {
+    .container {
+        min-width: initial;
+    }
+}
+
+.save-passport {
+    transition: all 0.5s ease;
+    background-color: rgba(255,255,255,0.9);
+    border: 2px solid #007cc3;
+    padding: 25px;
+}
+
+.save-passport:before,
+.save-passport:after {
+    content: " ";
+    display: table;
+}
+
+.save-passport:after {
+    clear: both;
+}
+
+@media (min-width: 992px) {
+    .save-passport {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 1200px) {
+    .save-passport {
+        max-width: 70%;
+    }
+}
+
+
+.save-passport-title {
+    display: flex;
+    flex: 0 1 auto;
+}
+
+.save-passport-title h2 {
+    margin-top: 0;
+    flex-grow: 1;
+}
+
+.save-passport-title a {
+    display: none;
+}
+
+.back {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .save-passport-title a {
+        display: inline;
+        text-align: right;
+        align-self: flex-start;
+    }
+
+    .back {
+        display: none;
+    }
+}
+div.alignRight {
+    text-align: right;
+}

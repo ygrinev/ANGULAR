@@ -1,0 +1,86 @@
+﻿@using System.Resources;
+@using System.Globalization;
+
+@{
+    var url = ViewData.Eval("url");
+    var name = ViewData.Eval("name");
+
+    ResourceManager rm = new ResourceManager(typeof(StaffTravel.Resources.Resource));
+    CultureInfo en = new CultureInfo("en");
+    CultureInfo fr = new CultureInfo("fr");
+}
+
+<!--English-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="width: 600px;" class="deviceWidth">
+                <tr>
+                    <td align="left" valign="middle" style="text-decoration: none; font-size: 14px; line-height: 18px; color: #565656; font-family:Arial, Helvetica, sans-serif; padding-top:5px; padding-bottom:5px; padding-left:15px; padding-right:15px;">
+                        @name  @rm.GetString("userUpdatedRequest", en)  @rm.GetString("pleaseVisitThe", en) <a href="@url" style="color:#007cc3">@rm.GetString("staffTravel", en)</a> @rm.GetString("toViewUpdates", en)
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+
+<table name="separator" border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="width: 600px;" class="deviceWidth">
+                <tr>
+                    <td height="20" style="font-size: 1px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td height="20" style="font-size: 1px; border-top: 2px solid #ddd">&nbsp;</td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>
+
+<!--French-->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+            <tr>
+            <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="width: 600px;" class="deviceWidth">
+                <tr>
+                    <td align="left" valign="middle" style="text-decoration: none; font-size: 14px; line-height: 18px; color: #565656; font-family:Arial, Helvetica, sans-serif; padding-top:5px; padding-bottom:5px; padding-left:15px; padding-right:15px;">
+                        @name  @rm.GetString("userUpdatedRequest", fr)  @rm.GetString("pleaseVisitThe", fr) <a href="@url" style="color:#007cc3">@rm.GetString("staffTravel", fr)</a> @rm.GetString("toViewUpdates", fr)
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+</table>

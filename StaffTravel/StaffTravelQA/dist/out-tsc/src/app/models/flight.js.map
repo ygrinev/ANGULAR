@@ -1,0 +1,1 @@
+{"version":3,"file":"flight.js","sourceRoot":"","sources":["../../../../../src/app/models/flight.ts"],"names":[],"mappings":";;AAAA,iCAAqC;AAErC;IACI;QACI,IAAI,CAAC,MAAM,GAAG,kBAAU,CAAC,OAAO,CAAC;QACjC,IAAI,CAAC,cAAc,GAAG,kBAAU,CAAC,OAAO,CAAC;IAC7C,CAAC;IAgBL,aAAC;AAAD,CAAC,AApBD,IAoBC;AApBY,wBAAM"}

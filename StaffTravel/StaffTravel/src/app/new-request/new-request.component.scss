@@ -1,0 +1,247 @@
+// Variables
+$sunwing-orange: #f36f21;
+$sunwing-blue: #007cc3;
+
+hr {
+    border-top: 2px solid #fff;
+}
+
+.request-form {
+    background-color: #ecf5fb;
+    padding: 15px 40px;
+
+    & > section {
+        padding: 15px;
+
+        @media (min-width: 768px) {
+            padding: 30px 50px;
+        }
+
+        @media (min-width: 1200px) {
+            padding: 30px 100px;
+        }
+    }
+
+    &__section {
+        margin-bottom: 15px;
+
+        &.last {
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+.request-heading {
+    display: flex;
+    flex: 1 1 auto;
+    // Icon
+    i {
+        font-size: 2.7em;
+        color: $sunwing-blue;
+        padding-right: 10px;
+        width: 55px;
+        height: 55px;
+
+        &.fa-ticket {
+            font-size: 2.7em;
+        }
+
+        &.fa-plane {
+            font-size: 2.8em;
+        }
+
+        &.fa-bed {
+            font-size: 2.4em;
+        }
+
+        &.fa-cubes {
+            font-size: 2em;
+        }
+    }
+
+    h3 {
+        color: #007cc3;
+        margin: 0;
+    }
+
+    p {
+        font-size: 14px;
+        color: #898989;
+    }
+
+    div {
+        display: block;
+        max-width: 100%;
+    }
+}
+
+
+.request-form__row {
+    position: relative;
+
+    &::after,
+    &::before {
+        display: table;
+        content: " ";
+    }
+
+    &::after {
+        clear: both;
+    }
+
+    &--collapse-sm {
+        @media (min-width: 768px) {
+            display: flex;
+            flex: 0 1 auto;
+        }
+    }
+
+    &--collapse-md {
+        @media (min-width: 992px) {
+            display: flex;
+            flex: 0 1 auto;
+        }
+    }
+
+    &--collapse-lg {
+        @media (min-width: 1200px) {
+            display: flex;
+            flex: 0 1 auto;
+        }
+    }
+}
+
+.request-form__row-split {
+    display: block;
+
+    @media (min-width: 768px) {
+        display: flex;
+        flex: 0 1 auto;
+        position: relative;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: 15px;
+    }
+    // Ancillary Notes Container
+    .request-form__ancillary-note {
+        margin-bottom: 15px;
+
+        @media (min-width: 768px) {
+            padding-right: 15px;
+        }
+        // Ancillar Notes
+        .ancillary-note {
+
+            label {
+                display: block;
+
+                @media (min-width: 768px) {
+                    display: none;
+                }
+            }
+
+            textarea {
+                width: 100%;
+                resize: vertical;
+                margin-bottom: 15px;
+
+                @media (min-width: 768px) {
+                    max-width: 420px;
+                }
+            }
+        }
+    }
+
+    & > button {
+        margin-bottom: 15px;
+
+        @media (min-width: 768px) {
+            margin-bottom: 0;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.request-form__row {
+
+    & > .passenger-number {
+        position: absolute;
+        left: -35px;
+        top: 25px;
+        align-self: flex-start;
+        text-align: right;
+        padding-bottom: 10px;
+        font-size: 36px;
+        color: #aeb2b4;
+    }
+
+    & > .delete {
+        position: absolute;
+        right: -50px;
+        bottom: 15px;
+        align-self: center;
+        text-align: center;
+
+        @media (min-width: 768px) {
+            right: -55px;
+        }
+
+        .btn {
+            height: 48px;
+            border-width: 1px;
+            color: #898989;
+            font-size: 1.5em;
+            line-height: 1;
+
+            &:hover,
+            &:focus {
+                background-color: #fff;
+                color: #d00815;
+            }
+        }
+    }
+
+    & > div[class^="col-"] {
+        padding: 0;
+
+        & > .field-group {
+            display: block;
+
+            @media (min-width: 768px) {
+                display: flex;
+                flex: 0 1 auto;
+            }
+
+            & > input {
+                width: 100%;
+
+                @media (min-width: 768px) {
+                    flex: 1 0 auto;
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+.request-form .ancillary-group {
+    width: 100%;
+    float: left;
+
+
+    @media (min-width: 992px) {
+        display: flex;
+        flex: 1 0 auto;
+        width: auto;
+        float: none;
+        padding: 0;
+    }
+
+    & > div[class^="col-"] {
+        padding: 0;
+    }
+}

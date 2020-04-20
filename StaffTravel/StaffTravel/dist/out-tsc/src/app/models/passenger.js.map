@@ -1,0 +1,1 @@
+{"version":3,"file":"passenger.js","sourceRoot":"","sources":["../../../../../src/app/models/passenger.ts"],"names":[],"mappings":";;AAAA,iCAAqD;AAErD;IACI,mBAAY,eAA2B;QAA3B,gCAAA,EAAA,mBAA2B;QACnC,IAAI,CAAC,MAAM,GAAG,kBAAU,CAAC,OAAO,CAAC;QACjC,IAAI,CAAC,cAAc,GAAG,kBAAU,CAAC,OAAO,CAAC;QACzC,IAAI,CAAC,eAAe,GAAG,eAAe,CAAC;IAC3C,CAAC;IAcL,gBAAC;AAAD,CAAC,AAnBD,IAmBC;AAnBY,8BAAS"}
