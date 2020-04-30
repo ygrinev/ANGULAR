@@ -1,7 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { tap, map, switchMap, pluck, mergeMap, filter, toArray, share } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { tap, 
+        map, 
+        switchMap, 
+        pluck, 
+        mergeMap, 
+        filter, 
+        toArray, 
+        share, 
+        catchError,
+        retry
+      } from 'rxjs/operators';
+import { NotificationsService } from '../notifications/notifications.service';
 
 export interface IWeatherResponse {
   list: {
@@ -20,7 +31,10 @@ export class ForecastService {
   private rootUrl: string = 'https://api.openweathermap.org/data/2.5/forecast'
   apiKey: string = '9b15c789774951000cbc1e8a12d05a38';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private ntfService: NotificationsService
+  ) { }
 
   getForecast() {
     return this.getCurrentLocation().pipe(
@@ -43,6 +57,7 @@ export class ForecastService {
 
   getCurrentLocation() {
     return new Observable<Coordinates>((observer) => {
+      console.log('Trying to get location...');
       window.navigator.geolocation.getCurrentPosition(
         pos => {
           observer.next(pos.coords);
@@ -50,6 +65,16 @@ export class ForecastService {
         },
         err => observer.error(err)
       )
-    });
+    }).pipe(
+      tap(() =>this.ntfService.addSuccess('Got your location')
+      //  ,(err) => this.ntfService.addError('Failed to get location')
+      )
+      ,catchError((err) => {
+        // handle the error
+        this.ntfService.addError('Failed to get location');
+        // return a new observable passing err aroung
+        return throwError(err)
+      })
+    );
   }
 }
