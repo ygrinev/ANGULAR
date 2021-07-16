@@ -5,12 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OutputGraphComponent } from './output-graph/output-graph.component';
+import { OutputTableComponent } from './output-table/output-table.component';
 
 @NgModule({
-  declarations: [
+  declarations: [		
     AppComponent,
-    OutputGraphComponent
-  ],
+    OutputGraphComponent,
+      OutputTableComponent,
+      OutputTableComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

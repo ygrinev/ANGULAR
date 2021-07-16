@@ -1,8 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div id="main-head">
   <h1>
-    Welcome to {{ title }}!
+    <a href="#" [class.disabled]="true">
+      Welcome to {{ title }}!
+    </a>
   </h1>
   <app-output-graph></app-output-graph>
+  <input type="button" (click)="hctable.generateTable();" value="Generate Table"/>
+  <app-output-table #hctable></app-output-table>
 </div>
 <router-outlet></router-outlet>

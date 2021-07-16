@@ -20,68 +20,83 @@ noData(Highcharts);
   styleUrls: ['./output-graph.component.css']
 })
 export class OutputGraphComponent implements OnInit {
+  // showInvalid : boolean = true;
+  // showMissing : boolean = true;
   public options: any = {
-    chart: {
-      type: 'scatter',
-      height: 700
-    },
-    title: {
-      text: 'DQ History'
-    },
-    credits: {
-      enabled: false
-    },
-    tooltip: {
-      formatter: function() {
-        return 'x: ' + Highcharts.dateFormat('%e %b %y %H:%M:%S', this.x) +
-          'y: ' + this.y.toFixed(2);
+  chart: {
+    type: 'spline'
+  },
+  title: {
+      text: 'DQ invalid contacts history'
+  },
+  subtitle: {
+      text: 'Source system: TTS'
+  },
+  xAxis: {
+      categories: ['2021-01-01', '2021-01-02', '2021-01-03', '2021-01-04', 
+      '2021-01-05', '2021-01-06', '2021-01-07', '2021-01-08', '2021-01-09', 
+      '2021-01-10', '2021-01-11', '2021-01-12','2021-01-13', '2021-01-14', 
+      '2021-01-15', '2021-01-16', '2021-01-17', '2021-01-18', '2021-01-19', 
+      '2021-01-20', '2021-01-21', '2021-01-22', '2021-01-23', '2021-01-24']
+      // categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      //     'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  },
+  yAxis: {
+      title: {
+          text: 'Contacts'
       }
-    },
-    //   formatter: function() {
-    //     return '<b>x: </b>' + Highcharts.dateFormat('%e %b %y %H:%M:%S', this.x) +
-    //       ' <br> <b>y: </b>' + this.y.toFixed(2);
-    //   }
-    // },
-    xAxis: {
-      type: 'datetime',
-      labels: {
-        formatter: function() {
-          return Highcharts.dateFormat('%e %b %y', this.value);
+      // ,
+      // labels: {
+      //     formatter: function () {
+      //         return this.value + '°';
+      //     }
+      // }
+  },
+  tooltip: {
+      crosshairs: true,
+      shared: true
+  },
+  plotOptions: {
+      spline: {
+          marker: {
+              radius: 3,
+              lineColor: '#666666',
+              lineWidth: 1
+          }
+      },
+  },
+  series: [{
+      name: 'Invalid',
+      visible: false,
+      marker: {
+          symbol: 'triangle'
+      },
+      data: [70, 69, 95, 145, 182, 215, 252, {
+          y: 265,
+          marker: {
+              symbol: 'url(https://www.highcharts.com/samples/graphics/sun.png)'
+          }
+      }, 233, 183, 139, 96,70, 69, 95, 145, 182, 215, 252, {
+        y: 265,
+        marker: {
+            symbol: 'square'
         }
-      }
-    },
-    data: {
-      table: "datatable",
-      startRow: 1,
-      startColumn: 0,
-      endCoulumn: 1
-    }
-    // series: [
-    //   {
-    //     name: 'Normal',
-    //     turboThreshold: 500000,
-    //     data: [[new Date('2018-01-25 18:38:31').getTime(), 2]]
-    //   },
-    //   {
-    //     name: 'Abnormal',
-    //     turboThreshold: 500000,
-    //     data: [[new Date('2018-02-05 18:38:31').getTime(), 7]]
-    //   }
-    // ]
+    }, 233, 183, 139, 96]
 
-    // series: [
-    //   {
-    //     name: 'Normal',
-    //     turboThreshold: 500000,
-    //     data: []
-    //   },
-    //   {
-    //     name: 'Abnormal',
-    //     turboThreshold: 500000,
-    //     data: []
-    //   }
-    // ]
-  }
+    }, 
+    {
+      name: 'Missing',
+      marker: {
+          symbol: 'diamond'
+      },
+      data: [{
+          y: 39,
+          marker: {
+              symbol: 'square'
+                  }
+              }, 42, 57, 85, 119, 152, 170, 166, 142, 103, 66, 48, 39, 42, 57, 85, 119, 152, 170, 166, 142, 103, 66, 48]
+  }]
+}
   subscription: Subscription;
   constructor(private http: HttpClient) { }
 
@@ -121,5 +136,11 @@ export class OutputGraphComponent implements OnInit {
         return res;
       });
   }
+  // toggleInvalid(){
+  //   this.showInvalid = !this.showInvalid;
+  // }
+  // toggleMissing(){
+  //   this.showInvalid = !this.showInvalid;
+  // }
 }
 

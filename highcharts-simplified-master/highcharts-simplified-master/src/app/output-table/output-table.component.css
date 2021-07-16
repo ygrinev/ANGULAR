@@ -1,0 +1,21 @@
+/* 
+caption {
+    border-bottom: none;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+caption, tr:nth-child(even) {
+    background: #f8f8f8
+}
+.chart-outer {
+    max-width: 800px;
+    margin: 2em auto;
+}
+#container {
+    margin-top: 2em;
+    min-width: 380px;
+}
+.td-border {
+    border: solid;
+    background-color: red;
+} */
